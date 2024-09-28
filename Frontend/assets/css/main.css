@@ -1731,7 +1731,7 @@ section,
 
 #sidebar{
   position: fixed;
-  top: 110px;
+  top: 0px;
   left: 0;
   bottom: 0;
   width: 270px;
@@ -1787,7 +1787,7 @@ section,
 
 #sidebar .toggle{
   position: absolute;
-  top: 30px;
+  top: 37px;
   right: 5px;
   transform: translateY(-50%);
   height: 30px;
@@ -1868,12 +1868,12 @@ section,
   height: 100vh;
   left: 270px;
   padding: 15px;
-  width: calc(100%-270px);
+  width: calc(100% - 270px);
   transition: 0.5s;
 }
 #sidebar.close ~ .content{
   left: 80px;
-  width: calc(100%-80px);
+  width: calc(100% - 80px);
 }
 
 .card {

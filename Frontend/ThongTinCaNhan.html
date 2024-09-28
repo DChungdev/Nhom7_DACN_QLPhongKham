@@ -99,11 +99,11 @@
 
     </header>
     <main class="main d-flex">
-        <div id="sidebar" style="z-index: 1;">
-            <i class="bi bi-arrow-left toggle"></i>
+        <div id="sidebar" style="z-index: 1; padding-top: 100px; height: 100vh;">
+            <i class="bi bi-arrow-left toggle" style="margin-top: 100px;"></i>
             <div class="d-flex flex-column">
 
-                <div class="profile">
+                <div class="profile pt-5">
                     <img src="assets/img/user.png" alt="" class="img-fluid rounded-circle">
                     <h1 class="text-light">Đức Chung</h1>
                     <!-- <div class="social-links mt-3 text-center">
@@ -127,48 +127,107 @@
             </div>
         </div>
         <div class="content">
-            <div class="h5 p-4">Thông tin tài khoản</div>
-            <div class="card">
-                <div class="card-body d-flex p-4">
-                    <div class="left">
-                        <img src="assets/img/user.png" class="rounded-circle" alt="">
-                        <div class="h5 text-primary text-center">Đức Chung</div>
-                    </div>
-                    <div class="right">
-                        <table cellpadding="6px">
-                            <tr>
-                                <th>Tên:</th>
-                            </tr>
-                            <tr>
-                                <th>Giới tính:</th>
-                            </tr>
-                            <tr>
-                                <th>Số điện thoại:</th>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ:</th>
-                            </tr>
-                            <tr>
-                                <th>Email:</th>
-                            </tr>
-                            <tr>
-                                <th>Mật khẩu:</th>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <button type="button" class="btn btn-outline-primary">Cập nhật thông tin</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="card p-3">
+                <div class="card-body">
+                    <h2>Hồ Sơ Của Tôi</h2>
+                    <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                    <hr style="width: 100%;">
+                    <form class="row justify-content-center">
+                        <div class="col-lg-9 col-md-12">
+                            <table class="table col-lg-9 col-sm-12">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Tên đăng nhập</th>
+                                        <td><input type="text" class="form-control" value="duc_zyck2924" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tên</th>
+                                        <td><input type="text" class="form-control" value="Đức Nguyễn"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email</th>
+                                        <td>
+                                            <button type="button" class="btn btn-link">Thêm</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Số điện thoại</th>
+                                        <td>
+                                            <input type="text" class="form-control" value="*********50" readonly>
+                                            <button type="button" class="btn btn-link">Thay Đổi</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Giới tính</th>
+                                        <td>
+                                            <input class="form-check-input p-2" type="radio" name="gender" id="male"
+                                                value="Nam">
+                                            <label class="form-check-label" for="male">Nam</label>
+                                            <input class="form-check-input" type="radio" name="gender" id="female"
+                                                value="Nữ">
+                                            <label class="form-check-label" for="female">Nữ</label>
+                                            <input class="form-check-input" type="radio" name="gender" id="other"
+                                                value="Khác">
+                                            <label class="form-check-label" for="other">Khác</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Ngày sinh</th>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="number" class="form-control" value="26">
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-select">
+                                                        <option selected>Tháng 9</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" value="2024">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-3 col-md-12">
+                            <div scope="row">Chọn Ảnh</div>
+                            <div>
+                                <img class="img-thumnail" src="assets/img/user.png" alt="" style="width: 100%;">
+                            </div>
+                            <div>
+                                <input type="file" class="form-control" accept=".jpeg, .png">
+                                <small class="form-text text-muted">Dung lượng file tối đa 1 MB. Định dạng:
+                                    JPEG, PNG</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success col-lg-1 col-sm-3" >Lưu</button>
+                    </form>
                 </div>
+
             </div>
+            <footer id="footer" class="footer light-background">
+
+    
+                <div class="container copyright text-center mt-4">
+                  <p>© <span>Copyright</span> <strong class="px-1 sitename">Medilab</strong> <span>All Rights Reserved</span></p>
+                  <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you've purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                  </div>
+                </div>
+            
+              </footer>
         </div>
+        
     </main>
-
-
-
-
+    
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

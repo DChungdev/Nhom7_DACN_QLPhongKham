@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyPhongKham.Models.Entities
 {
-    public class ChamSocKhachHang
+    public class DanhGiaDichVu
     {
-        public Guid ChamSocId { get; set; }
+        public Guid DanhGiaId { get; set; }
         public Guid BenhNhanId { get; set; }
-        public string DanhGiaDichVu { get; set; }
+        public string DanhGia { get; set; }
         public string PhanHoi { get; set; }
         public DateTime NgayTao { get; set; } = DateTime.Now;
         public DateTime NgayCapNhat { get; set; } = DateTime.Now;

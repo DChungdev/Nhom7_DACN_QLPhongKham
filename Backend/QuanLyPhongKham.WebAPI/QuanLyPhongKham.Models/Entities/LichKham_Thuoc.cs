@@ -11,6 +11,7 @@ namespace QuanLyPhongKham.Models.Entities
         public Guid LichKhamId { get; set; }
         public Guid ThuocId { get; set; }
         public int SoLuongThuoc { get; set; }
+        public decimal ChiPhi { get; set; }
         public LichKham LichKham { get; set; }
         public Thuoc Thuoc { get; set; }
     }

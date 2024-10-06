@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {}
+    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {}
   },
   "projects": {
-    "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
+    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "projectUniqueName": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
         "projectName": "QuanLyPhongKham.Data",
-        "projectPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
-        "packagesPath": "C:\\Users\\Nguyen Duc\\.nuget\\packages\\",
-        "outputPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
+        "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nguyen Duc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
-                "projectPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
+              "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+                "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
               }
             }
           }
@@ -79,21 +79,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "projectUniqueName": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
         "projectName": "QuanLyPhongKham.Models",
-        "projectPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
-        "packagesPath": "C:\\Users\\Nguyen Duc\\.nuget\\packages\\",
-        "outputPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
+        "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nguyen Duc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -154,7 +154,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

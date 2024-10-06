@@ -15,6 +15,6 @@ namespace QuanLyPhongKham.Models.Entities
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; } = DateTime.Now;
         public DateTime NgayCapNhat { get; set; } = DateTime.Now;
-        public LichKham LichKham { get; set; }
+        public virtual LichKham LichKham { get; set; }
     }
 }

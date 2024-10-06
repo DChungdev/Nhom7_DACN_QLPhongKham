@@ -109,3 +109,5 @@ D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\Quan
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.pdb
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.genruntimeconfig.cache
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\ref\QuanLyPhongKham.WebAPI.dll
+D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

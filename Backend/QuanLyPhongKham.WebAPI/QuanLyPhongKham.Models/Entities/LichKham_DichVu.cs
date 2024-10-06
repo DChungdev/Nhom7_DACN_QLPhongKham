@@ -10,6 +10,8 @@ namespace QuanLyPhongKham.Models.Entities
     {
         public Guid LichKhamId { get; set; }
         public Guid DichVuId { get; set; }
+        public int SoLuongDichVu { get; set; }
+        public decimal ChiPhi { get; set; }
         public LichKham LichKham { get; set; }
         public DichVu DichVu { get; set; }
     }

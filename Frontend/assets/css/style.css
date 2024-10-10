@@ -2,6 +2,9 @@
 @import url(icons/font-awesome/css/fontawesome-all.css);
 @import url(icons/simple-line-icons/css/simple-line-icons.css);
 @import url(icons/themify-icons/themify-icons.css);
+@import url(input.css);
+@import url(popup.css);
+@import url(table.css);
 .topbar .dropdown-menu .with-arrow > span {
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -7549,7 +7552,8 @@ a.text-purple:hover, a.text-purple:focus {
  Footer
 *******************/
 .footer {
-  padding: 15px 20px; }
+  padding: 15px 20px;
+}
 
 /*******************
  Stickey inner-left-part

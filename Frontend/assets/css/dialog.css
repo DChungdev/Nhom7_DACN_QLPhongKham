@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-# Dialog Edit Appointment
+# Dialog Edit Appointment (Phần User)
 --------------------------------------------------------------*/
 
 .dialog-edit-appointment .appointment .php-email-form button#btnExitDialog,
@@ -24,4 +24,28 @@ button#btnEditAppointment {
 }
 .appointment .php-email-form button[type=button]:hover {
   background: #10a43f;
+}
+
+/*--------------------------------------------------------------
+# Dialog Edit Appointment (Phần Admin)
+--------------------------------------------------------------*/
+.modal .row-item, .row-item-long{
+  width: 100%;
+}
+.modal .row-item .input-item{
+  width: 33%;
+  margin-bottom: 10px;
+}
+.modal .row-item .input-item input{
+  width: 100%;
+}
+.modal .row-item-long .input-item{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.modal .row-item-long input{
+  width: 100%;
+}
+.modal .row-item .input-item-center{
+  margin: 0 10px;
 }

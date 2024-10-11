@@ -1,6 +1,7 @@
 @import url(input.css);
 @import url(table.css);
 @import url(dialog.css);
+@import url(combobox.css);
 
 .main{
     width: 100%;

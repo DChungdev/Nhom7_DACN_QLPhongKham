@@ -97,6 +97,62 @@ namespace QuanLyPhongKham.Business.Services
             return new { Status = "Success", Message = "User created successfully!" };
         }
 
+        public async Task<object> RegisterDoctorAsync(RegisterModel model)
+        {
+            var userExists = await _userRepository.FindByNameAsync(model.Username);
+            if (userExists != null)
+            {
+                return new { Status = "Error", Message = "User already exists!" };
+            }
+
+            ApplicationUser user = new()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username
+            };
+            var result = await _userRepository.CreateUserAsync(user, model.Password);
+            if (!result)
+            {
+                return new { Status = "Error", Message = "User creation failed! Please check user details and try again." };
+            }
+            //kiem tra role Doctor da co chua
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Doctor))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Doctor));
+            }
+            await _userRepository.AddToRoleAsync(user, UserRoles.Doctor);
+            return new { Status = "Success", Message = "User created successfully!" };
+        }
+
+        public async Task<object> RegisterAdminAsync(RegisterModel model)
+        {
+            var userExists = await _userRepository.FindByNameAsync(model.Username);
+            if (userExists != null)
+            {
+                return new { Status = "Error", Message = "User already exists!" };
+            }
+
+            ApplicationUser user = new()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username
+            };
+            var result = await _userRepository.CreateUserAsync(user, model.Password);
+            if (!result)
+            {
+                return new { Status = "Error", Message = "User creation failed! Please check user details and try again." };
+            }
+            //kiem tra role Admin da co chua
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            }
+            await _userRepository.AddToRoleAsync(user, UserRoles.Admin);
+            return new { Status = "Success", Message = "User created successfully!" };
+        }
+
         public async Task<Response> RefreshTokenAsync(TokenModel tokenModel)
         {
             if (tokenModel == null)

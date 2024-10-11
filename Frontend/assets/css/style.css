@@ -7815,7 +7815,8 @@ Preloader
   .topbar .nav-toggler,
   .topbar .topbartoggler {
     color: #fff;
-    padding: 0 15px; }
+    padding: 0 15px;
+    text-decoration: none; }
   .topbar .customize-input {
     position: relative; }
     .topbar .customize-input .form-control {
@@ -7947,7 +7948,9 @@ sidebar navigation
         align-items: center;
         line-height: 27px;
         opacity: .7;
-        margin-right: 17px; }
+        margin-right: 17px; 
+        text-decoration: none;
+      }
         .sidebar-nav #sidebarnav .sidebar-item .sidebar-link .feather-icon,
         .sidebar-nav #sidebarnav .sidebar-item .sidebar-link i {
           font-style: normal;

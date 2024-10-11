@@ -11,6 +11,8 @@ namespace QuanLyPhongKham.Business.Interfaces
     {
         Task<object> LoginAsync(LoginModel model);
         Task<object> RegisterAsync(RegisterModel model);
+        Task<object> RegisterDoctorAsync(RegisterModel model);
+        Task<object> RegisterAdminAsync(RegisterModel model);
         Task<Response> RefreshTokenAsync(TokenModel tokenModel);
         Task<string> Revoke(string username);
         Task<string> RevokeAll();

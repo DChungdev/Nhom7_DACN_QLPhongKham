@@ -36,8 +36,11 @@ button#btnEditAppointment {
   width: 33%;
   margin-bottom: 10px;
 }
-.modal .row-item .input-item input{
+.modal .row-item .input-item input, select{
   width: 100%;
+}
+.modal .row-item .input-item select{
+  margin-top: 10px;
 }
 .modal .row-item-long .input-item{
   width: 100%;

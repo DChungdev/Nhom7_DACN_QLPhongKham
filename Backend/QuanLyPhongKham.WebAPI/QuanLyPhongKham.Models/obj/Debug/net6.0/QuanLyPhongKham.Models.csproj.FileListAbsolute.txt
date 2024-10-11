@@ -12,3 +12,17 @@ D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\Quan
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
 D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.deps.json
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.runtimeconfig.json
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.pdb
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.AssemblyReference.cache
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.AssemblyInfoInputs.cache
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.AssemblyInfo.cs
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.CoreCompileInputs.cache
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\refint\QuanLyPhongKham.Models.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll

@@ -16,8 +16,8 @@ namespace QuanLyPhongKham.Models.Entities
         public int? SoLuong { get; set; }
         public DateTime? NgayHetHan { get; set; }
         public decimal DonGia { get; set; }
-        public DateTime NgayTao { get; set; } = DateTime.Now;
-        public DateTime NgayCapNhat { get; set; } = DateTime.Now;
+        public DateTime? NgayTao { get; set; } = DateTime.Now;
+        public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
 
         public virtual ICollection<LichKham_Thuoc> LichKhamThuocs { get; set; }
     }

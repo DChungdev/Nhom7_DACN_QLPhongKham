@@ -68,15 +68,19 @@ $('#registerForm').on('submit', function(e) {
         data: JSON.stringify({ username: username, email: email, password: password }),
         success: function(response) {
             // Xử lý khi đăng ký thành công
-            if(response.Status == "Success"){
+            console.log(response);
+            if(response.status == "Success"){
                 console.log('Đăng ký thành công:', response);
                 alert('Đăng ký thành công!');
 
                  // Chuyển hướng tới trang đăng nhập hoặc trang khác
                 window.location.href = "authentication-login1.html";
             }
-            console.log('Đăng ký thất bại:', response.message);
+            else{
+                console.log('Đăng ký thất bại:', response.message);
                 alert('Đăng ký thất bại! ' + response.message);
+            }
+            
         },
         error: function(xhr) {
             try {

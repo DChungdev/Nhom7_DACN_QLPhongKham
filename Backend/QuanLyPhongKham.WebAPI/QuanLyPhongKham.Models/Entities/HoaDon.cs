@@ -14,8 +14,8 @@ namespace QuanLyPhongKham.Models.Entities
         public DateTime? NgayLapHoaDon { get; set; }
         public decimal TongTien { get; set; }
         public string TinhTrangThanhToan { get; set; }
-        public DateTime NgayTao { get; set; } = DateTime.Now;
-        public DateTime NgayCapNhat { get; set; } = DateTime.Now;
+        public DateTime? NgayTao { get; set; } = DateTime.Now;
+        public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
         public BenhNhan BenhNhan { get; set; }
         public LichKham LichKham { get; set; }
     }

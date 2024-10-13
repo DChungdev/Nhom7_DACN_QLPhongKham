@@ -192,3 +192,5 @@ D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.We
 D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.pdb
 D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.genruntimeconfig.cache
 D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\ref\QuanLyPhongKham.WebAPI.dll
+D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\DoAnCN\QLPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\AutoMapper.dll

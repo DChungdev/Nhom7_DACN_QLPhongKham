@@ -12,8 +12,8 @@ namespace QuanLyPhongKham.Models.Entities
         public Guid BenhNhanId { get; set; }
         public string DanhGia { get; set; }
         public string PhanHoi { get; set; }
-        public DateTime NgayTao { get; set; } = DateTime.Now;
-        public DateTime NgayCapNhat { get; set; } = DateTime.Now;
+        public DateTime? NgayTao { get; set; } = DateTime.Now;
+        public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
         public BenhNhan BenhNhan { get; set; }
     }
 }

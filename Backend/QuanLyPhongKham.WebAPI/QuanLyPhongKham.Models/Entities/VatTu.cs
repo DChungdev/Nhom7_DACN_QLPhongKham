@@ -12,7 +12,7 @@ namespace QuanLyPhongKham.Models.Entities
         public string TenVatTu { get; set; }
         public string LoaiVatTu { get; set; }
         public int? SoLuong { get; set; }
-        public DateTime NgayTao { get; set; } = DateTime.Now;
-        public DateTime NgayCapNhat { get; set; } = DateTime.Now;
+        public DateTime? NgayTao { get; set; } = DateTime.Now;
+        public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
     }
 }

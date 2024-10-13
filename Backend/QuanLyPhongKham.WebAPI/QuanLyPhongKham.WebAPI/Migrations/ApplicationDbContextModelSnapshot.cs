@@ -233,23 +233,18 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BangCap")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ChuyenKhoa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DiaChi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GioLamViec")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HoTen")
@@ -260,21 +255,19 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SoDienThoai")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SoNamKinhNghiem")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("BacSiId");
@@ -291,15 +284,12 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DiaChi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GioiTinh")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HoTen")
@@ -310,25 +300,22 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("NgaySinh")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SoDienThoai")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TienSuBenhLy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("BenhNhanId");
@@ -351,10 +338,10 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PhanHoi")
@@ -385,10 +372,10 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TenDichVu")
@@ -412,13 +399,13 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<Guid>("LichKhamId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("NgayLapHoaDon")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TinhTrangThanhToan")
@@ -449,20 +436,18 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ChiDinhThuoc")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GhiChu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("LichKhamId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.HasKey("KetQuaKhamId");
@@ -489,13 +474,13 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("NgayKham")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TrangThaiLichKham")
@@ -574,13 +559,13 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("NgayHetHan")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("SoLuong")
@@ -605,10 +590,10 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayCapNhat")
+                    b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayTao")
+                    b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("SoLuong")
@@ -678,9 +663,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     b.HasOne("QuanLyPhongKham.Models.Entities.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -689,9 +672,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     b.HasOne("QuanLyPhongKham.Models.Entities.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

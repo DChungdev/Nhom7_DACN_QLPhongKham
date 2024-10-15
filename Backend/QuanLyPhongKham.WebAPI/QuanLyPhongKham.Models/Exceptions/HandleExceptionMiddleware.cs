@@ -40,15 +40,19 @@ namespace QuanLyPhongKham.Models.Exceptions
             }
             catch (ErrorDeleteException ex)
             {
-                await ErrorException(context, ex, 200);
+                await ErrorException(context, ex, 400);
             }
             catch (ErrorCreateException ex)
             {
-                await ErrorException(context, ex, 200);
+                await ErrorException(context, ex, 400);
             }
             catch (ErrorEditException ex)
             {
-                await ErrorException(context, ex, 200);
+                await ErrorException(context, ex, 400);
+            }
+            catch (ErrorChangePassException ex)
+            {
+                await ErrorException(context, ex, 400);
             }
             catch (Exception ex)
             {

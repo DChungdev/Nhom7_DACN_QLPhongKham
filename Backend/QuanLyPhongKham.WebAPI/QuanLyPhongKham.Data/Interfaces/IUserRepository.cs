@@ -19,5 +19,8 @@ namespace QuanLyPhongKham.Data.Interfaces
         Task<bool> RoleExistsAsync(string role);
         Task<bool> CheckPasswordAsync(ApplicationUser user, string password);
         Task<IList<string>> GetRolesAsync(ApplicationUser user);
+        Task<ApplicationUser> FindByIdAsync(string userId);
+        Task<bool> DeleteUserAsync(string userId);
+        Task<bool> ChangePasswordAsync(string username, string curPassword, string newPassword);
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Models.Entities;
+using QuanLyPhongKham.Models.Exceptions;
 using QuanLyPhongKham.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -68,5 +69,56 @@ namespace QuanLyPhongKham.Data.Repositories
         {
             return await _userManager.Users.ToListAsync();
         }
+
+        public async Task<ApplicationUser> FindByIdAsync(string userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
+        }
+
+        public async Task<bool> DeleteUserAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            var result = await _userManager.DeleteAsync(user); // Xóa người dùng
+            return result.Succeeded; // Trả về true nếu xóa thành công, false nếu không
+        }
+
+        public async Task<bool> ChangePasswordAsync(string username, string curPassword, string newPassword)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            if (!ValidatePassword(newPassword))
+            {
+                throw new ErrorChangePassException();
+            }
+            var result = await _userManager.ChangePasswordAsync(user, curPassword, newPassword);
+            return result.Succeeded;
+        }
+
+        public bool ValidatePassword(string password)
+        {
+            bool hasUpperChar = false;
+            bool hasLowerChar = false;
+            bool hasDigit = false;
+            bool hasSpecialChar = false;
+            string specialChars = @"!@#$%^&*()_+[]{}|;:',.<>?/`~-=\\";
+
+            foreach (var c in password)
+            {
+                if (char.IsUpper(c)) hasUpperChar = true;
+                if (char.IsLower(c)) hasLowerChar = true;
+                if (char.IsDigit(c)) hasDigit = true;
+                if (specialChars.Contains(c)) hasSpecialChar = true;
+            }
+
+            return hasUpperChar && hasLowerChar && hasDigit && hasSpecialChar;
+        }
+
     }
 }

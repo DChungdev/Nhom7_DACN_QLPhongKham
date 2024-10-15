@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyPhongKham.Business.Interfaces;
+using QuanLyPhongKham.Business.Services;
+using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Models;
 
 namespace QuanLyPhongKham.WebAPI.Controllers
@@ -10,10 +12,12 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IPatientService _petientService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IPatientService petientService)
         {
             _authService = authService;
+            _petientService = petientService;
         }
 
         [HttpPost("register")]
@@ -25,8 +29,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
 
             var result = await _authService.RegisterAsync(model);
-            if (result is not null && result is not string)
+            if (result.Status == "Success")
             {
+                BenhNhan bn = new BenhNhan();
+                bn.Email = model.Email;
+                bn.HoTen = model.Username;
+                bn.UserId = result.Data.ToString();
+                await _petientService.AddAsync(bn);
                 return Ok(result); // Trả về thông báo thành công
             }
 
@@ -43,7 +52,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
 
             var result = await _authService.RegisterDoctorAsync(model);
-            if (result is not null && result is not string)
+            if (result.Status == "Success")
             {
                 return Ok(result); // Trả về thông báo thành công
             }
@@ -61,7 +70,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
 
             var result = await _authService.RegisterAdminAsync(model);
-            if (result is not null && result is not string)
+            if (result.Status == "Success")
             {
                 return Ok(result); // Trả về thông báo thành công
             }
@@ -85,6 +94,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
 
             return BadRequest(new { message = result });
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
+        {
+            var result = await _authService.ChangePasswordAsync(model.username, model.currentPassword, model.newPassword);
+            if(!String.IsNullOrEmpty(result.DevMsg))
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
         [HttpPost]

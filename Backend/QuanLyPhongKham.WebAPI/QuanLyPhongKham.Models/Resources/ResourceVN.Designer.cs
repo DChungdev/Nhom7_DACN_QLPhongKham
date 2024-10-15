@@ -70,6 +70,15 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mật khẩu phải chứa ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt.
+        /// </summary>
+        public static string Error_ChangePassword {
+            get {
+                return ResourceManager.GetString("Error_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thêm dữ liệu không thành công!.
         /// </summary>
         public static string Error_Create {

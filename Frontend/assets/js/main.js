@@ -9,6 +9,7 @@
 (function() {
   "use strict";
 
+  let lastScrollY = 0;
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
@@ -17,7 +18,13 @@
     const selectSideBar = document.querySelector("#sidebar");
     const selectHeader = document.querySelector('#header');
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    // window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    if(window.scrollY > 200){
+      selectBody.classList.add('scrolled')
+    }
+    else if(window.scrollY < 100) {
+      selectBody.classList.remove('scrolled')
+    }
   }
 
   document.addEventListener('scroll', toggleScrolled);
@@ -185,11 +192,11 @@
 
 })();
 
-const sidebar = document.querySelector("#sidebar"),
-      toggle = document.querySelector(".toggle");
+// const sidebar = document.querySelector("#sidebar"),
+//       toggle = document.querySelector(".toggle");
 
-      toggle.addEventListener("click", () =>{
-        sidebar.classList.toggle("close");
-        toggle.classList.toggle("bi-arrow-left");
-        toggle.classList.toggle("bi-arrow-right");
-      })
+//       toggle.addEventListener("click", () =>{
+//         sidebar.classList.toggle("close");
+//         toggle.classList.toggle("bi-arrow-left");
+//         toggle.classList.toggle("bi-arrow-right");
+//       })

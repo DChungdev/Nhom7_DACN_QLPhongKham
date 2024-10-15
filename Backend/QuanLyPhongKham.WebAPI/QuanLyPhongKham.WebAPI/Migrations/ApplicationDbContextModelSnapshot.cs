@@ -320,7 +320,9 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
                     b.HasKey("BenhNhanId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("BenhNhans");
                 });
@@ -671,8 +673,9 @@ namespace QuanLyPhongKham.WebAPI.Migrations
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BenhNhan", b =>
                 {
                     b.HasOne("QuanLyPhongKham.Models.Entities.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne()
+                        .HasForeignKey("QuanLyPhongKham.Models.Entities.BenhNhan", "UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });

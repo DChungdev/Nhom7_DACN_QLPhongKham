@@ -13,13 +13,15 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IPatientService _patientService;
+        private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
 
-        public PatientsController(IPatientService patientService, IMapper mapper)
+        public PatientsController(IPatientService patientService, IMapper mapper, IAuthService authService)
         {
             _patientService = patientService;
             _mapper = mapper;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -66,7 +68,14 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         [HttpDelete("{benhNhanId}")]
         public async Task<IActionResult> DeletePatient(Guid benhNhanId)
         {
+            var bn = await _patientService.GetByIdAsync(benhNhanId);
             var res = await _patientService.DeleteAsync(benhNhanId);
+            
+            var user = await _authService.FindByIdAsync(bn.UserId);
+            if (user != null)
+            {
+                await _authService.DeleteUser(bn.UserId);
+            }
             return StatusCode(201, res);
         }
     }

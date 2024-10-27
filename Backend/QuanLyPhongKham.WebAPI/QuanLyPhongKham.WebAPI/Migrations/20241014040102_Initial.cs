@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanLyPhongKham.WebAPI.Migrations
 {
-    public partial class InitProj : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -261,7 +261,8 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         name: "FK_BenhNhans_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -468,7 +469,9 @@ namespace QuanLyPhongKham.WebAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_BenhNhans_UserId",
                 table: "BenhNhans",
-                column: "UserId");
+                column: "UserId",
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DanhGiaDichVus_BenhNhanId",

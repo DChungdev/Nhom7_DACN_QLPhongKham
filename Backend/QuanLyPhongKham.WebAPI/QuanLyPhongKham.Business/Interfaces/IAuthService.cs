@@ -1,4 +1,5 @@
-﻿using QuanLyPhongKham.Models.Models;
+﻿using QuanLyPhongKham.Models.Entities;
+using QuanLyPhongKham.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace QuanLyPhongKham.Business.Interfaces
     public interface IAuthService
     {
         Task<object> LoginAsync(LoginModel model);
-        Task<object> RegisterAsync(RegisterModel model);
-        Task<object> RegisterDoctorAsync(RegisterModel model);
-        Task<object> RegisterAdminAsync(RegisterModel model);
+        Task<Response> RegisterAsync(RegisterModel model);
+        Task<Response> RegisterDoctorAsync(RegisterModel model);
+        Task<Response> RegisterAdminAsync(RegisterModel model);
         Task<Response> RefreshTokenAsync(TokenModel tokenModel);
         Task<string> Revoke(string username);
         Task<string> RevokeAll();
-        
+        Task<ApplicationUser> FindByIdAsync(string userId);
+        Task<Response> DeleteUser(string userId);
+        Task<Service> ChangePasswordAsync(string username, string curPassword, string newPassword);
     }
 }

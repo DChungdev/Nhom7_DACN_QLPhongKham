@@ -30,6 +30,18 @@ namespace QuanLyPhongKham.Data.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            //// Mối quan hệ giữa BenhNhan và ApplicationUser
+            //modelBuilder.Entity<BenhNhan>()
+            // .HasOne<ApplicationUser>()
+            // .WithOne() 
+            // .HasForeignKey<BenhNhan>(b => b.UserId) 
+            // .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<BenhNhan>()
+                .HasOne(b => b.User) // Liên kết đến ApplicationUser
+                .WithOne() // Một BenhNhan chỉ có một ApplicationUser
+                .HasForeignKey<BenhNhan>(b => b.UserId) // Sử dụng UserId làm khóa ngoại
+                .OnDelete(DeleteBehavior.SetNull);
+
             // Khóa chính cho DanhGiaDichVu
             modelBuilder.Entity<DanhGiaDichVu>()
                 .HasKey(d => d.DanhGiaId);

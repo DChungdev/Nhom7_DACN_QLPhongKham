@@ -121,6 +121,10 @@
     <value>Ngày sinh không được phép lớn hơn ngày hiện tại!</value>
     <comment>Lỗi ngày sinh lớn hơn ngày hiện tại</comment>
   </data>
+  <data name="Error_ChangePassword" xml:space="preserve">
+    <value>Mật khẩu phải chứa ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt</value>
+    <comment>Lỗi mật khẩu không hợp lệ</comment>
+  </data>
   <data name="Error_Create" xml:space="preserve">
     <value>Thêm dữ liệu không thành công!</value>
     <comment>Lỗi thêm dữ liệu</comment>

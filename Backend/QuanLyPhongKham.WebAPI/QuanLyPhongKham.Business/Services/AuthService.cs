@@ -6,6 +6,7 @@ using QuanLyPhongKham.Business.Interfaces;
 using QuanLyPhongKham.Data.Context;
 using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Models.Entities;
+using QuanLyPhongKham.Models.Exceptions;
 using QuanLyPhongKham.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -69,12 +70,12 @@ namespace QuanLyPhongKham.Business.Services
             return null;
         }
 
-        public async Task<object> RegisterAsync(RegisterModel model)
+        public async Task<Response> RegisterAsync(RegisterModel model)
         {
             var userExists = await _userRepository.FindByNameAsync(model.Username);
             if (userExists != null)
             {
-                return new { Status = "Error", Message = "User already exists!" };
+                return new Response { Status = "Error", Message = "User already exists!" };
             }
 
             ApplicationUser user = new()
@@ -86,7 +87,7 @@ namespace QuanLyPhongKham.Business.Services
             var result = await _userRepository.CreateUserAsync(user, model.Password);
             if (!result)
             {
-                return new { Status = "Error", Message = "User creation failed! Please check user details and try again." };
+                return new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." };
             }
             //kiem tra role Customer da co chua
             if (!await _roleManager.RoleExistsAsync(UserRoles.Patient))
@@ -94,15 +95,15 @@ namespace QuanLyPhongKham.Business.Services
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Patient));
             }
             await _userRepository.AddToRoleAsync(user, UserRoles.Patient);
-            return new { Status = "Success", Message = "User created successfully!" };
+            return new Response { Status = "Success", Message = "User created successfully!", Data = user.Id };
         }
 
-        public async Task<object> RegisterDoctorAsync(RegisterModel model)
+        public async Task<Response> RegisterDoctorAsync(RegisterModel model)
         {
             var userExists = await _userRepository.FindByNameAsync(model.Username);
             if (userExists != null)
             {
-                return new { Status = "Error", Message = "User already exists!" };
+                return new Response { Status = "Error", Message = "User already exists!" };
             }
 
             ApplicationUser user = new()
@@ -114,7 +115,7 @@ namespace QuanLyPhongKham.Business.Services
             var result = await _userRepository.CreateUserAsync(user, model.Password);
             if (!result)
             {
-                return new { Status = "Error", Message = "User creation failed! Please check user details and try again." };
+                return new Response{ Status = "Error", Message = "User creation failed! Please check user details and try again." };
             }
             //kiem tra role Doctor da co chua
             if (!await _roleManager.RoleExistsAsync(UserRoles.Doctor))
@@ -122,15 +123,15 @@ namespace QuanLyPhongKham.Business.Services
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Doctor));
             }
             await _userRepository.AddToRoleAsync(user, UserRoles.Doctor);
-            return new { Status = "Success", Message = "User created successfully!" };
+            return new Response { Status = "Success", Message = "User created successfully!" };
         }
 
-        public async Task<object> RegisterAdminAsync(RegisterModel model)
+        public async Task<Response> RegisterAdminAsync(RegisterModel model)
         {
             var userExists = await _userRepository.FindByNameAsync(model.Username);
             if (userExists != null)
             {
-                return new { Status = "Error", Message = "User already exists!" };
+                return new Response { Status = "Error", Message = "User already exists!" };
             }
 
             ApplicationUser user = new()
@@ -142,7 +143,7 @@ namespace QuanLyPhongKham.Business.Services
             var result = await _userRepository.CreateUserAsync(user, model.Password);
             if (!result)
             {
-                return new { Status = "Error", Message = "User creation failed! Please check user details and try again." };
+                return new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." };
             }
             //kiem tra role Admin da co chua
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
@@ -150,7 +151,7 @@ namespace QuanLyPhongKham.Business.Services
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
             }
             await _userRepository.AddToRoleAsync(user, UserRoles.Admin);
-            return new { Status = "Success", Message = "User created successfully!" };
+            return new Response { Status = "Success", Message = "User created successfully!" };
         }
 
         public async Task<Response> RefreshTokenAsync(TokenModel tokenModel)
@@ -264,6 +265,37 @@ namespace QuanLyPhongKham.Business.Services
             }
 
             return principal;
+        }
+
+        public async Task<Response> DeleteUser(string userId)
+        {
+            bool deleted = await _userRepository.DeleteUserAsync(userId);
+            if (!deleted)
+            {
+                throw new ErrorDeleteException();
+            }
+            return new Response { Status = "Success", Message = "Xóa thành công" };
+        }
+
+        public async Task<ApplicationUser> FindByIdAsync(string userId)
+        {
+            //var res = await _userRepository.FindByIdAsync(userId);
+            //if (res == null)
+            //{
+            //    throw new ErrorNotFoundException();
+            //}
+            //return res;
+            return await _userRepository.FindByIdAsync(userId);
+        }
+
+        public async Task<Service> ChangePasswordAsync(string username, string curPassword, string newPassword)
+        {
+            bool changed = await _userRepository.ChangePasswordAsync(username, curPassword, newPassword);
+            if (!changed)
+            {
+                return new Service {DevMsg = "Error", UserMsg = "Mật khẩu không đúng vui lòng nhập lại!" };
+            }
+            return new Service { UserMsg = "Đổi mật khẩu thành công!" };
         }
     }
 }

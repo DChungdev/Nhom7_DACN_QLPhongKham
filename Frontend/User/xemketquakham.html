@@ -41,6 +41,38 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+  /* Tùy chỉnh bảng */
+  .table-responsive {
+      border-radius: 0.5rem;
+      overflow: hidden;
+  }
+  
+  .table th, .table td {
+      vertical-align: middle;
+      padding: 1rem 0.75rem; /* Tăng khoảng cách padding để tăng chiều cao hàng */
+  }
+  
+  /* Thay đổi màu sắc bảng và hiển thị đẹp mắt */
+  .table th {
+      font-weight: bold;
+  }
+
+  .table thead {
+      background-color: #f8f9fa;
+  }
+
+  /* Hiệu ứng hover cho hàng */
+  .table-hover tbody tr:hover {
+      background-color: #e9ecef;
+  }
+
+  /* Tùy chỉnh ô tìm kiếm */
+  #searchResult {
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+</style>
 
 <body style="background-color: aliceblue;">
   <header style="box-shadow: 0px 0px 30px color-mix(in srgb, var(--default-color), transparent 85%);" id="header"
@@ -91,7 +123,7 @@
   </header> 
 
   <main class="main container my-5">
-    <h2>Xem kết quả khám</h2>
+    <h2 class="text-primary">Xem kết quả khám</h2>
     <div class="row mb-4">
         <div class="col-md-6">
             <input type="text" id="searchResult" class="form-control" placeholder="Tìm kiếm kết quả khám...">
@@ -99,14 +131,14 @@
     </div>
 
     <!-- Bảng hiển thị kết quả khám -->
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <thead class="table-light">
+    <div class="table-responsive shadow-lg rounded">
+        <table class="table table-bordered table-hover table-striped table-sm align-middle">
+            <thead class="table-primary text-center">
                 <tr>
-                    <th>Tên kết quả</th>
-                    <th>Ngày khám</th>
-                    <th>Mô tả kết quả</th>
-                    <th>Chỉ định thuốc</th>
+                    <th style="width: 25%;">Tên kết quả</th>
+                    <th style="width: 15%;">Ngày khám</th>
+                    <th style="width: 40%;">Mô tả kết quả</th>
+                    <th style="width: 20%;">Chỉ định thuốc</th>
                 </tr>
             </thead>
             <tbody id="resultList">
@@ -128,7 +160,6 @@
                     <td>Không phát hiện bất thường.</td>
                     <td>Không chỉ định thuốc</td>
                 </tr>
-                <!-- Thêm nhiều kết quả khám khác -->
             </tbody>
         </table>
     </div>
@@ -232,22 +263,32 @@
 
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
-  <script>
-    document.getElementById('searchService').addEventListener('keyup', function() {
-  const searchText = this.value.toLowerCase();
-  const services = document.querySelectorAll('.service-item');
+  <!-- Thêm JavaScript tìm kiếm kết quả -->
+<!-- JavaScript tìm kiếm không dấu -->
+<script>
+  // Hàm chuyển chuỗi có dấu thành không dấu
+  function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
 
-  services.forEach(function(service) {
-    const serviceName = service.querySelector('.card-title').textContent.toLowerCase();
-    if (serviceName.includes(searchText)) {
-      service.style.display = 'block';
-    } else {
-      service.style.display = 'none';
-    }
+  document.getElementById("searchResult").addEventListener("input", function () {
+    // Lấy từ khóa tìm kiếm và chuyển thành không dấu, chữ thường
+    const searchQuery = removeAccents(this.value.toLowerCase());
+    const rows = document.querySelectorAll("#resultList .result-item");
+
+    rows.forEach((row) => {
+      // Lấy nội dung hàng và chuyển thành không dấu, chữ thường
+      const rowText = removeAccents(row.textContent.toLowerCase());
+      if (rowText.includes(searchQuery)) {
+        row.style.display = ""; // Hiển thị hàng nếu khớp
+      } else {
+        row.style.display = "none"; // Ẩn hàng nếu không khớp
+      }
+    });
   });
-});
+</script>
 
-  </script>
+
 </body>
 
 </html>

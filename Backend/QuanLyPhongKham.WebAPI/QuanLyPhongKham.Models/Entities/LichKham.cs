@@ -19,9 +19,6 @@ namespace QuanLyPhongKham.Models.Entities
 
         public BenhNhan BenhNhan { get; set; }
         public BacSi BacSi { get; set; }
-        public virtual HoaDon HoaDon { get; set; }     // Quan hệ 1:1 với HoaDon
-        public virtual KetQuaKham KetQuaKham { get; set; } // Mối quan hệ với KetQuaKham
-        public virtual ICollection<LichKham_DichVu> LichKhamDichVus { get; set; } // Quan hệ N:M với DichVu
-        public virtual ICollection<LichKham_Thuoc>? LichKhamThuocs { get; set; }   // Quan hệ N:M với Thuoc
+        public virtual KetQuaKham? KetQuaKham { get; set; }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {}
+    "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {}
   },
   "projects": {
-    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
+    "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "projectUniqueName": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
         "projectName": "QuanLyPhongKham.Data",
-        "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "projectPath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
         "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
+        "outputPath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
-                "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
+              "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+                "projectPath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+    "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "projectUniqueName": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
         "projectName": "QuanLyPhongKham.Models",
-        "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "projectPath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
         "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
+        "outputPath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",

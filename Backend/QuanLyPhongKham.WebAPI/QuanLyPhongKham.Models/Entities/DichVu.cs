@@ -9,13 +9,15 @@ namespace QuanLyPhongKham.Models.Entities
     public class DichVu
     {
         public Guid DichVuId { get; set; }
+        public Guid? KhoaId { get; set; }
         public string MaDichVu { get; set; }
         public string TenDichVu { get; set; }
-        public string MoTaDichVu { get; set; }
+        public string? MoTaDichVu { get; set; }
         public decimal DonGia { get; set; }
         public DateTime? NgayTao { get; set; } = DateTime.Now;
         public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
 
-        public virtual ICollection<LichKham_DichVu>? LichKhamDichVus { get; set; } // Quan hệ N:M với LichKham
+        public Khoa? Khoa { get; set; }
+        public virtual ICollection<BacSiDichVu>? BacSiDichVus { get; set; }
     }
 }

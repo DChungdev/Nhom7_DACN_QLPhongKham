@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using QuanLyPhongKham.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,24 @@ namespace QuanLyPhongKham.Models.Entities
         public Guid BenhNhanId { get; set; }
         public string MaBenhNhan { get; set; }
         public string HoTen { get; set; }
+        public string? HinhAnh { get; set; }
         public DateTime? NgaySinh { get; set; }
-        public string? GioiTinh { get; set; }
+        public GioiTinh? LoaiGioiTinh { get; set; }
+        public string? GioiTinh
+        {
+            get
+            {
+                switch (LoaiGioiTinh)
+                {
+                    case Enums.GioiTinh.Nam:
+                        return "Nam";
+                    case Enums.GioiTinh.Nu:
+                        return "Nữ";
+                    default:
+                        return "Khác";
+                }
+            }
+        }
         public string? SoDienThoai { get; set; }
         public string? Email { get; set; }
         public string? DiaChi { get; set; }
@@ -26,7 +43,6 @@ namespace QuanLyPhongKham.Models.Entities
         public virtual ApplicationUser? User { get; set; }
         public virtual ICollection<DanhGiaDichVu>? DanhGiaDichVus { get; set; } // Quan hệ 1:N với DanhGiaDichVu
         public virtual ICollection<LichKham>? LichKhams { get; set; }
-        public virtual ICollection<HoaDon>? HoaDons { get; set; }
 
     }
 }

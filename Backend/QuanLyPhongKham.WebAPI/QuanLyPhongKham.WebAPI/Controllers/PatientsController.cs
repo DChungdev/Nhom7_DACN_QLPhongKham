@@ -56,7 +56,6 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var existingBN = await _patientService.GetByIdAsync(benhNhanId);
             existingBN.HoTen = benhNhan.HoTen;
             existingBN.NgaySinh = benhNhan.NgaySinh;
-            existingBN.GioiTinh = benhNhan.GioiTinh;
             existingBN.SoDienThoai = benhNhan.SoDienThoai;
             existingBN.Email = benhNhan.Email;
             existingBN.DiaChi = benhNhan.DiaChi;

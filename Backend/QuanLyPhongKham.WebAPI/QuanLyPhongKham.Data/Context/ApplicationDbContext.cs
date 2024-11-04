@@ -14,57 +14,60 @@ namespace QuanLyPhongKham.Data.Context
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        public DbSet<Khoa> Khoas { get; set; }
+        public DbSet<DichVu> DichVus { get; set; }
         public DbSet<BenhNhan> BenhNhans { get; set; }
         public DbSet<BacSi> BacSis { get; set; }
-        public DbSet<Thuoc> Thuocs { get; set; }
-        public DbSet<VatTu> VatTus { get; set; }
         public DbSet<LichKham> LichKhams { get; set; }
-        public DbSet<DichVu> DichVus { get; set; }
-        public DbSet<LichKham_DichVu> LichKham_DichVus { get; set; }
-        public DbSet<HoaDon> HoaDons { get; set; }
         public DbSet<DanhGiaDichVu> DanhGiaDichVus { get; set; }
-        public DbSet<LichKham_Thuoc> LichKham_Thuocs { get; set; }
         public DbSet<KetQuaKham> KetQuaKhams { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //// Mối quan hệ giữa BenhNhan và ApplicationUser
-            //modelBuilder.Entity<BenhNhan>()
-            // .HasOne<ApplicationUser>()
-            // .WithOne() 
-            // .HasForeignKey<BenhNhan>(b => b.UserId) 
-            // .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<BenhNhan>()
                 .HasOne(b => b.User) // Liên kết đến ApplicationUser
                 .WithOne() // Một BenhNhan chỉ có một ApplicationUser
                 .HasForeignKey<BenhNhan>(b => b.UserId) // Sử dụng UserId làm khóa ngoại
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // Khóa chính cho DanhGiaDichVu
+            modelBuilder.Entity<Khoa>()
+                .HasKey(b => b.KhoaId);
+            modelBuilder.Entity<Khoa>()
+                .HasMany(b => b.DichVus)
+                .WithOne(k => k.Khoa)
+                .HasForeignKey(k => k.KhoaId)
+                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Khoa>()
+                .HasMany(b => b.BacSis)
+                .WithOne(k => k.Khoa)
+                .HasForeignKey(k => k.KhoaId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<DanhGiaDichVu>()
                 .HasKey(d => d.DanhGiaId);
+            //modelBuilder.Entity<DanhGiaDichVu>()
+            //    .HasOne<BenhNhan>()
+            //    .WithOne()
+            //    .HasForeignKey<BenhNhan>(b => b.BenhNhanId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             // Mối quan hệ giữa BenhNhan và LichKham
             modelBuilder.Entity<BenhNhan>()
                 .HasMany(b => b.LichKhams)
                 .WithOne(l => l.BenhNhan)
                 .HasForeignKey(l => l.BenhNhanId)
-                .OnDelete(DeleteBehavior.Restrict); // Đổi thành Restrict
+                .OnDelete(DeleteBehavior.Cascade); // Đổi thành Restrict
 
-            modelBuilder.Entity<BenhNhan>()
-                .HasMany(b => b.HoaDons)
-                .WithOne(h => h.BenhNhan)
-                .HasForeignKey(h => h.BenhNhanId)
-                .OnDelete(DeleteBehavior.Restrict);
+ 
 
             // Mối quan hệ giữa BacSi và LichKham
             modelBuilder.Entity<BacSi>()
                 .HasMany(b => b.LichKhams)
                 .WithOne(l => l.BacSi)
                 .HasForeignKey(l => l.BacSiId)
-                .OnDelete(DeleteBehavior.Cascade); // Giữ nguyên
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Mối quan hệ giữa LichKham và KetQuaKham
             modelBuilder.Entity<LichKham>()
@@ -77,42 +80,6 @@ namespace QuanLyPhongKham.Data.Context
                 .Property(d => d.DonGia)
                 .HasColumnType("decimal(18,2)");
 
-            modelBuilder.Entity<HoaDon>()
-                .Property(h => h.TongTien)
-                .HasColumnType("decimal(18,2)");
-
-            // Mối quan hệ giữa LichKham và DichVu
-            modelBuilder.Entity<LichKham_DichVu>()
-                .HasKey(ld => new { ld.LichKhamId, ld.DichVuId });
-
-            modelBuilder.Entity<LichKham_DichVu>()
-                .HasOne(ld => ld.LichKham)
-                .WithMany(l => l.LichKhamDichVus)
-                .HasForeignKey(ld => ld.LichKhamId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<LichKham_DichVu>()
-                .HasOne(ld => ld.DichVu)
-                .WithMany(d => d.LichKhamDichVus)
-                .HasForeignKey(ld => ld.DichVuId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // Mối quan hệ giữa LichKham và Thuoc
-            modelBuilder.Entity<LichKham_Thuoc>()
-                .HasKey(lt => new { lt.LichKhamId, lt.ThuocId });
-
-            modelBuilder.Entity<LichKham_Thuoc>()
-                .HasOne(lt => lt.LichKham)
-                .WithMany(l => l.LichKhamThuocs)
-                .HasForeignKey(lt => lt.LichKhamId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<LichKham_Thuoc>()
-                .HasOne(lt => lt.Thuoc)
-                .WithMany(t => t.LichKhamThuocs)
-                .HasForeignKey(lt => lt.ThuocId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             // Mối quan hệ giữa BenhNhan và DanhGiaDichVu
             modelBuilder.Entity<BenhNhan>()
                 .HasMany(b => b.DanhGiaDichVus)
@@ -120,25 +87,26 @@ namespace QuanLyPhongKham.Data.Context
                 .HasForeignKey(d => d.BenhNhanId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Mối quan hệ giữa LichKham và HoaDon
-            modelBuilder.Entity<LichKham>()
-                .HasOne(l => l.HoaDon)
-                .WithOne(h => h.LichKham)
-                .HasForeignKey<HoaDon>(h => h.LichKhamId)
+            // Mối quan hệ giữa BacSi và DanhGiaDichVu
+            modelBuilder.Entity<BacSi>()
+                .HasMany(b => b.DanhGiaDichVus)
+                .WithOne(d => d.BacSi)
+                .HasForeignKey(d => d.BenhNhanId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Định dạng chi phí
-            modelBuilder.Entity<LichKham_DichVu>()
-                .Property(l => l.ChiPhi)
-                .HasColumnType("decimal(18,2)");
+            // Cấu hình cho mối quan hệ nhiều-nhiều giữa BacSi và DichVu thông qua BacSiDichVu
+            modelBuilder.Entity<BacSiDichVu>()
+                .HasKey(bsdv => new { bsdv.BacSiId, bsdv.DichVuId }); // Khóa chính là sự kết hợp giữa BacSiId và DichVuId
 
-            modelBuilder.Entity<LichKham_Thuoc>()
-                .Property(l => l.ChiPhi)
-                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<BacSiDichVu>()
+                .HasOne(bsdv => bsdv.BacSi)
+                .WithMany(b => b.BacSiDichVus) // Một BacSi có nhiều BacSiDichVu
+                .HasForeignKey(bsdv => bsdv.BacSiId); // Khóa ngoại đến BacSiId
 
-            modelBuilder.Entity<Thuoc>()
-                .Property(t => t.DonGia)
-                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<BacSiDichVu>()
+                .HasOne(bsdv => bsdv.DichVu)
+                .WithMany(d => d.BacSiDichVus) // Một DichVu có nhiều BacSiDichVu
+                .HasForeignKey(bsdv => bsdv.DichVuId); // Khóa ngoại đến DichVuId
         }
        }
 }

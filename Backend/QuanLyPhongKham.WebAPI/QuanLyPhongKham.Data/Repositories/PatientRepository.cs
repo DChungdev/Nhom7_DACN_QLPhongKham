@@ -90,6 +90,7 @@ namespace QuanLyPhongKham.Data.Repositories
             return errorData;
         }
 
+
         public string GetNextMaBenhNhan()
         {
             // Lấy danh sách mã bệnh nhân
@@ -133,6 +134,16 @@ namespace QuanLyPhongKham.Data.Repositories
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId)
+        {
+            var benhNhans = await _context.BenhNhans
+            .Where(bn => bn.LichKhams.Any(lk => lk.BacSiId == BacSiId))
+            .Include(bn => bn.LichKhams) // Bao gồm các lịch khám của bệnh nhân
+            .ToListAsync();
+
+            return benhNhans;
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KiQzB+JhpibN0OtwqTNZQa6zbT7xVL75iZmv+1bzNgWd1UM2g0Kq/O1cCFZPiLz8/GKVPY/rmLFZUbGSsc5l9A==",
+  "dgSpecHash": "wmj6wLmCZ/Iq8e6btfYRIa6xNKciNGVYCh9SdRZlN/EcklZTOVBsrRrAOjwuSKCZ+YLA/CictU2GyOEdg/LSig==",
   "success": true,
-  "projectFilePath": "D:\\DoAnCN\\TestNewDB\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
+  "projectFilePath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fpt\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\fpt\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

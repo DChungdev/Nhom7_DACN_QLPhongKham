@@ -376,6 +376,8 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
                     b.HasKey("DanhGiaId");
 
+                    b.HasIndex("BacSiId");
+
                     b.HasIndex("BenhNhanId");
 
                     b.ToTable("DanhGiaDichVus");
@@ -614,7 +616,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     b.HasOne("QuanLyPhongKham.Models.Entities.BacSi", "BacSi")
                         .WithMany("DanhGiaDichVus")
-                        .HasForeignKey("BenhNhanId")
+                        .HasForeignKey("BacSiId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("QuanLyPhongKham.Models.Entities.BenhNhan", "BenhNhan")

@@ -16,7 +16,6 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
-
         public PatientsController(IPatientService patientService, IMapper mapper, IAuthService authService)
         {
             _patientService = patientService;
@@ -39,6 +38,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return Ok(_mapper.Map<BenhNhanModel>(employeeById));
         }
 
+        [HttpGet("getbydoctorid/{bacSiId}")]
+        public async Task<IActionResult> GetAllByDoctorId(Guid bacSiId)
+        {
+            var patients = await _patientService.GetAllByDoctorIdAsync(bacSiId);
+            return Ok(_mapper.Map<IEnumerable<BenhNhanModel>>(patients));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPatient([FromBody] BenhNhanModel benhNhan)
         {
@@ -56,7 +62,6 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var existingBN = await _patientService.GetByIdAsync(benhNhanId);
             existingBN.HoTen = benhNhan.HoTen;
             existingBN.NgaySinh = benhNhan.NgaySinh;
-            existingBN.GioiTinh = benhNhan.GioiTinh;
             existingBN.SoDienThoai = benhNhan.SoDienThoai;
             existingBN.Email = benhNhan.Email;
             existingBN.DiaChi = benhNhan.DiaChi;

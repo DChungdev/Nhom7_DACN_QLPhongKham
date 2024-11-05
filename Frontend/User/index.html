@@ -31,7 +31,7 @@
   <link href="../assets/css/main.css" rel="stylesheet">
 
   <!-- Dialog CSS File -->
-   <link rel="stylesheet" href="../assets/css/dialog.css">
+  <link rel="stylesheet" href="../assets/css/dialog.css">
 
   <!-- =======================================================
   * Template Name: Medilab
@@ -68,14 +68,14 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="../assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Medilab</h1>
+          <h1 class="sitename">PHÒNG KHÁM</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="#hero" class="active">Trang chủ<br></a></li>
             <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#services">Dịch vụ</a></li>
+            <li><a href="xemdichvu.html">Dịch vụ</a></li>
             <li><a href="#materials">Cơ sở</a></li>
             <li><a href="#doctors">Bác sĩ</a></li>
             <li><a href="#contact">Liên hệ</a></li>
@@ -91,15 +91,15 @@
             <img style="height: 35px; width: 35px;" src="../assets/img/user.png" class="rounded-circle">
             <script>
               $(document).ready(function () {
-                  // Lấy tên người dùng từ localStorage
-                  const loggedInUsername = localStorage.getItem('userName');
+                // Lấy tên người dùng từ localStorage
+                const loggedInUsername = localStorage.getItem('userName');
 
-                  // Kiểm tra nếu có tên người dùng và cập nhật hiển thị
-                  if (loggedInUsername) {
-                      $('#displayUser').text(loggedInUsername); // Cập nhật phần tử #displayUser
-                  }
+                // Kiểm tra nếu có tên người dùng và cập nhật hiển thị
+                if (loggedInUsername) {
+                  $('#displayUser').text(loggedInUsername); // Cập nhật phần tử #displayUser
+                }
               });
-          </script>
+            </script>
             <span id="displayUser" class="text-primary">Chung</span>
           </div>
           <!-- </button> -->
@@ -125,108 +125,121 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
-
-      <img src="../assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <img src="../assets/img/hero-bg.jpg" alt="Phòng khám y khoa hiện đại" data-aos="fade-in">
 
       <div class="container position-relative">
 
+        <!-- Welcome -->
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-          <h2>WELCOME TO MEDILAB</h2>
-          <p>We are team of talented designers making websites with Bootstrap</p>
+          <h1>CHÀO MỪNG <br>ĐẾN VỚI PHÒNG KHÁM</h1>
+          <p>Chăm sóc sức khỏe toàn diện cho bạn và gia đình</p>
         </div><!-- End Welcome -->
 
+        <!-- Nội dung chính -->
         <div class="content row gy-4">
+
+          <!-- Vì sao chọn chúng tôi -->
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-              <h3>Why Choose Medilab?</h3>
+              <h3>Tại sao nên chọn phòng khám của chúng tôi?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad
-                corporis.
+                Phòng khám tự hào với đội ngũ bác sĩ giàu kinh nghiệm và trang thiết bị hiện đại.
+                Chúng tôi cam kết mang đến dịch vụ y tế chất lượng cao với chi phí hợp lý. Sức khỏe của bạn là
+                ưu tiên hàng đầu của chúng tôi.
               </p>
               <div class="text-center">
-                <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                <a href="#about" class="more-btn">
+                  <span>Tìm hiểu thêm</span> <i class="bi bi-chevron-right"></i>
+                </a>
               </div>
             </div>
           </div><!-- End Why Box -->
 
+          <!-- Các dịch vụ nổi bật -->
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="d-flex flex-column justify-content-center">
               <div class="row gy-4">
 
+                <!-- Dịch vụ 1 -->
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                    <i class="bi bi-clipboard-data"></i>
-                    <h4>Corporis voluptates officia eiusmod</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <i class="bi bi-heart-pulse"></i>
+                    <h4>Khám sức khỏe tổng quát</h4>
+                    <p>Kiểm tra toàn diện, phát hiện sớm các vấn đề sức khỏe để có hướng điều trị kịp thời.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
+                <!-- Dịch vụ 2 -->
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
-                    <i class="bi bi-gem"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <i class="bi bi-stethoscope"></i>
+                    <h4>Chuyên khoa nội - ngoại</h4>
+                    <p>Đội ngũ bác sĩ chuyên khoa giàu kinh nghiệm, mang đến chẩn đoán và điều trị chính xác.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
+                <!-- Dịch vụ 3 -->
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
-                    <i class="bi bi-inboxes"></i>
-                    <h4>Labore consequatur incidid dolore</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                    <i class="bi bi-capsule"></i>
+                    <h4>Dược phẩm và tư vấn</h4>
+                    <p>Cung cấp dược phẩm chính hãng và tư vấn dùng thuốc an toàn, hiệu quả.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
               </div>
             </div>
-          </div>
-        </div><!-- End  Content-->
+          </div><!-- End Content -->
 
+        </div><!-- End Nội dung chính -->
       </div>
-
     </section><!-- /Hero Section -->
+
 
     <!-- About Section -->
     <section id="about" class="about section">
-
       <div class="container">
 
         <div class="row gy-4 gx-5">
 
+          <!-- Hình ảnh và video -->
           <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
-            <img src="../assets/img/about.jpg" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+            <img src="../assets/img/about.jpg" class="img-fluid" alt="Giới thiệu về phòng khám">
+            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"
+              aria-label="Xem video giới thiệu về phòng khám"></a>
           </div>
 
+          <!-- Nội dung giới thiệu -->
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <h3>About Us</h3>
+            <h3>Về Phòng Khám của chúng tôi</h3>
             <p>
-              Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia
-              molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis
-              veritatis asperiores placeat.
+              Phòng khám tự hào mang đến dịch vụ chăm sóc sức khỏe chất lượng cao với đội ngũ y bác sĩ chuyên môn sâu và
+              trang thiết bị hiện đại. Chúng tôi luôn nỗ lực để đảm bảo mỗi bệnh nhân được điều trị tận tình, chu đáo và
+              hiệu quả nhất.
             </p>
+
             <ul>
               <li>
                 <i class="fa-solid fa-vial-circle-check"></i>
                 <div>
-                  <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                  <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+                  <h5>Kiểm tra sức khỏe định kỳ</h5>
+                  <p>Cung cấp các gói khám sức khỏe toàn diện, giúp phát hiện sớm và phòng ngừa bệnh tật.</p>
                 </div>
               </li>
+
               <li>
                 <i class="fa-solid fa-pump-medical"></i>
                 <div>
-                  <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                  <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+                  <h5>Trang thiết bị y tế hiện đại</h5>
+                  <p>Sử dụng máy móc tiên tiến trong chẩn đoán và điều trị, đảm bảo độ chính xác cao.</p>
                 </div>
               </li>
+
               <li>
                 <i class="fa-solid fa-heart-circle-xmark"></i>
                 <div>
-                  <h5>Voluptatem et qui exercitationem</h5>
-                  <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+                  <h5>Chăm sóc tận tâm, chu đáo</h5>
+                  <p>Đội ngũ y bác sĩ giàu kinh nghiệm luôn lắng nghe và tư vấn tận tình cho từng bệnh nhân.</p>
                 </div>
               </li>
             </ul>
@@ -235,8 +248,8 @@
         </div>
 
       </div>
-
     </section><!-- /About Section -->
+
 
     <!-- Stats Section -->
     <section id="stats" class="stats section light-background">
@@ -250,7 +263,7 @@
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Doctors</p>
+              <p>Bác sĩ</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -259,7 +272,7 @@
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Departments</p>
+              <p>Cơ sở</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -268,7 +281,7 @@
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Research Labs</p>
+              <p>Phòng nghiên cứu</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -277,7 +290,7 @@
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Awards</p>
+              <p>Giải thưởng</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -404,7 +417,7 @@
               <input type="text" name="name" class="form-control" id="name" placeholder="Họ tên" required>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" >
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0">
               <input type="tel" class="form-control" name="phone" id="phone" placeholder="Số điện thoại" required>
@@ -412,10 +425,10 @@
           </div>
           <div class="row">
             <div class="col-md-4 form-group mt-3">
-              <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ" >
+              <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ">
             </div>
             <div class="col-md-4 form-group mt-3">
-              <select name="gender" id="gender" class="form-select" >
+              <select name="gender" id="gender" class="form-select">
                 <option value="">Giới tính</option>
                 <option value="0">Nam</option>
                 <option value="1">Nữ</option>
@@ -423,7 +436,8 @@
               </select>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <input type="text" name="insurance" class="form-control" id="insurance" placeholder="Thông tin bảo hiểm y tế">
+              <input type="text" name="insurance" class="form-control" id="insurance"
+                placeholder="Thông tin bảo hiểm y tế">
             </div>
           </div>
           <div class="row">
@@ -450,7 +464,8 @@
           </div>
 
           <div class="form-group mt-3">
-            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Khác (Lý do khám, Bệnh lý đã có, Tiền sử bệnh, ...)"></textarea>
+            <textarea class="form-control" id="message" name="message" rows="5"
+              placeholder="Khác (Lý do khám, Bệnh lý đã có, Tiền sử bệnh, ...)"></textarea>
           </div>
           <div class="mt-3">
             <div class="loading">Loading</div>
@@ -458,33 +473,34 @@
             <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
             <div class="text-center">
               <button type="submit" id="btnDatLich">Đặt lịch khám</button>
-              <button type="button" id="btnXemLichKham" data-bs-toggle="modal" data-bs-target="#modalEditAppointment">Xem lịch khám</button>
+              <button type="button" id="btnXemLichKham" data-bs-toggle="modal"
+                data-bs-target="#modalEditAppointment">Xem lịch khám</button>
             </div>
-            
+
           </div>
         </form>
 
       </div>
 
-      
+
     </section><!-- /Appointment Section -->
 
     <!-- Dialog hiển thị đơn đăng ký lịch khám -->
     <div class="modal dialog appointment" id="modalEditAppointment">
       <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
-    
+
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Thông tin lịch khám</h4>
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
+
           <!-- Modal body -->
           <div class="modal-body">
-            
+
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-  
+
               <form class="php-email-form">
                 <div class="row">
                   <div class="col-md-4 form-group">
@@ -494,7 +510,8 @@
                     <input type="email" class="form-control" name="email" id="edit-email" placeholder="Email">
                   </div>
                   <div class="col-md-4 form-group mt-3 mt-md-0">
-                    <input type="tel" class="form-control" name="phone" id="edit-phone" placeholder="Số điện thoại" required="">
+                    <input type="tel" class="form-control" name="phone" id="edit-phone" placeholder="Số điện thoại"
+                      required="">
                   </div>
                 </div>
                 <div class="row">
@@ -502,7 +519,7 @@
                     <input type="text" name="address" class="form-control" id="edit-address" placeholder="Địa chỉ">
                   </div>
                   <div class="col-md-4 form-group mt-3">
-                    <select name="gender" id="edit-gender" class="form-select" >
+                    <select name="gender" id="edit-gender" class="form-select">
                       <option value="">Giới tính</option>
                       <option value="0">Nam</option>
                       <option value="1">Nữ</option>
@@ -510,13 +527,14 @@
                     </select>
                   </div>
                   <div class="col-md-4 form-group mt-3">
-                    <input type="text" name="insurance" class="form-control" id="edit-insurance" placeholder="Thông tin bảo hiểm y tế">
+                    <input type="text" name="insurance" class="form-control" id="edit-insurance"
+                      placeholder="Thông tin bảo hiểm y tế">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-4 form-group mt-3">
-                    <input type="date" name="appointment-date" class="form-control datepicker" id="edit-appointment-date"
-                      placeholder="Appointment Date" required="">
+                    <input type="date" name="appointment-date" class="form-control datepicker"
+                      id="edit-appointment-date" placeholder="Appointment Date" required="">
                   </div>
                   <div class="col-md-4 form-group mt-3">
                     <select name="shift" id="edit-shift" class="form-select" required="">
@@ -535,124 +553,144 @@
                     </select>
                   </div>
                 </div>
-      
+
                 <div class="form-group mt-3">
-                  <textarea class="form-control" id="edit-message" name="message" rows="5" placeholder="Khác (Lý do khám, Bệnh lý đã có, Tiền sử bệnh, ...)"></textarea>
+                  <textarea class="form-control" id="edit-message" name="message" rows="5"
+                    placeholder="Khác (Lý do khám, Bệnh lý đã có, Tiền sử bệnh, ...)"></textarea>
                 </div>
                 <div class="mt-3">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                   <div class="text-center">
-                    <button type="button" id="btnExitDialog" style="background-color: #df1529;" data-bs-dismiss="modal">Thoát</button>
-                    <button type="submit" id="btnEditAppointment" >Sửa</button>
+                    <button type="button" id="btnExitDialog" style="background-color: #df1529;"
+                      data-bs-dismiss="modal">Thoát</button>
+                    <button type="submit" id="btnEditAppointment">Sửa</button>
                   </div>
-                  
+
                 </div>
               </form>
-      
+
             </div>
 
           </div>
-    
+
         </div>
       </div>
     </div>
 
     <!-- Materials Section -->
-<section id="materials" class="medical-supplies section">
+    <section id="materials" class="medical-supplies section">
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Vật Tư Y Tế</h2>
-    <p>Danh sách các vật tư y tế với hình ảnh minh họa và thông tin chi tiết</p>
-  </div><!-- End Section Title -->
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Vật Tư Y Tế</h2>
+        <p>Danh sách các vật tư y tế với hình ảnh minh họa và thông tin chi tiết</p>
+      </div><!-- End Section Title -->
 
-  <div class="container">
+      <div class="container">
 
-    <div class="row gy-4">
+        <div class="row gy-4">
 
-      <!-- Vật tư 1: Máy đo điện tim -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-1.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Máy đo điện tim</h4>
-            <p><strong>Chức năng:</strong> Máy đo điện tim (ECG) là thiết bị giúp ghi lại các tín hiệu điện của tim nhằm phát hiện rối loạn nhịp tim, cơn đau tim, và các vấn đề tim mạch khác.</p>
-            <p><strong>Ứng dụng:</strong> Sử dụng trong chẩn đoán, theo dõi bệnh nhân bị bệnh tim mạch tại bệnh viện hoặc phòng khám.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Máy đo điện tim 12 kênh, có thể ghi liên tục, màn hình cảm ứng hiển thị tín hiệu rõ ràng, có khả năng kết nối không dây.</p>
-          </div>
+          <!-- Vật tư 1: Máy đo điện tim -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-1.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Máy đo điện tim</h4>
+                <p><strong>Chức năng:</strong> Máy đo điện tim (ECG) là thiết bị giúp ghi lại các tín hiệu điện của tim
+                  nhằm phát hiện rối loạn nhịp tim, cơn đau tim, và các vấn đề tim mạch khác.</p>
+                <p><strong>Ứng dụng:</strong> Sử dụng trong chẩn đoán, theo dõi bệnh nhân bị bệnh tim mạch tại bệnh viện
+                  hoặc phòng khám.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Máy đo điện tim 12 kênh, có thể ghi liên tục, màn hình cảm ứng
+                  hiển thị tín hiệu rõ ràng, có khả năng kết nối không dây.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
+          <!-- Vật tư 2: Máy khử rung tim -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Máy khử rung tim</h4>
+                <p><strong>Chức năng:</strong> Thiết bị khử rung tim tự động (AED) sử dụng xung điện để khôi phục nhịp
+                  tim bình thường cho những bệnh nhân bị ngừng tim đột ngột.</p>
+                <p><strong>Ứng dụng:</strong> Dùng trong cấp cứu y tế khẩn cấp, bệnh viện, phòng khám hoặc có thể được
+                  đặt tại nơi công cộng như sân bay, trường học.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Nhỏ gọn, dễ sử dụng, tự động phân tích nhịp tim, có màn hình
+                  hướng dẫn bằng giọng nói và văn bản, pin có thời lượng dài.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
+          <!-- Vật tư 3: Ống thông tiểu -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-3.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Ống thông tiểu</h4>
+                <p><strong>Chức năng:</strong> Ống thông tiểu giúp dẫn lưu nước tiểu ra ngoài, hỗ trợ điều trị bệnh nhân
+                  sau phẫu thuật hoặc có các vấn đề về đường tiểu.</p>
+                <p><strong>Ứng dụng:</strong> Sử dụng trong các bệnh viện và phòng khám trong quá trình điều trị bệnh
+                  nhân có vấn đề về bàng quang, niệu đạo.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Làm từ nhựa y tế mềm dẻo, có nhiều kích cỡ phù hợp cho từng đối
+                  tượng bệnh nhân, đảm bảo vô trùng.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
+          <!-- Vật tư 4: Kính hiển vi phẫu thuật -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-4.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Kính hiển vi phẫu thuật</h4>
+                <p><strong>Chức năng:</strong> Hỗ trợ các bác sĩ quan sát chi tiết các mô nhỏ trong quá trình phẫu thuật
+                  với độ chính xác cao.</p>
+                <p><strong>Ứng dụng:</strong> Được sử dụng trong các ca phẫu thuật thần kinh, mắt, tai mũi họng và các
+                  ca phẫu thuật cần độ chi tiết cao.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Độ phóng đại lớn, chất lượng hình ảnh rõ nét, có đèn LED chiếu
+                  sáng mạnh, điều chỉnh linh hoạt cho nhiều loại phẫu thuật khác nhau.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
+          <!-- Vật tư 5: Máy đo huyết áp -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-5.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Máy đo huyết áp</h4>
+                <p><strong>Chức năng:</strong> Đo huyết áp, giúp theo dõi và kiểm tra huyết áp của bệnh nhân để phát
+                  hiện và phòng ngừa các vấn đề về tim mạch.</p>
+                <p><strong>Ứng dụng:</strong> Sử dụng rộng rãi trong các bệnh viện, phòng khám và tại gia đình cho người
+                  có nguy cơ cao về các bệnh huyết áp.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Máy đo huyết áp tự động với màn hình hiển thị lớn, sử dụng pin
+                  hoặc nguồn điện, có bộ nhớ lưu trữ kết quả đo.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
+          <!-- Vật tư 6: Máy siêu âm -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="team-member d-flex align-items-start">
+              <div class="pic"><img src="../assets/img/medical-supplies/item-6.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Máy siêu âm</h4>
+                <p><strong>Chức năng:</strong> Sử dụng sóng siêu âm để quan sát và chẩn đoán các cơ quan bên trong cơ
+                  thể, đặc biệt trong sản khoa để theo dõi thai nhi.</p>
+                <p><strong>Ứng dụng:</strong> Dùng trong chẩn đoán bệnh lý về ổ bụng, tim mạch, và theo dõi sức khỏe
+                  thai nhi trong suốt thai kỳ.</p>
+                <p><strong>Đặc điểm kỹ thuật:</strong> Màn hình màu độ phân giải cao, khả năng ghi và phân tích hình ảnh
+                  siêu âm, đầu dò siêu âm đa tần số.</p>
+              </div>
+            </div>
+          </div><!-- End Medical Supply -->
+
         </div>
-      </div><!-- End Medical Supply -->
 
-      <!-- Vật tư 2: Máy khử rung tim -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-2.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Máy khử rung tim</h4>
-            <p><strong>Chức năng:</strong> Thiết bị khử rung tim tự động (AED) sử dụng xung điện để khôi phục nhịp tim bình thường cho những bệnh nhân bị ngừng tim đột ngột.</p>
-            <p><strong>Ứng dụng:</strong> Dùng trong cấp cứu y tế khẩn cấp, bệnh viện, phòng khám hoặc có thể được đặt tại nơi công cộng như sân bay, trường học.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Nhỏ gọn, dễ sử dụng, tự động phân tích nhịp tim, có màn hình hướng dẫn bằng giọng nói và văn bản, pin có thời lượng dài.</p>
-          </div>
-        </div>
-      </div><!-- End Medical Supply -->
-
-      <!-- Vật tư 3: Ống thông tiểu -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-3.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Ống thông tiểu</h4>
-            <p><strong>Chức năng:</strong> Ống thông tiểu giúp dẫn lưu nước tiểu ra ngoài, hỗ trợ điều trị bệnh nhân sau phẫu thuật hoặc có các vấn đề về đường tiểu.</p>
-            <p><strong>Ứng dụng:</strong> Sử dụng trong các bệnh viện và phòng khám trong quá trình điều trị bệnh nhân có vấn đề về bàng quang, niệu đạo.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Làm từ nhựa y tế mềm dẻo, có nhiều kích cỡ phù hợp cho từng đối tượng bệnh nhân, đảm bảo vô trùng.</p>
-          </div>
-        </div>
-      </div><!-- End Medical Supply -->
-
-      <!-- Vật tư 4: Kính hiển vi phẫu thuật -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-4.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Kính hiển vi phẫu thuật</h4>
-            <p><strong>Chức năng:</strong> Hỗ trợ các bác sĩ quan sát chi tiết các mô nhỏ trong quá trình phẫu thuật với độ chính xác cao.</p>
-            <p><strong>Ứng dụng:</strong> Được sử dụng trong các ca phẫu thuật thần kinh, mắt, tai mũi họng và các ca phẫu thuật cần độ chi tiết cao.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Độ phóng đại lớn, chất lượng hình ảnh rõ nét, có đèn LED chiếu sáng mạnh, điều chỉnh linh hoạt cho nhiều loại phẫu thuật khác nhau.</p>
-          </div>
-        </div>
-      </div><!-- End Medical Supply -->
-
-      <!-- Vật tư 5: Máy đo huyết áp -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-5.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Máy đo huyết áp</h4>
-            <p><strong>Chức năng:</strong> Đo huyết áp, giúp theo dõi và kiểm tra huyết áp của bệnh nhân để phát hiện và phòng ngừa các vấn đề về tim mạch.</p>
-            <p><strong>Ứng dụng:</strong> Sử dụng rộng rãi trong các bệnh viện, phòng khám và tại gia đình cho người có nguy cơ cao về các bệnh huyết áp.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Máy đo huyết áp tự động với màn hình hiển thị lớn, sử dụng pin hoặc nguồn điện, có bộ nhớ lưu trữ kết quả đo.</p>
-          </div>
-        </div>
-      </div><!-- End Medical Supply -->
-
-      <!-- Vật tư 6: Máy siêu âm -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
-        <div class="team-member d-flex align-items-start">
-          <div class="pic"><img src="../assets/img/medical-supplies/item-6.jpg" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Máy siêu âm</h4>
-            <p><strong>Chức năng:</strong> Sử dụng sóng siêu âm để quan sát và chẩn đoán các cơ quan bên trong cơ thể, đặc biệt trong sản khoa để theo dõi thai nhi.</p>
-            <p><strong>Ứng dụng:</strong> Dùng trong chẩn đoán bệnh lý về ổ bụng, tim mạch, và theo dõi sức khỏe thai nhi trong suốt thai kỳ.</p>
-            <p><strong>Đặc điểm kỹ thuật:</strong> Màn hình màu độ phân giải cao, khả năng ghi và phân tích hình ảnh siêu âm, đầu dò siêu âm đa tần số.</p>
-          </div>
-        </div>
-      </div><!-- End Medical Supply -->
-
-    </div>
-
-  </div>
+      </div>
 
 
     </section><!-- /Departments Section -->
@@ -1253,7 +1291,7 @@
   <script src="../assets/js/main.js"></script>
 
   <!-- Dialog JS File -->
-   <script src="../assets/js/scheduleappointment.js"></script>
+  <script src="../assets/js/scheduleappointment.js"></script>
 
 </body>
 

@@ -950,10 +950,11 @@ section,
   z-index: 3;
 }
 
-.hero .welcome h2 {
+.hero .welcome h1 {
   margin: 0;
   font-size: 48px;
-  font-weight: 700;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .hero .welcome p {
@@ -1017,8 +1018,9 @@ section,
 
 .hero .content .icon-box h4 {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: bolder;
   margin: 10px 0 20px 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .hero .content .icon-box p {
@@ -1032,6 +1034,7 @@ section,
 .about .content h3 {
   font-size: 2rem;
   font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .about .content ul {
@@ -1055,6 +1058,7 @@ section,
 .about .content ul h5 {
   font-size: 18px;
   font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .about .content ul p {
@@ -1321,6 +1325,7 @@ button#btnExitDialog, button#btnXemLichKham {
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #materials .member-info p {

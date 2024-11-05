@@ -232,11 +232,8 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BangCap")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChuyenKhoa")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BangCap")
+                        .HasColumnType("int");
 
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
@@ -247,9 +244,15 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<string>("GioLamViec")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HinhAnh")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HoTen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("KhoaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaBacSi")
                         .IsRequired()
@@ -272,9 +275,26 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
                     b.HasKey("BacSiId");
 
+                    b.HasIndex("KhoaId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("BacSis");
+                });
+
+            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BacSiDichVu", b =>
+                {
+                    b.Property<Guid>("BacSiId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DichVuId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("BacSiId", "DichVuId");
+
+                    b.HasIndex("DichVuId");
+
+                    b.ToTable("BacSiDichVu");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BenhNhan", b =>
@@ -289,12 +309,15 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GioiTinh")
+                    b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HoTen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LoaiGioiTinh")
+                        .HasColumnType("int");
 
                     b.Property<string>("MaBenhNhan")
                         .IsRequired()
@@ -333,12 +356,14 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BenhNhanId")
+                    b.Property<Guid?>("BacSiId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DanhGia")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("BenhNhanId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DanhGia")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("NgayCapNhat")
                         .HasColumnType("datetime2");
@@ -347,10 +372,11 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PhanHoi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DanhGiaId");
+
+                    b.HasIndex("BacSiId");
 
                     b.HasIndex("BenhNhanId");
 
@@ -366,12 +392,14 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<decimal>("DonGia")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid?>("KhoaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("MaDichVu")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MoTaDichVu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("NgayCapNhat")
@@ -386,45 +414,9 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
                     b.HasKey("DichVuId");
 
+                    b.HasIndex("KhoaId");
+
                     b.ToTable("DichVus");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.HoaDon", b =>
-                {
-                    b.Property<Guid>("HoaDonId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BenhNhanId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LichKhamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("NgayCapNhat")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayLapHoaDon")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TinhTrangThanhToan")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TongTien")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("HoaDonId");
-
-                    b.HasIndex("BenhNhanId");
-
-                    b.HasIndex("LichKhamId")
-                        .IsUnique();
-
-                    b.ToTable("HoaDons");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.KetQuaKham", b =>
@@ -443,7 +435,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LichKhamId")
+                    b.Property<Guid?>("LichKhamId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("NgayCapNhat")
@@ -455,9 +447,35 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.HasKey("KetQuaKhamId");
 
                     b.HasIndex("LichKhamId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[LichKhamId] IS NOT NULL");
 
                     b.ToTable("KetQuaKhams");
+                });
+
+            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.Khoa", b =>
+                {
+                    b.Property<Guid>("KhoaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaKhoa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgayCapNhat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenKhoa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("KhoaId");
+
+                    b.ToTable("Khoas");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham", b =>
@@ -496,118 +514,6 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.HasIndex("BenhNhanId");
 
                     b.ToTable("LichKhams");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham_DichVu", b =>
-                {
-                    b.Property<Guid>("LichKhamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DichVuId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("ChiPhi")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("SoLuongDichVu")
-                        .HasColumnType("int");
-
-                    b.HasKey("LichKhamId", "DichVuId");
-
-                    b.HasIndex("DichVuId");
-
-                    b.ToTable("LichKham_DichVus");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham_Thuoc", b =>
-                {
-                    b.Property<Guid>("LichKhamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ThuocId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("ChiPhi")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("SoLuongThuoc")
-                        .HasColumnType("int");
-
-                    b.HasKey("LichKhamId", "ThuocId");
-
-                    b.HasIndex("ThuocId");
-
-                    b.ToTable("LichKham_Thuocs");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.Thuoc", b =>
-                {
-                    b.Property<Guid>("ThuocId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DangThuoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("DonGia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("LoaiThuoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaThuoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgayCapNhat")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayHetHan")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SoLuong")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenThuoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ThuocId");
-
-                    b.ToTable("Thuocs");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.VatTu", b =>
-                {
-                    b.Property<Guid>("VatTuId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LoaiVatTu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgayCapNhat")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SoLuong")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenVatTu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VatTuId");
-
-                    b.ToTable("VatTus");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -663,11 +569,37 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BacSi", b =>
                 {
+                    b.HasOne("QuanLyPhongKham.Models.Entities.Khoa", "Khoa")
+                        .WithMany("BacSis")
+                        .HasForeignKey("KhoaId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("QuanLyPhongKham.Models.Entities.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
+                    b.Navigation("Khoa");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BacSiDichVu", b =>
+                {
+                    b.HasOne("QuanLyPhongKham.Models.Entities.BacSi", "BacSi")
+                        .WithMany("BacSiDichVus")
+                        .HasForeignKey("BacSiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuanLyPhongKham.Models.Entities.DichVu", "DichVu")
+                        .WithMany("BacSiDichVus")
+                        .HasForeignKey("DichVuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BacSi");
+
+                    b.Navigation("DichVu");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BenhNhan", b =>
@@ -682,32 +614,29 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.DanhGiaDichVu", b =>
                 {
+                    b.HasOne("QuanLyPhongKham.Models.Entities.BacSi", "BacSi")
+                        .WithMany("DanhGiaDichVus")
+                        .HasForeignKey("BacSiId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("QuanLyPhongKham.Models.Entities.BenhNhan", "BenhNhan")
                         .WithMany("DanhGiaDichVus")
                         .HasForeignKey("BenhNhanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("BacSi");
 
                     b.Navigation("BenhNhan");
                 });
 
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.HoaDon", b =>
+            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.DichVu", b =>
                 {
-                    b.HasOne("QuanLyPhongKham.Models.Entities.BenhNhan", "BenhNhan")
-                        .WithMany("HoaDons")
-                        .HasForeignKey("BenhNhanId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.HasOne("QuanLyPhongKham.Models.Entities.Khoa", "Khoa")
+                        .WithMany("DichVus")
+                        .HasForeignKey("KhoaId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("QuanLyPhongKham.Models.Entities.LichKham", "LichKham")
-                        .WithOne("HoaDon")
-                        .HasForeignKey("QuanLyPhongKham.Models.Entities.HoaDon", "LichKhamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BenhNhan");
-
-                    b.Navigation("LichKham");
+                    b.Navigation("Khoa");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.KetQuaKham", b =>
@@ -715,8 +644,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.HasOne("QuanLyPhongKham.Models.Entities.LichKham", "LichKham")
                         .WithOne("KetQuaKham")
                         .HasForeignKey("QuanLyPhongKham.Models.Entities.KetQuaKham", "LichKhamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("LichKham");
                 });
@@ -732,7 +660,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.HasOne("QuanLyPhongKham.Models.Entities.BenhNhan", "BenhNhan")
                         .WithMany("LichKhams")
                         .HasForeignKey("BenhNhanId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("BacSi");
@@ -740,46 +668,12 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Navigation("BenhNhan");
                 });
 
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham_DichVu", b =>
-                {
-                    b.HasOne("QuanLyPhongKham.Models.Entities.DichVu", "DichVu")
-                        .WithMany("LichKhamDichVus")
-                        .HasForeignKey("DichVuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("QuanLyPhongKham.Models.Entities.LichKham", "LichKham")
-                        .WithMany("LichKhamDichVus")
-                        .HasForeignKey("LichKhamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DichVu");
-
-                    b.Navigation("LichKham");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham_Thuoc", b =>
-                {
-                    b.HasOne("QuanLyPhongKham.Models.Entities.LichKham", "LichKham")
-                        .WithMany("LichKhamThuocs")
-                        .HasForeignKey("LichKhamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("QuanLyPhongKham.Models.Entities.Thuoc", "Thuoc")
-                        .WithMany("LichKhamThuocs")
-                        .HasForeignKey("ThuocId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LichKham");
-
-                    b.Navigation("Thuoc");
-                });
-
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.BacSi", b =>
                 {
+                    b.Navigation("BacSiDichVus");
+
+                    b.Navigation("DanhGiaDichVus");
+
                     b.Navigation("LichKhams");
                 });
 
@@ -787,32 +681,24 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     b.Navigation("DanhGiaDichVus");
 
-                    b.Navigation("HoaDons");
-
                     b.Navigation("LichKhams");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.DichVu", b =>
                 {
-                    b.Navigation("LichKhamDichVus");
+                    b.Navigation("BacSiDichVus");
+                });
+
+            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.Khoa", b =>
+                {
+                    b.Navigation("BacSis");
+
+                    b.Navigation("DichVus");
                 });
 
             modelBuilder.Entity("QuanLyPhongKham.Models.Entities.LichKham", b =>
                 {
-                    b.Navigation("HoaDon")
-                        .IsRequired();
-
-                    b.Navigation("KetQuaKham")
-                        .IsRequired();
-
-                    b.Navigation("LichKhamDichVus");
-
-                    b.Navigation("LichKhamThuocs");
-                });
-
-            modelBuilder.Entity("QuanLyPhongKham.Models.Entities.Thuoc", b =>
-                {
-                    b.Navigation("LichKhamThuocs");
+                    b.Navigation("KetQuaKham");
                 });
 #pragma warning restore 612, 618
         }

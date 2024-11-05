@@ -69,8 +69,11 @@ namespace QuanLyPhongKham.Business.Services
                     throw new ErrorEditException();
                 }
             }
+        }
 
-            
+        public async Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId)
+        {
+            return await _patientRepository.GetAllByDoctorIdAsync(BacSiId);
         }
     }
 }

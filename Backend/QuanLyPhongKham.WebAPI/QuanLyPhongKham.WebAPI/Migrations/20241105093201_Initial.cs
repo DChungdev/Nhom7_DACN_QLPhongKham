@@ -275,8 +275,8 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     table.PrimaryKey("PK_DanhGiaDichVus", x => x.DanhGiaId);
                     table.ForeignKey(
-                        name: "FK_DanhGiaDichVus_BacSis_BenhNhanId",
-                        column: x => x.BenhNhanId,
+                        name: "FK_DanhGiaDichVus_BacSis_BacSiId",
+                        column: x => x.BacSiId,
                         principalTable: "BacSis",
                         principalColumn: "BacSiId",
                         onDelete: ReferentialAction.Cascade);
@@ -425,6 +425,11 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 column: "UserId",
                 unique: true,
                 filter: "[UserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DanhGiaDichVus_BacSiId",
+                table: "DanhGiaDichVus",
+                column: "BacSiId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DanhGiaDichVus_BenhNhanId",

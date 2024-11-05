@@ -11,6 +11,7 @@ namespace QuanLyPhongKham.Models.Models
         public Guid BenhNhanId { get; set; }
         public string MaBenhNhan { get; set; }
         public string HoTen { get; set; }
+        public string? HinhAnh { get; set; }
         public DateTime? NgaySinh { get; set; }
         public string? GioiTinh { get; set; }
         public string? SoDienThoai { get; set; }

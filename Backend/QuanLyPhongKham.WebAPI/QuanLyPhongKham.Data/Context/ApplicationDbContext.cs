@@ -91,7 +91,7 @@ namespace QuanLyPhongKham.Data.Context
             modelBuilder.Entity<BacSi>()
                 .HasMany(b => b.DanhGiaDichVus)
                 .WithOne(d => d.BacSi)
-                .HasForeignKey(d => d.BenhNhanId)
+                .HasForeignKey(d => d.BacSiId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Cấu hình cho mối quan hệ nhiều-nhiều giữa BacSi và DichVu thông qua BacSiDichVu

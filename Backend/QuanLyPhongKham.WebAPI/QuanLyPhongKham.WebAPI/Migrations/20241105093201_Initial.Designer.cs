@@ -12,7 +12,7 @@ using QuanLyPhongKham.Data.Context;
 namespace QuanLyPhongKham.WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241104111202_Initial")]
+    [Migration("20241105093201_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -378,6 +378,8 @@ namespace QuanLyPhongKham.WebAPI.Migrations
 
                     b.HasKey("DanhGiaId");
 
+                    b.HasIndex("BacSiId");
+
                     b.HasIndex("BenhNhanId");
 
                     b.ToTable("DanhGiaDichVus");
@@ -616,7 +618,7 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                 {
                     b.HasOne("QuanLyPhongKham.Models.Entities.BacSi", "BacSi")
                         .WithMany("DanhGiaDichVus")
-                        .HasForeignKey("BenhNhanId")
+                        .HasForeignKey("BacSiId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("QuanLyPhongKham.Models.Entities.BenhNhan", "BenhNhan")

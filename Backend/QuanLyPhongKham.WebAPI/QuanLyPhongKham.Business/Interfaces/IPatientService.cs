@@ -9,5 +9,6 @@ namespace QuanLyPhongKham.Business.Interfaces
 {
     public interface IPatientService : IBaseService<BenhNhan>
     {
+        Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId);
     }
 }

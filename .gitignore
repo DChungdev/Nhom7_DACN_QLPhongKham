@@ -2,3 +2,6 @@ bin/
 obj/
 .vs/
 *.suo
+Backend/QuanLyPhongKham.WebAPI/.vs/QuanLyPhongKham.WebAPI/v17/.suo
+Backend/QuanLyPhongKham.WebAPI/.vs/ProjectEvaluation/quanlyphongkham.webapi.metadata.v7.bin
+Backend/QuanLyPhongKham.WebAPI/.vs/QuanLyPhongKham.WebAPI/DesignTimeBuild/.dtbcache.v2

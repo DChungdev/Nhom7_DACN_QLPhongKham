@@ -62,7 +62,7 @@ namespace QuanLyPhongKham.Business.Services
 
                 return new
                 {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
                     RefreshToken = refreshToken,
                     Expiration = token.ValidTo
                 };

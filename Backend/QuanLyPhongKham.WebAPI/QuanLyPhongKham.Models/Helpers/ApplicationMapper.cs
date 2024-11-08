@@ -14,6 +14,7 @@ namespace QuanLyPhongKham.Models.Helpers
         public ApplicationMapper()
         {
             CreateMap<BenhNhan, BenhNhanModel>().ReverseMap();
+            CreateMap<BacSi, BacSiModel>().ReverseMap();
         }
     }
 }

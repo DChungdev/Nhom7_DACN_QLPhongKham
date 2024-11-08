@@ -124,7 +124,7 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã bệnh nhân không được phép để trống!.
+        ///   Looks up a localized string similar to Họ tên không được phép để trống!.
         /// </summary>
         public static string Error_HoTenNotEmpty {
             get {
@@ -133,7 +133,7 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Họ tên bệnh nhân không được phép có số!.
+        ///   Looks up a localized string similar to Họ tên không được phép có số!.
         /// </summary>
         public static string Error_HoTenNotNumber {
             get {
@@ -142,7 +142,25 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã nhân viên đã tồn tại!.
+        ///   Looks up a localized string similar to Mã bác sĩ đã tồn tại!.
+        /// </summary>
+        public static string Error_MaBacSiDuplicated {
+            get {
+                return ResourceManager.GetString("Error_MaBacSiDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã bác sĩ không được phép để trống!.
+        /// </summary>
+        public static string Error_MaBacSiNotEmpty {
+            get {
+                return ResourceManager.GetString("Error_MaBacSiNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã bệnh nhân đã tồn tại!.
         /// </summary>
         public static string Error_MaBenhNhanDuplicated {
             get {

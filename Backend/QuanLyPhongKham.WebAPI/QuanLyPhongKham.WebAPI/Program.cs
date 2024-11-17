@@ -65,13 +65,21 @@ builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+<<<<<<< HEAD
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+=======
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+>>>>>>> 316c5f743d32b7a11a9e8faeeb59e723ba69e075
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+<<<<<<< HEAD
 builder.Services.AddScoped<IServiceService, ServiceService>();
 
+=======
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+>>>>>>> 316c5f743d32b7a11a9e8faeeb59e723ba69e075
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

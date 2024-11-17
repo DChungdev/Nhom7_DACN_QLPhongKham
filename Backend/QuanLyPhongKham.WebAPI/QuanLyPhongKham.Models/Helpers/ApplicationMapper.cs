@@ -14,9 +14,15 @@ namespace QuanLyPhongKham.Models.Helpers
         public ApplicationMapper()
         {
             CreateMap<BenhNhan, BenhNhanModel>().ReverseMap();
+<<<<<<< HEAD
 			CreateMap<DichVu, DichVuModel>().ReverseMap();
 
 			
 		}
 	}
+=======
+            CreateMap<BacSi, BacSiModel>().ReverseMap();
+        }
+    }
+>>>>>>> 316c5f743d32b7a11a9e8faeeb59e723ba69e075
 }

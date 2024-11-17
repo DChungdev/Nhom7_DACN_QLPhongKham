@@ -44,6 +44,7 @@ D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll
+<<<<<<< HEAD
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.deps.json
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.runtimeconfig.json
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.dll
@@ -61,3 +62,22 @@ D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\r
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
 D:\DACN\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll
+=======
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.deps.json
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.runtimeconfig.json
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.dll
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\bin\Debug\net6.0\QuanLyPhongKham.Models.pdb
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.AssemblyReference.cache
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.Resources.ResourceVN.resources
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.GenerateResource.cache
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.AssemblyInfoInputs.cache
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.AssemblyInfo.cs
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.CoreCompileInputs.cache
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.sourcelink.json
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.dll
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\refint\QuanLyPhongKham.Models.dll
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
+E:\Duc_HaUI\Ki_7\Professional_Project\QuanLyPhongKham\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll
+>>>>>>> 316c5f743d32b7a11a9e8faeeb59e723ba69e075

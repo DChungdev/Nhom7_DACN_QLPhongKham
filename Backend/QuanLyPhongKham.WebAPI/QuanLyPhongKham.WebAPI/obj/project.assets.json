@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net6.0": {
       "AutoMapper/13.0.1": {
         "type": "package",
         "dependencies": {
@@ -1042,12 +1042,12 @@
           "Microsoft.OpenApi": "1.2.3"
         },
         "compile": {
-          "lib/net7.0/Swashbuckle.AspNetCore.Swagger.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Swashbuckle.AspNetCore.Swagger.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -1061,12 +1061,12 @@
           "Swashbuckle.AspNetCore.Swagger": "6.5.0"
         },
         "compile": {
-          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -1074,12 +1074,12 @@
       "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -3849,7 +3849,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net6.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.33",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.33",
       "Microsoft.EntityFrameworkCore >= 6.0.33",
@@ -3883,7 +3883,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -3891,8 +3891,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {
             "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj": {
               "projectPath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj"
@@ -3918,8 +3918,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -3967,7 +3967,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

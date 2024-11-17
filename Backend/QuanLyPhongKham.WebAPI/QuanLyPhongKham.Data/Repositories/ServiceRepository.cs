@@ -27,7 +27,7 @@ namespace QuanLyPhongKham.Data.Repositories
 			if (dichVu.DonGia <= 0)
 				errors.Add("DonGia", "Đơn giá phải lớn hơn 0");
 
-			return errors.Count > 0 ? errors : null;
+			return errors;
 		}
 
 		public Dictionary<string, string>? CheckDataValidateForInsert(DichVu dichVu)
@@ -43,7 +43,7 @@ namespace QuanLyPhongKham.Data.Repositories
 			if (dichVu.DonGia <= 0)
 				errors.Add("DonGia", "Đơn giá phải lớn hơn 0");
 
-			return errors.Count > 0 ? errors : null;
+			return errors;
 		}
 
 		public string GetNextMaDichVu()

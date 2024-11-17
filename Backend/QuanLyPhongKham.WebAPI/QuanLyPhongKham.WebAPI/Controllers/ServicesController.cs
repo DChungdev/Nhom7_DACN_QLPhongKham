@@ -120,6 +120,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 				return BadRequest("Không tìm thấy dịch vụ");
 			}
 				existingDV.TenDichVu = dichVu.TenDichVu;
+				existingDV.KhoaId = dichVu.KhoaId;
 				existingDV.MoTaDichVu = dichVu.MoTaDichVu;
 				existingDV.DonGia = dichVu.DonGia;
 				existingDV.NgayCapNhat = DateTime.Now;

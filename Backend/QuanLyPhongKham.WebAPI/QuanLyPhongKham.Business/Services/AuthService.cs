@@ -62,7 +62,7 @@ namespace QuanLyPhongKham.Business.Services
 
                 return new
                 {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
                     RefreshToken = refreshToken,
                     Expiration = token.ValidTo
                 };
@@ -246,25 +246,32 @@ namespace QuanLyPhongKham.Business.Services
 
         private ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
         {
-            var tokenValidationParameters = new TokenValidationParameters
+            try
             {
-                ValidateAudience = false,
-                ValidateIssuer = false,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])),
-                ValidateLifetime = false
-            };
+                var tokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])),
+                    ValidateLifetime = false
+                };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
-            if (securityToken is not JwtSecurityToken jwtSecurityToken ||
-                !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-            {
-                throw new SecurityTokenException("Invalid token");
+                if (securityToken is not JwtSecurityToken jwtSecurityToken ||
+                    !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    throw new SecurityTokenException("Invalid token");
+                }
+
+                return principal;
             }
-
-            return principal;
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<Response> DeleteUser(string userId)
@@ -296,6 +303,13 @@ namespace QuanLyPhongKham.Business.Services
                 return new Service {DevMsg = "Error", UserMsg = "Mật khẩu không đúng vui lòng nhập lại!" };
             }
             return new Service { UserMsg = "Đổi mật khẩu thành công!" };
+        }
+
+        public async Task<string> FindByUserNameAsync(string userName)
+        {
+            var user = await _userRepository.FindByNameAsync(userName);
+            if (user == null) return "Invalid user name";
+            return user.Id;
         }
     }
 }

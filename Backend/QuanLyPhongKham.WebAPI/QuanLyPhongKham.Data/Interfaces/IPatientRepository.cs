@@ -27,5 +27,8 @@ namespace QuanLyPhongKham.Data.Interfaces
         /// <param name="benhNhan">dữ liệu</param>
         /// <returns>danh sách lỗi</returns>
         Dictionary<string, string>? CheckDataValidateForInsert(BenhNhan benhNhan);
+
+        Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId);
+        Task<BenhNhan> GetByUserId(string userId);
     }
 }

@@ -161,16 +161,24 @@
     <value>Giờ khám của bác sĩ không tồn tại, vui lòng chọn đúng!</value>
   </data>
   <data name="Error_HoTenNotEmpty" xml:space="preserve">
-    <value>Mã bệnh nhân không được phép để trống!</value>
-    <comment>Lỗi tên bệnh nhân trống</comment>
+    <value>Họ tên không được phép để trống!</value>
+    <comment>Lỗi họ tên trống</comment>
   </data>
   <data name="Error_HoTenNotNumber" xml:space="preserve">
-    <value>Họ tên bệnh nhân không được phép có số!</value>
+    <value>Họ tên không được phép có số!</value>
     <comment>Lỗi họ tên có số</comment>
   </data>
+  <data name="Error_MaBacSiDuplicated" xml:space="preserve">
+    <value>Mã bác sĩ đã tồn tại!</value>
+    <comment>Lỗi mã bác sĩ đã tồn tại</comment>
+  </data>
+  <data name="Error_MaBacSiNotEmpty" xml:space="preserve">
+    <value>Mã bác sĩ không được phép để trống!</value>
+    <comment>Lỗi mã bác sĩ trống</comment>
+  </data>
   <data name="Error_MaBenhNhanDuplicated" xml:space="preserve">
-    <value>Mã nhân viên đã tồn tại!</value>
-    <comment>Lỗi mã nhân viên đã tồn tại</comment>
+    <value>Mã bệnh nhân đã tồn tại!</value>
+    <comment>Lỗi mã bệnh nhân đã tồn tại</comment>
   </data>
   <data name="Error_MaBenhNhanNotEmpty" xml:space="preserve">
     <value>Mã bệnh nhân không được phép để trống!</value>

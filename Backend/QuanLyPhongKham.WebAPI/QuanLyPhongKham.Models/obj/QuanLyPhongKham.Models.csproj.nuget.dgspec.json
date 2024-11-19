@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {}
+    "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {}
   },
   "projects": {
-    "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+    "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "projectUniqueName": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
         "projectName": "QuanLyPhongKham.Models",
-        "projectPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
-        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
+        "projectPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "packagesPath": "C:\\Users\\Nguyen Duc\\.nuget\\packages\\",
+        "outputPath": "E:\\Duc_HaUI\\Ki_7\\Professional_Project\\QuanLyPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nguyen Duc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

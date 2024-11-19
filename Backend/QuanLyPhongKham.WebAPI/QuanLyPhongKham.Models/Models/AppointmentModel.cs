@@ -1,12 +1,13 @@
-﻿using System;
+﻿using QuanLyPhongKham.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyPhongKham.Models.Entities
+namespace QuanLyPhongKham.Models.Models
 {
-    public class LichKham
+    public class AppointmentModel
     {
         public Guid LichKhamId { get; set; }
         public Guid BenhNhanId { get; set; }
@@ -14,12 +15,6 @@ namespace QuanLyPhongKham.Models.Entities
         public DateTime? NgayKham { get; set; }
         public string GioKham { get; set; }
         public string TrangThaiLichKham { get; set; }
-        public DateTime? NgayTao { get; set; } = DateTime.Now;
-        public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
-
         public BenhNhan BenhNhan { get; set; }
-        public BacSi BacSi { get; set; }
-        public virtual KetQuaKham? KetQuaKham { get; set; }
-
     }
 }

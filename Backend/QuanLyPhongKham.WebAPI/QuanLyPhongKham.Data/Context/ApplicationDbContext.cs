@@ -12,7 +12,9 @@ namespace QuanLyPhongKham.Data.Context
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
 
         public DbSet<Khoa> Khoas { get; set; }
         public DbSet<DichVu> DichVus { get; set; }
@@ -21,6 +23,7 @@ namespace QuanLyPhongKham.Data.Context
         public DbSet<LichKham> LichKhams { get; set; }
         public DbSet<DanhGiaDichVu> DanhGiaDichVus { get; set; }
         public DbSet<KetQuaKham> KetQuaKhams { get; set; }
+        public ApplicationDbContext Context { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

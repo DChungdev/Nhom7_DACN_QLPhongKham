@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error_AOfDateNotLessNow" xml:space="preserve">
+    <value>Ngày khám không được phép nhỏ hơn ngày hiện tại!</value>
+  </data>
   <data name="Error_BOfDateNotGreatNow" xml:space="preserve">
     <value>Ngày sinh không được phép lớn hơn ngày hiện tại!</value>
     <comment>Lỗi ngày sinh lớn hơn ngày hiện tại</comment>
@@ -145,6 +148,18 @@
     <value>Có lỗi xảy ra, vui lòng liên hệ Group 7 để được trợ giúp!</value>
     <comment>Lỗi ngoại lệ</comment>
   </data>
+  <data name="Error_GioKhamExist" xml:space="preserve">
+    <value>Chỉ được phép đăng ký 1 ca khám có 3 bệnh nhân, vui lòng chọn giờ khác!</value>
+  </data>
+  <data name="Error_GioKhamNotEmpty" xml:space="preserve">
+    <value>Giờ khám không được phép để trống!</value>
+  </data>
+  <data name="Error_GioKhamNotExist" xml:space="preserve">
+    <value>Giờ khám không tồn tại, liên hệ Nhóm 7 để được trợ giúp!</value>
+  </data>
+  <data name="Error_GioKhamOfBacSiNotExist" xml:space="preserve">
+    <value>Giờ khám của bác sĩ không tồn tại, vui lòng chọn đúng!</value>
+  </data>
   <data name="Error_HoTenNotEmpty" xml:space="preserve">
     <value>Họ tên không được phép để trống!</value>
     <comment>Lỗi họ tên trống</comment>
@@ -168,6 +183,9 @@
   <data name="Error_MaBenhNhanNotEmpty" xml:space="preserve">
     <value>Mã bệnh nhân không được phép để trống!</value>
     <comment>Lỗi mã bệnh nhân trống</comment>
+  </data>
+  <data name="Error_NgayKhamNotEmpty" xml:space="preserve">
+    <value>Ngày khám không được phép để trống!</value>
   </data>
   <data name="Error_NotFound" xml:space="preserve">
     <value>Dữ liệu không tồn tại!</value>

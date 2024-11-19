@@ -100,7 +100,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
         {
             var result = await _authService.ChangePasswordAsync(model.username, model.currentPassword, model.newPassword);
-            if(!String.IsNullOrEmpty(result.DevMsg))
+            if (!String.IsNullOrEmpty(result.DevMsg))
             {
                 return BadRequest(result);
             }
@@ -123,6 +123,21 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
 
             return BadRequest(new { message = result });
+        }
+
+        [HttpGet("{username}")]
+        public async Task<IActionResult> FindByUserName(string username)
+        {
+            if (String.IsNullOrEmpty(username))
+            {
+                return BadRequest(new { message = "Không được để rỗng" });
+            }
+            var result = await _authService.FindByUserNameAsync(username);
+            if (!String.IsNullOrEmpty(result))
+            {
+                return Ok(result);
+            }
+            return BadRequest(new { message = "Không tìm thấy" });
         }
     }
 }

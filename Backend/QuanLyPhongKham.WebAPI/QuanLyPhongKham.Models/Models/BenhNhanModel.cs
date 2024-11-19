@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyPhongKham.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,22 @@ namespace QuanLyPhongKham.Models.Models
         public string HoTen { get; set; }
         public string? HinhAnh { get; set; }
         public DateTime? NgaySinh { get; set; }
-        public string? GioiTinh { get; set; }
+        public GioiTinh? LoaiGioiTinh { get; set; }
+        public string? GioiTinh
+        {
+            get
+            {
+                switch (LoaiGioiTinh)
+                {
+                    case Enums.GioiTinh.Nam:
+                        return "Nam";
+                    case Enums.GioiTinh.Nu:
+                        return "Nữ";
+                    default:
+                        return "Khác";
+                }
+            }
+        }
         public string? SoDienThoai { get; set; }
         public string? Email { get; set; }
         public string? DiaChi { get; set; }

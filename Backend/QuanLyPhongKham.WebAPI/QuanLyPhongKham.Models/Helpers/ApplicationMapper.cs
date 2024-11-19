@@ -16,6 +16,7 @@ namespace QuanLyPhongKham.Models.Helpers
             CreateMap<BenhNhan, BenhNhanModel>().ReverseMap();
             CreateMap<LichKham, AppointmentModel>().ReverseMap();
 
+            CreateMap<BacSi, BacSiModel>().ReverseMap();
         }
     }
 }

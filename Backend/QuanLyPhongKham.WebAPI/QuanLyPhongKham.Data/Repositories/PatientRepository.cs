@@ -55,10 +55,10 @@ namespace QuanLyPhongKham.Data.Repositories
             }
             //2. Thực hiện validate dữ liệu
             //2.1. Họ tên không được có số
-            if (benhNhan.HoTen.Any(char.IsDigit))
-            {
-                errorData.Add("HoTen", ResourceVN.Error_HoTenNotNumber);
-            }
+            //if (benhNhan.HoTen.Any(char.IsDigit))
+            //{
+            //    errorData.Add("FullName", ResourceVN.Error_HoTenNotNumber);
+            //}
             //2.2. Số điện thoại không được có chữ
             if (!string.IsNullOrEmpty(benhNhan.SoDienThoai) && benhNhan.SoDienThoai.Any(char.IsLetter))
             {
@@ -89,6 +89,7 @@ namespace QuanLyPhongKham.Data.Repositories
             }
             return errorData;
         }
+
 
         public string GetNextMaBenhNhan()
         {
@@ -133,6 +134,22 @@ namespace QuanLyPhongKham.Data.Repositories
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId)
+        {
+            var benhNhans = await _context.BenhNhans
+            .Where(bn => bn.LichKhams.Any(lk => lk.BacSiId == BacSiId))
+            .Include(bn => bn.LichKhams) // Bao gồm các lịch khám của bệnh nhân
+            .ToListAsync();
+
+            return benhNhans;
+        }
+
+        public async Task<BenhNhan> GetByUserId(string userId)
+        {
+            var bn = await _context.BenhNhans.Where(bn => bn.UserId == userId).FirstOrDefaultAsync();
+            return bn;
         }
     }
 }

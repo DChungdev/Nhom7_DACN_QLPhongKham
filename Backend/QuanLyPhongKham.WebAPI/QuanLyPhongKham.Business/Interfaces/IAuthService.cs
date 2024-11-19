@@ -20,5 +20,6 @@ namespace QuanLyPhongKham.Business.Interfaces
         Task<ApplicationUser> FindByIdAsync(string userId);
         Task<Response> DeleteUser(string userId);
         Task<Service> ChangePasswordAsync(string username, string curPassword, string newPassword);
+        Task<string> FindByUserNameAsync(string userName);
     }
 }

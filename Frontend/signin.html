@@ -67,6 +67,17 @@
                 </div>
             </div>
         </div>
+        <div id="error-popup" class="m-popup-block" style="top: 8%;">
+            <div class="m-popup-item">
+                <div class="m-popup-icon m-popup-icon-error"></div>
+                <div class="m-popup-text-error" style="width: calc(100% - 80px);">
+                    <span>Tài khoản đã tồn tại!</span>
+                </div>
+                <div class="m-popup-tool">
+                    <div class="m-popup-close">x</div>
+                </div>
+            </div>
+        </div>
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
             style="background:url(assets/img/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row text-center">
@@ -76,7 +87,7 @@
                     <div class="p-3">
                         <img src="assets/img/big/icon.png" alt="wrapkit">
                         <h2 class="mt-3 text-center">Đăng ký</h2>
-                        <form class="mt-4" id="registerForm" onsubmit="return validateForm()">
+                        <form class="mt-4" id="registerForm">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -98,7 +109,7 @@
                                         <input class="form-control" type="password" placeholder="Mật khẩu" id="password"
                                             oninput="kiemTraMatKhau()" required>
                                         <div id="error-message" class="error-message">
-                                            Mật khẩu phải >=8 ký tự, có chữ hoa, chữ thường và ký tự đặc biệt.
+                                            Mật khẩu phải có chữ hoa, chữ thường và ký tự đặc biệt.
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +149,7 @@
             const passwordInput = document.getElementById("password");
             const errorMessage = document.getElementById("error-message");
             const password = passwordInput.value;
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{4,}$/;
 
             if (regex.test(password)) {
                 passwordInput.classList.remove("input-error");

@@ -29,5 +29,6 @@ namespace QuanLyPhongKham.Data.Interfaces
         Dictionary<string, string>? CheckDataValidateForInsert(BenhNhan benhNhan);
 
         Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId);
+        Task<BenhNhan> GetByUserId(string userId);
     }
 }

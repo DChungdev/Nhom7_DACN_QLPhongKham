@@ -304,5 +304,12 @@ namespace QuanLyPhongKham.Business.Services
             }
             return new Service { UserMsg = "Đổi mật khẩu thành công!" };
         }
+
+        public async Task<string> FindByUserNameAsync(string userName)
+        {
+            var user = await _userRepository.FindByNameAsync(userName);
+            if (user == null) return "Invalid user name";
+            return user.Id;
+        }
     }
 }

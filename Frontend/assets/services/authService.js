@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('#loginForm').on('submit', function (e) {
         e.preventDefault(); // Ngăn chặn form tự động submit
         // Lấy thông tin đăng nhập từ form
@@ -18,6 +17,8 @@ $(document).ready(function () {
 
                 localStorage.setItem("accessToken", accessToken);
                 localStorage.setItem("refreshToken", refreshToken);
+                localStorage.setItem("userName", username);
+                getUserId(username);
                 // localStorage.setItem("expiration", expiration);
                 console.log(accessToken);
                 console.log(refreshToken);
@@ -52,6 +53,7 @@ $(document).ready(function () {
                 }
             })
             .catch(function (error) {
+                showErrorPopup();
                 console.error("Lỗi khi đăng nhập:", error);
             });
     });
@@ -91,8 +93,46 @@ $(document).ready(function () {
                 }
             })
             .catch(function (error) {
+                showErrorPopup();
                 console.error("Lỗi khi đăng ký:", error);
             });
     });
 
+    function getUserId(username) {
+        axiosNoJWT
+            .get(`/api/Auth/${username}`)  // Truyền trực tiếp username vào URL
+            .then(function (response) {
+                localStorage.setItem("userId", response.data);
+                console(response.data);
+            })
+            .catch(function (error) {
+                showErrorPopup();
+                console.error("Lỗi khi gọi API:", error);
+            });
+
+        // axiosNoJWT
+        //     .get(`/api/Auth/chung`)  // Truyền trực tiếp username vào URL
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         showErrorPopup();
+        //         console.error("Lỗi khi gọi API:", error);
+        //     });
+    }
+    
+
+    function showErrorPopup() {
+        const errorPopup = document.getElementById("error-popup");
+        errorPopup.style.visibility = "visible";
+
+        // Ẩn popup sau 3 giây
+        setTimeout(() => {
+            hideErrorPopup();
+        }, 3000);
+    }
+    function hideErrorPopup() {
+        const errorPopup = document.getElementById("error-popup");
+        errorPopup.style.visibility = "hidden";
+    }
 });

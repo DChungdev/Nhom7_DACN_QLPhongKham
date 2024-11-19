@@ -277,3 +277,5 @@ D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.csproj.CopyComplete
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\QuanLyPhongKham.WebAPI.genruntimeconfig.cache
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\obj\Debug\net6.0\ref\QuanLyPhongKham.WebAPI.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\AutoMapper.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll

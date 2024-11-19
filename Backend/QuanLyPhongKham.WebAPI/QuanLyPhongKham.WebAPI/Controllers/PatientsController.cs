@@ -61,7 +61,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             existingBN.DiaChi = benhNhan.DiaChi;
             existingBN.TienSuBenhLy = benhNhan.TienSuBenhLy;
             int res = await _patientService.UpdateAsync(existingBN);
-            return StatusCode(204, res);
+            return StatusCode(201, res);
         }
 
         [HttpDelete("{benhNhanId}")]

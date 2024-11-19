@@ -61,6 +61,15 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ngày khám không được phép nhỏ hơn ngày hiện tại!.
+        /// </summary>
+        public static string Error_AOfDateNotLessNow {
+            get {
+                return ResourceManager.GetString("Error_AOfDateNotLessNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ngày sinh không được phép lớn hơn ngày hiện tại!.
         /// </summary>
         public static string Error_BOfDateNotGreatNow {
@@ -124,6 +133,42 @@ namespace QuanLyPhongKham.Models.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chỉ được phép đăng ký 1 ca khám có 3 bệnh nhân, vui lòng chọn giờ khác!.
+        /// </summary>
+        public static string Error_GioKhamExist {
+            get {
+                return ResourceManager.GetString("Error_GioKhamExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giờ khám không được phép để trống!.
+        /// </summary>
+        public static string Error_GioKhamNotEmpty {
+            get {
+                return ResourceManager.GetString("Error_GioKhamNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giờ khám không tồn tại, liên hệ Nhóm 7 để được trợ giúp!.
+        /// </summary>
+        public static string Error_GioKhamNotExist {
+            get {
+                return ResourceManager.GetString("Error_GioKhamNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giờ khám của bác sĩ không tồn tại, vui lòng chọn đúng!.
+        /// </summary>
+        public static string Error_GioKhamOfBacSiNotExist {
+            get {
+                return ResourceManager.GetString("Error_GioKhamOfBacSiNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã bệnh nhân không được phép để trống!.
         /// </summary>
         public static string Error_HoTenNotEmpty {
@@ -156,6 +201,15 @@ namespace QuanLyPhongKham.Models.Resources {
         public static string Error_MaBenhNhanNotEmpty {
             get {
                 return ResourceManager.GetString("Error_MaBenhNhanNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ngày khám không được phép để trống!.
+        /// </summary>
+        public static string Error_NgayKhamNotEmpty {
+            get {
+                return ResourceManager.GetString("Error_NgayKhamNotEmpty", resourceCulture);
             }
         }
         

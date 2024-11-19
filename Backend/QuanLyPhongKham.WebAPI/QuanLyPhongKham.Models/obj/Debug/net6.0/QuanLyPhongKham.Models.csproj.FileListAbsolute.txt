@@ -44,3 +44,5 @@ D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.pdb
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.genruntimeconfig.cache
 D:\DoAnCN\TestNewDB\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\ref\QuanLyPhongKham.Models.dll
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.Resources.ResourceVN.resources
+D:\DACN\Nhom7_DACN_QLPhongKham\Backend\QuanLyPhongKham.WebAPI\QuanLyPhongKham.Models\obj\Debug\net6.0\QuanLyPhongKham.Models.csproj.GenerateResource.cache

@@ -2383,11 +2383,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+      "projectUniqueName": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
       "projectName": "QuanLyPhongKham.Data",
-      "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+      "projectPath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
+      "outputPath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2409,8 +2409,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
-              "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
+            "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+              "projectPath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
             }
           }
         }
@@ -2472,13 +2472,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

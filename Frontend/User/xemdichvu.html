@@ -27,6 +27,12 @@
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+  <script src="../assets/vendor/axios.min.js"></script>
+  <script src="../assets/services/axios.js"></script>
+  <script src="../assets/services/authService.js"></script>
+  <script src="../assets/services/xemDichVuService.js"></script>
+  
   <!-- Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet">
 
@@ -100,105 +106,7 @@
   
     <!-- Service List -->
     <div class="row" id="serviceList">
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Khám tổng quát</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám tổng quát.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Khám tim mạch</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám tim mạch.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Khám nội tiết</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Siêu âm</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Nội soi</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Sét nghiệm máu</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Chụp X-quang</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Chụp cộng hưởng từ</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Khám phụ khoa</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Khám tai mũi họng</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3 service-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Phòng dịch vị VIP</h5>
-            <p class="card-text">Giá: 370.000đ</p>
-            <p class="card-text">Mô tả dịch vụ khám nội tiết.</p>
-          </div>
-        </div>
-      </div>
+      
       
       <!-- Thêm nhiều dịch vụ khác -->
     </div>
@@ -302,22 +210,28 @@
 
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
-  <script>
+
+ <script>
     document.getElementById('searchService').addEventListener('keyup', function() {
-  const searchText = this.value.toLowerCase();
-  const services = document.querySelectorAll('.service-item');
+        const searchText = removeAccents(this.value.toLowerCase());
+        const services = document.querySelectorAll('.service-item');
 
-  services.forEach(function(service) {
-    const serviceName = service.querySelector('.card-title').textContent.toLowerCase();
-    if (serviceName.includes(searchText)) {
-      service.style.display = 'block';
-    } else {
-      service.style.display = 'none';
+        services.forEach(function(service) {
+            const serviceName = removeAccents(service.querySelector('.card-title').textContent.toLowerCase());
+            if (serviceName.includes(searchText)) {
+                service.style.display = 'block';
+            } else {
+                service.style.display = 'none';
+            }
+        });
+    });
+
+    // Hàm chuyển đổi chuỗi thành không dấu
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
-  });
-});
+</script>
 
-  </script>
 </body>
 
 </html>

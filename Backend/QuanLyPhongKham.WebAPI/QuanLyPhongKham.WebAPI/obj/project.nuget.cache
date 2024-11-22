@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wec/R4vlxVE=",
+  "dgSpecHash": "R+fK8M/Nwkg=",
   "success": true,
-  "projectFilePath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
+  "projectFilePath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -90,12 +90,5 @@
     "C:\\Users\\Asus\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\DoAnCN\\QLPhongKham\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

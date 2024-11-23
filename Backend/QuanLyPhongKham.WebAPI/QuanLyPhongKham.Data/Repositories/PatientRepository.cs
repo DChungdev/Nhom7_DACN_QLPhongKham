@@ -55,19 +55,19 @@ namespace QuanLyPhongKham.Data.Repositories
             }
             //2. Thực hiện validate dữ liệu
             //2.1. Họ tên không được có số
-            if (benhNhan.HoTen.Any(char.IsDigit))
-            {
-                errorData.Add("FullName", ResourceVN.Error_HoTenNotNumber);
-            }
+            //if (benhNhan.HoTen.Any(char.IsDigit))
+            //{
+            //    errorData.Add("FullName", ResourceVN.Error_HoTenNotNumber);
+            //}
             //2.2. Số điện thoại không được có chữ
             if (!string.IsNullOrEmpty(benhNhan.SoDienThoai) && benhNhan.SoDienThoai.Any(char.IsLetter))
             {
-                errorData.Add("PhoneNumber", ResourceVN.Error_PhoneNumberNotLetter);
+                errorData.Add("SoDienThoai", ResourceVN.Error_PhoneNumberNotLetter);
             }
             //2.3. Ngày sinh không được lớn hơn ngày hiện tại
             if (benhNhan.NgaySinh.HasValue && benhNhan.NgaySinh > DateTime.Now)
             {
-                errorData.Add("DateOfBirth", ResourceVN.Error_BOfDateNotGreatNow);
+                errorData.Add("NgaySinh", ResourceVN.Error_BOfDateNotGreatNow);
             }
             return errorData;
         }
@@ -85,7 +85,7 @@ namespace QuanLyPhongKham.Data.Repositories
 
             if (ma)
             {
-                errorData.Add("EmployeeCode", ResourceVN.Error_MaBenhNhanDuplicated);
+                errorData.Add("MaBenhNhan", ResourceVN.Error_MaBenhNhanDuplicated);
             }
             return errorData;
         }
@@ -144,6 +144,12 @@ namespace QuanLyPhongKham.Data.Repositories
             .ToListAsync();
 
             return benhNhans;
+        }
+
+        public async Task<BenhNhan> GetByUserId(string userId)
+        {
+            var bn = await _context.BenhNhans.Where(bn => bn.UserId == userId).FirstOrDefaultAsync();
+            return bn;
         }
     }
 }

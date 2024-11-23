@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj": {}
+    "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj": {
+    "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
+        "projectUniqueName": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
         "projectName": "QuanLyPhongKham.Business",
-        "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
-        "packagesPath": "C:\\Users\\Duy\\.nuget\\packages\\",
-        "outputPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\obj\\",
+        "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Duy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
-                "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj"
+              "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
+                "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj"
               }
             }
           }
@@ -46,18 +47,13 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -97,24 +93,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
+    "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "projectUniqueName": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
         "projectName": "QuanLyPhongKham.Data",
-        "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
-        "packagesPath": "C:\\Users\\Duy\\.nuget\\packages\\",
-        "outputPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
+        "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Duy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -123,14 +119,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
-                "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
+              "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+                "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
               }
             }
           }
@@ -143,9 +140,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -154,10 +150,6 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
-            },
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.0.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -194,24 +186,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+    "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "projectUniqueName": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
         "projectName": "QuanLyPhongKham.Models",
-        "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
-        "packagesPath": "C:\\Users\\Duy\\.nuget\\packages\\",
-        "outputPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
+        "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Duy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -220,6 +212,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -236,9 +229,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -247,10 +239,6 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
-            },
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.0.0, )"
             },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
@@ -295,24 +283,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj": {
+    "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
+        "projectUniqueName": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
         "projectName": "QuanLyPhongKham.WebAPI",
-        "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\Duy\\.nuget\\packages\\",
-        "outputPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\obj\\",
+        "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Duy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -321,20 +309,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj": {
-                "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj"
+              "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj": {
+                "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Business\\QuanLyPhongKham.Business.csproj"
               },
-              "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
-                "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj"
+              "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj": {
+                "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Data\\QuanLyPhongKham.Data.csproj"
               },
-              "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
-                "projectPath": "D:\\Tai_lieu\\ĐACN\\Git\\Nhom7_DACN_QLPhongKham\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
+              "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj": {
+                "projectPath": "D:\\DACN_main\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\QuanLyPhongKham.Models.csproj"
               }
             }
           }
@@ -347,18 +336,13 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.33, )"
@@ -405,7 +389,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -3,13 +3,19 @@ let services = []; // Biến lưu trữ toàn bộ danh sách dịch vụ
 $(document).ready(function () {
     loadServices(); // Tải danh sách dịch vụ khi trang được load
 
+    // Gắn sự kiện cho nút hiển thị modal Thêm
+    $("#btnThemMoi").click(function(){
+        let maDVNext = getMaxDichVuCode(services);
+        $('#dialog-add input[type="text"]').eq(1).val(maDVNext);
+    })
     // Sự kiện thêm mới dịch vụ
     $('#btnAdd').on('click', function () {
         const newService = {
+            maDichVu: $('#dialog-add input[type="text"]').eq(1).val(),
             tenDichVu: $('#dialog-add input[type="text"]').eq(0).val(),
-            donGia: parseFloat($('#dialog-add input[type="text"]').eq(1).val()),
+            donGia: parseFloat($('#dialog-add input[type="text"]').eq(2).val()),
             ngayTao: $('#dialog-add input[type="date"]').val(),
-            moTaDichVu: $('#dialog-add input[type="text"]').eq(2).val(),
+            moTaDichVu: $('#dialog-add input[type="text"]').eq(3).val(),
         };
 
         axiosJWT.post('/api/Services', newService)
@@ -36,9 +42,10 @@ $(document).ready(function () {
 
         // Đổ dữ liệu vào modal chỉnh sửa
         $('#dialog-edit input[type="text"]').eq(0).val(service.tenDichVu);
-        $('#dialog-edit input[type="text"]').eq(1).val(service.donGia);
-        $('#dialog-edit input[type="date"]').val(service.ngayCapNhat.split('T')[0]);
-        $('#dialog-edit input[type="text"]').eq(2).val(service.moTaDichVu);
+        $('#dialog-edit input[type="text"]').eq(1).val(service.maDichVu);
+        $('#dialog-edit input[type="text"]').eq(2).val(service.donGia);
+        $('#dialog-edit input[type="date"]').eq(0).val(service.ngayTao.split('T')[0]);
+        $('#dialog-edit input[type="text"]').eq(3).val(service.moTaDichVu);
 
         // Sự kiện sửa
         $('#btnEdit').off('click').on('click', function () {
@@ -46,9 +53,9 @@ $(document).ready(function () {
                 dichVuId: serviceId,
                 maDichVu: service.maDichVu,
                 tenDichVu: $('#dialog-edit input[type="text"]').eq(0).val(),
-                donGia: parseFloat($('#dialog-edit input[type="text"]').eq(1).val()),
-                ngayCapNhat: $('#dialog-edit input[type="date"]').val(),
-                moTaDichVu: $('#dialog-edit input[type="text"]').eq(2).val(),
+                donGia: parseFloat($('#dialog-edit input[type="text"]').eq(2).val()),
+                ngayCapNhat: $('#dialog-edit input[type="date"]').eq(1).val(),
+                moTaDichVu: $('#dialog-edit input[type="text"]').eq(3).val(),
             };
 
             axiosJWT.put(`/api/Services/${serviceId}`, updatedService)
@@ -152,4 +159,15 @@ function formatDate(dateString) {
     if (!dateString) return "Không có dữ liệu";
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN'); // Định dạng theo ngày Việt Nam
+}
+function getMaxDichVuCode(service) {
+    let maxCode = 0;
+    service.forEach(item => {
+        const code = parseInt(item.maDichVu.replace('DV', '')); // Loại bỏ 'BN' và chuyển thành số
+        if (code > maxCode) {
+            maxCode = code;
+        }
+    });
+    const nextCode = maxCode + 1;
+    return 'DV' + nextCode.toString().padStart(3, '0');
 }

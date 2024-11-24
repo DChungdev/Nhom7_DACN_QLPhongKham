@@ -300,16 +300,18 @@
                 
                 <div class="row-item-long">
                   <div class="input-item ">
-                    <div class="title-input">Mã dịch vụ</div>
-                    <input type="text" class="m-input">
-                  </div>
-                </div>
-
-                <div class="row-item d-flex">
-                  <div class="input-item ">
                     <div class="title-input">Tên dịch vụ</div>
                     <input type="text" class="m-input">
                   </div>
+
+                  
+                </div>
+                <div class="row-item d-flex">
+                  <div class="input-item ">
+                    <div class="title-input">Mã dịch vụ</div>
+                    <input type="text" class="m-input" readonly>
+                  </div>
+                  
                   <div class="input-item input-item-center ">
                     <div class="title-input">Giá</div>
                     <input type="text" class="m-input">
@@ -345,27 +347,43 @@
 
               <!-- Modal Header -->
               <div class="modal-header">
-                <h4 class="modal-title">Thêm dịch vụ</h4>
+                <h4 class="modal-title">Sửa dịch vụ</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
 
               <!-- Modal body -->
               <div class="modal-body">
                 
-                <div class="row-item d-flex">
+                <div class="row-item-long">
                   <div class="input-item ">
                     <div class="title-input">Tên dịch vụ</div>
                     <input type="text" class="m-input">
                   </div>
+
+                  
+                </div>
+                <div class="row-item d-flex">
+                  <div class="input-item ">
+                    <div class="title-input">Mã dịch vụ</div>
+                    <input type="text" class="m-input" readonly>
+                  </div>
+                  
                   <div class="input-item input-item-center ">
                     <div class="title-input">Giá</div>
                     <input type="text" class="m-input">
                   </div>
+
                   <div class="input-item">
-                    <div class="title-input">Ngày cập nhật</div>
-                    <input type="date" class="m-input" id="ngayTao">
+                    <div class="title-input">Ngày tạo</div>
+                    <input type="date" class="m-input">
+                  </div>
+
+                  <div class="input-item">
+                    <div class="title-input">Ngày Cập nhật</div>
+                    <input type="date" class="m-input" id="ngayCapNhat">
                   </div>
                 </div>
+
                 <div class="row-item-long">
                   <div class="input-item">
                     <div class="title-input">Mô tả</div>
@@ -454,6 +472,7 @@
         // Lấy ngày hiện tại
         const today = new Date().toISOString().split('T')[0]; // Lấy ngày hiện tại và chuyển thành định dạng yyyy-mm-dd
         $('#ngayTao').val(today); // Gán giá trị cho input
+        $('#ngayCapNhat').val(today); // Gán giá trị cho input
     });
 </script>
 </body>

@@ -104,7 +104,7 @@
               "RelativeDocumentMoniker": "QuanLyPhongKham.Models\\Models\\DichVuModel.cs",
               "ToolTip": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.Models\\Models\\DichVuModel.cs",
               "RelativeToolTip": "QuanLyPhongKham.Models\\Models\\DichVuModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-22T16:11:06.043Z",
               "EditorCaption": ""
@@ -202,8 +202,7 @@
               "RelativeToolTip": "QuanLyPhongKham.Business\\Services\\AppointmentService.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAEwCMAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T16:02:57.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T16:02:57.552Z"
             },
             {
               "$type": "Document",

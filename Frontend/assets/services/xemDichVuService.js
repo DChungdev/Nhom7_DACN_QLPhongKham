@@ -3,7 +3,11 @@ var services = []; // Lưu danh sách dịch vụ toàn bộ
 $(document).ready(function () {
     loadServices();
 
-
+    // Xử lý sự kiện tìm kiếm
+    $("#searchService").on("input", function () {
+        const searchValue = $(this).val().toLowerCase();
+        filterServices(searchValue);
+    });
 });
 
 // Hàm lấy danh sách dịch vụ từ API

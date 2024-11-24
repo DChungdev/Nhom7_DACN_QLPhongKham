@@ -89,7 +89,6 @@ $(document).ready(function () {
         axiosJWT
             .delete(`/api/Services/${selectedServiceId}`)
             .then(() => {
-                alert('Xóa dịch vụ thành công!');
                 loadServices(); // Tải lại danh sách dịch vụ
             })
             .catch((error) => {

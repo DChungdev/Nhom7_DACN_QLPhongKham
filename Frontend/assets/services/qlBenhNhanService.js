@@ -31,7 +31,7 @@ $(document).ready(function () {
             email: $("#email-add").val() || null,
             soDienThoai: $("#sdt-add").val() || null,
             loaiGioiTinh: genderValue,
-            ngaySinh: $("#ngaysinh-add").val() ? $("#ngaysinh").val() + "T00:00:00" : null,
+            ngaySinh: $("#ngaysinh-add").val() ? $("#ngaysinh-add").val() + "T00:00:00" : null,
             diaChi: $("#diachi-add").val() || null,
             tienSuBenhLy: $("#tiensubenhly-add").val() || null,
         };

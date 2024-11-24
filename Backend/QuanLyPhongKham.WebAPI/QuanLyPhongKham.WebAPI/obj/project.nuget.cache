@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R+fK8M/Nwkg=",
+  "dgSpecHash": "iqeK1H7PXas=",
   "success": true,
-  "projectFilePath": "D:\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\Asus\\Documents\\DACN\\Backend\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI\\QuanLyPhongKham.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

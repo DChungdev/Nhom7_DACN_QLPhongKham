@@ -17,6 +17,13 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/content.css" />
+
+  
+  <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+  <script src="../assets/vendor/axios.min.js"></script>
+  <script src="../assets/services/axios.js"></script>
+  <script src="../assets/services/authService.js"></script>
+  <script src="../assets/services/QLDichVuService.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -233,7 +240,7 @@
             </div>
           </div>
           <div class="m-title-table-right">
-            <button id="btnAdd" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialog-add">
+            <button id="btnThemMoi" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialog-add">
               <i class="fas fa-plus"></i>
               Thêm mới
             </button>
@@ -269,148 +276,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="chk"><input type="checkbox" /></td>
-                <td empIdCell style="display: none"></td>
-                <td>01</td>
-                <td>Khám tổng quát</td>
-                <td>1025000</td>
-                <td>Kiểm tra tổng quát sức khỏe bệnh nhân</td>
-                <td>02/08/1954</td>
-                <td>02/08/1954</td>
-                <td>
-                  <div class="m-table-tool">
-                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                      <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+            <tbody id="tblData">
 
             </tbody>
           </table>
@@ -430,6 +296,14 @@
 
               <!-- Modal body -->
               <div class="modal-body">
+                
+                <div class="row-item-long">
+                  <div class="input-item ">
+                    <div class="title-input">Mã dịch vụ</div>
+                    <input type="text" class="m-input">
+                  </div>
+                </div>
+
                 <div class="row-item d-flex">
                   <div class="input-item ">
                     <div class="title-input">Tên dịch vụ</div>
@@ -441,9 +315,10 @@
                   </div>
                   <div class="input-item">
                     <div class="title-input">Ngày tạo</div>
-                    <input type="date" class="m-input">
+                    <input type="date" class="m-input" id="ngayTao">
                   </div>
                 </div>
+
                 <div class="row-item-long">
                   <div class="input-item">
                     <div class="title-input">Mô tả</div>
@@ -475,6 +350,7 @@
 
               <!-- Modal body -->
               <div class="modal-body">
+                
                 <div class="row-item d-flex">
                   <div class="input-item ">
                     <div class="title-input">Tên dịch vụ</div>
@@ -486,7 +362,7 @@
                   </div>
                   <div class="input-item">
                     <div class="title-input">Ngày cập nhật</div>
-                    <input type="date" class="m-input">
+                    <input type="date" class="m-input" id="ngayTao">
                   </div>
                 </div>
                 <div class="row-item-long">
@@ -501,7 +377,7 @@
               <!-- Modal footer -->
               <div class="modal-footer" style="background: rgb(232, 232, 232);">
                 <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="btnAdd" class="btn btn-success" data-bs-dismiss="modal">Sửa</button>
+                <button type="button" id="btnEdit" class="btn btn-success" data-bs-dismiss="modal">Sửa</button>
               </div>
 
             </div>
@@ -571,6 +447,14 @@
   <script src="../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
   <script src="../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
   <!-- <script src="../assets/js/pages/dashboards/dashboard1.min.js"></script> -->
+
+  <script>
+    $(document).ready(function () {
+        // Lấy ngày hiện tại
+        const today = new Date().toISOString().split('T')[0]; // Lấy ngày hiện tại và chuyển thành định dạng yyyy-mm-dd
+        $('#ngayTao').val(today); // Gán giá trị cho input
+    });
+</script>
 </body>
 
 </html>

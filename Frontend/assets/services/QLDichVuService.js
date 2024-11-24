@@ -20,13 +20,12 @@ $(document).ready(function () {
 
         axiosJWT.post('/api/Services', newService)
             .then(() => {
-                alert('Thêm dịch vụ thành công!');
                 loadServices(); // Tải lại danh sách
                 $('#dialog-add').modal('hide'); // Đóng modal
             })
             .catch((error) => {
+                showErrorPopup();
                 console.error('Lỗi khi thêm dịch vụ:', error);
-                alert('Thêm dịch vụ thất bại!');
             });
     });
 
@@ -60,13 +59,12 @@ $(document).ready(function () {
 
             axiosJWT.put(`/api/Services/${serviceId}`, updatedService)
                 .then(() => {
-                    alert('Chỉnh sửa dịch vụ thành công!');
                     loadServices(); // Tải lại danh sách
                     $('#dialog-edit').modal('hide'); // Đóng modal
                 })
                 .catch((error) => {
+                    showErrorPopup();
                     console.error('Lỗi khi chỉnh sửa dịch vụ:', error);
-                    alert('Chỉnh sửa dịch vụ thất bại!');
                 });
         });
     });
@@ -95,8 +93,8 @@ $(document).ready(function () {
                 loadServices(); // Tải lại danh sách dịch vụ
             })
             .catch((error) => {
+                showErrorPopup();
                 console.error('Lỗi khi xóa dịch vụ:', error);
-                alert('Xóa dịch vụ thất bại!');
             })
             .finally(() => {
                 selectedServiceId = null; // Reset ID sau khi xóa
@@ -160,6 +158,21 @@ function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN'); // Định dạng theo ngày Việt Nam
 }
+
+function showErrorPopup() {
+    const errorPopup = document.getElementById("error-popup");
+    errorPopup.style.visibility = "visible";
+
+    // Ẩn popup sau 3 giây
+    setTimeout(() => {
+        hideErrorPopup();
+    }, 3000);
+}
+function hideErrorPopup() {
+    const errorPopup = document.getElementById("error-popup");
+    errorPopup.style.visibility = "hidden";
+}
+
 function getMaxDichVuCode(service) {
     let maxCode = 0;
     service.forEach(item => {

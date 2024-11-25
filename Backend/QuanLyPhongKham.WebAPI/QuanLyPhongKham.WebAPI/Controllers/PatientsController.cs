@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyPhongKham.Business.Interfaces;
@@ -8,6 +9,7 @@ using QuanLyPhongKham.Models.Models;
 
 namespace QuanLyPhongKham.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientsController : ControllerBase
@@ -34,8 +36,16 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         public async Task<IActionResult> GetPatientById(Guid benhNhanId)
         {
             //Lấy dữ liệu
-            var employeeById = await _patientService.GetByIdAsync(benhNhanId);
-            return Ok(_mapper.Map<BenhNhanModel>(employeeById));
+            var bn = await _patientService.GetByIdAsync(benhNhanId);
+            return Ok(_mapper.Map<BenhNhanModel>(bn));
+        }
+
+        [HttpGet("getbyuserid/{userId}")]
+        public async Task<IActionResult> GetPatientByUserId(string userId)
+        {
+            //Lấy dữ liệu
+            var bn = await _patientService.GetByUserId(userId);
+            return Ok(_mapper.Map<BenhNhanModel>(bn));
         }
 
         [HttpGet("getbydoctorid/{bacSiId}")]
@@ -62,12 +72,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var existingBN = await _patientService.GetByIdAsync(benhNhanId);
             existingBN.HoTen = benhNhan.HoTen;
             existingBN.NgaySinh = benhNhan.NgaySinh;
+            existingBN.LoaiGioiTinh = benhNhan.LoaiGioiTinh;
             existingBN.SoDienThoai = benhNhan.SoDienThoai;
             existingBN.Email = benhNhan.Email;
             existingBN.DiaChi = benhNhan.DiaChi;
             existingBN.TienSuBenhLy = benhNhan.TienSuBenhLy;
             int res = await _patientService.UpdateAsync(existingBN);
-            return StatusCode(204, res);
+            return StatusCode(201, res);
         }
 
         [HttpDelete("{benhNhanId}")]

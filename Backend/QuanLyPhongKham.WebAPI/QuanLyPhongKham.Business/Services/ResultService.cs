@@ -55,11 +55,6 @@ namespace QuanLyPhongKham.Business.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> GetNextMaKetQuaKhamAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public override async Task<int> UpdateAsync(KetQuaKham entity)
         {
             var checkData = _resultRepository.CheckDataValidate(entity);
@@ -82,12 +77,6 @@ namespace QuanLyPhongKham.Business.Services
                     throw new ErrorEditException();
                 }
             }
-        }
-
-        public async Task<KetQuaKham> GetByIdAsync(Guid ketQuaKhamId)
-        {
-            // Gọi repository để lấy thông tin KetQuaKham theo Id
-            return await _resultRepository.GetByIdAsync(ketQuaKhamId);
         }
     }
 }

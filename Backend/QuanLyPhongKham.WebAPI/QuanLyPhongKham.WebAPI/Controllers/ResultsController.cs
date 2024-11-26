@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyPhongKham.Business.Interfaces;
+using QuanLyPhongKham.Business.Services;
 using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Models;
 
@@ -14,12 +15,18 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         private readonly IResultService _resultService;
         private readonly IAuthService _authService;
         private readonly IMapper _mapper;
+        private readonly IPatientService _patientService;
+        private readonly IAppointmentService _appointmentService;
 
-        public ResultsController(IResultService serviceService, IAuthService authService, IMapper mapper)
+        public ResultsController(IResultService resultService, IAuthService authService, IMapper mapper, IPatientService patientService, IAppointmentService appointmentService)
         {
-            this._resultService = serviceService;
-            this._authService = authService;
-            this._mapper = mapper;
+            _resultService = resultService;
+            _authService = authService;
+            _mapper = mapper;
+            _patientService = patientService;
+            _appointmentService = appointmentService;
+
+
         }
 
         [HttpGet]
@@ -30,99 +37,57 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         }
 
         [HttpGet("{KetQuaKhamId}")]
-        public async Task<ActionResult> GetKetQuaKhamById(Guid ketQuaKhamId)
+        public async Task<IActionResult> GetResultById(Guid KetQuaKhamId)
         {
-            try
-            {
-                // Gọi service để lấy thông tin KetQuaKham
-                var ketQuaKham = await _resultService.GetByIdAsync(ketQuaKhamId);
-
-                // Kiểm tra nếu không tìm thấy
-                if (ketQuaKham == null)
-                {
-                    return NotFound($"Không tìm thấy kết quả khám với ID: {ketQuaKhamId}");
-                }
-
-                // Map từ entity sang model để trả về cho client
-                var ketQuaKhamModel = _mapper.Map<ResultModel>(ketQuaKham);
-                return Ok(ketQuaKhamModel);
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi và trả về mã lỗi 500
-                return StatusCode(500, $"Lỗi khi lấy thông tin kết quả khám: {ex.Message}");
-            }
+            var result = await _resultService.GetByIdAsync(KetQuaKhamId);
+            return Ok(_mapper.Map<ResultModel>(result));
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddKetQuaKham([FromBody] ResultModel ketQuaModel)
-        {
-            // Kiểm tra nếu model không hợp lệ
-            if (ketQuaModel == null)
-            {
-                return BadRequest("Dữ liệu không hợp lệ.");
-            }
 
-            // Chuyển đổi từ DichVuModel sang DichVu entity
-            var ketQuaEntity = _mapper.Map<KetQuaKham>(ketQuaModel);
+
+
+        public async Task<IActionResult> Post([FromBody] ResultModel ketQuaKham)
+        {
+
+            if (ketQuaKham.LichKhamId == Guid.Empty) // Kiểm tra LichKhamId có hợp lệ không
+            {
+                return BadRequest("LichKhamId không hợp lệ.");
+            }
+            
+
+            var newKetQuaKham = new KetQuaKham
+            {
+                KetQuaKhamId = Guid.NewGuid(),          // Tạo ID duy nhất.
+                LichKhamId = ketQuaKham.LichKhamId,    // Gắn ID lịch khám.
+                ChanDoan = ketQuaKham.ChanDoan,        // Chẩn đoán.
+                ChiDinhThuoc = ketQuaKham.ChiDinhThuoc,// Chỉ định thuốc (nếu có).
+                GhiChu = ketQuaKham.GhiChu,            // Ghi chú (nếu có).
+                NgayTao = DateTime.Now,                // Thiết lập thời gian tạo.
+                NgayCapNhat = DateTime.Now             // Thiết lập thời gian cập nhật.
+            };
 
             try
             {
-                // Thêm dịch vụ mới
-                int result = await _resultService.AddAsync(ketQuaEntity);
-
-                // Trả về kết quả thành công
-                return CreatedAtAction(nameof(getKetQuaKham), new { id = ketQuaEntity.KetQuaKhamId }, ketQuaEntity);
+                int result = await _resultService.AddAsync(newKetQuaKham);
+                if (result > 0)
+                {
+                    return StatusCode(201, "Thêm mới kết quả khám thành công.");
+                }
+                else
+                {
+                    return BadRequest("Thêm mới kết quả khám thất bại.");
+                }
             }
             catch (Exception ex)
             {
-                // Nếu có lỗi trong quá trình thêm
-                return StatusCode(500, $"Lỗi khi thêm kết quả khám: {ex.Message}");
+                return StatusCode(500, $"Lỗi hệ thống: {ex.InnerException?.Message ?? ex.Message}");
             }
+
         }
 
-        //[HttpPut("{DichVuId}")]
-        //public async Task<ActionResult> UpdateDichVu(Guid DichVuId, [FromBody] DichVuModel dichVuModel)
-        //{
-        //	if (DichVuId != dichVuModel.DichVuId)
-        //	{
-        //		return BadRequest("Id không giống!");
-        //	}
 
-        //	var existingDV = await _serviceService.GetByIdAsync(DichVuId);
 
-        //	if (existingDV == null)
-        //	{
-        //		return NotFound("Không tìm thấy dịch vụ để sửa");
-        //	}
-        //	var properties = dichVuModel.GetType().GetProperties();
-        //	foreach (var property in properties)
-        //	{
-        //		var value = property.GetValue(dichVuModel) as string;
-        //		if (string.IsNullOrEmpty(value))
-        //		{
-        //			return BadRequest($"Trường {property.Name} không được để trống.");
-        //		}
-        //	}
-        //	// Cập nhật các trường thông tin dịch vụ
-        //	existingDV.MaDichVu = dichVuModel.MaDichVu;
-        //	existingDV.TenDichVu = dichVuModel.TenDichVu;
-        //	existingDV.MoTaDichVu = dichVuModel.MoTaDichVu;
-        //	existingDV.DonGia = dichVuModel.DonGia;
-        //	existingDV.NgayCapNhat = DateTime.Now;
-        //	existingDV.KhoaId = dichVuModel.KhoaId;
-
-        //	// Cập nhật dịch vụ
-        //	int res = await _serviceService.UpdateAsync(existingDV);
-        //	if (res > 0)
-        //	{
-        //		return NoContent();  // Thành công
-        //	}
-        //	else
-        //	{
-        //		return StatusCode(500, "Cập nhật dịch vụ không thành công.");  // Thất bại
-        //	}
-        //}
 
         [HttpPut("{ketQuaKhamId}")]
         public async Task<IActionResult> UpdateService(Guid ketQuaKhamId, [FromBody] ResultModel ketQuaKham)

@@ -9,8 +9,9 @@ namespace QuanLyPhongKham.Data.Interfaces
 {
     public interface IResultRepository : IBaseRepository<KetQuaKham>
     {
-        string GetNextMaKetQuaKham();
         Dictionary<string, string>? CheckDataValidate(KetQuaKham ketQuaKham);
         Dictionary<string, string>? CheckDataValidateForInsert(KetQuaKham ketQuaKham);
+        
+
     }
 }

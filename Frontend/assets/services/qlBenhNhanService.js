@@ -77,6 +77,7 @@ $(document).ready(function () {
             .then(function (response) {
                 console.log("Cập nhật thành công:", response.data);
                 getData(); // Tải lại dữ liệu sau khi cập nhật
+                showSuccessPopup();
             })
             .catch(function (error) {
                 showErrorPopup();
@@ -216,4 +217,20 @@ function getMaxBenhNhanCode(dsBN) {
     });
     const nextCode = maxCode + 1;
     return 'BN' + nextCode.toString().padStart(3, '0');
+}
+
+function showSuccessPopup() {
+    // Hiển thị popup
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "visible";  // Hoặc có thể dùng popup.classList.add('visible');
+
+    // Tự động ẩn popup sau 3 giây (3000ms)
+    setTimeout(() => {
+        closePopup();
+    }, 3000);
+}
+
+function closePopup() {
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "hidden";  // Ẩn popup
 }

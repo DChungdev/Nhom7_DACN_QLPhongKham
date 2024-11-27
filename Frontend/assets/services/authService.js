@@ -46,15 +46,25 @@ $(document).ready(function () {
                     $("#displayUser").text(username);
                 }
                 else if (userRole === 'Patient') {
-                    window.location.href = '/User/index.html'; // Chuyển hướng user
+                    window.location.href = '/User/index.html'; // Chuyển hướng doctor
                 }
                 else if (userRole === 'Doctor') {
-                    window.location.href = '/User/index.html';
+                    window.location.href = '/Doctor/MainDoctor.html';// Chuyển hướng patient
                 }
             })
             .catch(function (error) {
-                showErrorPopup();
-                console.error("Lỗi khi đăng nhập:", error);
+                // showErrorPopup();
+                // console.error("Lỗi khi đăng nhập:", error);
+                if (error.response) {
+                    if (error.response.status === 400) {
+                        // Xử lý lỗi 400
+                        console.error("Lỗi 400: Yêu cầu không hợp lệ", error.response.data);
+                        showErrorPopup();
+                    }
+                } else {
+                    console.error("Lỗi khi tạo yêu cầu:", error.message);
+                    alert("Đã xảy ra lỗi không xác định. Vui lòng thử lại.");
+                }
             });
     });
 

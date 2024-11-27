@@ -12,7 +12,7 @@ using QuanLyPhongKham.Data.Context;
 namespace QuanLyPhongKham.WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241105093201_Initial")]
+    [Migration("20241119093107_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

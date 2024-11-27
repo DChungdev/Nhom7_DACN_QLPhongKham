@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyPhongKham.Data.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> :IDisposable, IBaseRepository<T> where T : class
     {
         protected readonly ApplicationDbContext _context;
         protected readonly DbSet<T> _dbSet;
@@ -52,6 +52,9 @@ namespace QuanLyPhongKham.Data.Repositories
             return 0;
         }
 
-  
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

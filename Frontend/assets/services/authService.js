@@ -46,10 +46,10 @@ $(document).ready(function () {
                     $("#displayUser").text(username);
                 }
                 else if (userRole === 'Patient') {
-                    window.location.href = '/Doctor/MainDoctor..html'; // Chuyển hướng doctor
+                    window.location.href = '/User/index.html'; // Chuyển hướng doctor
                 }
                 else if (userRole === 'Doctor') {
-                    window.location.href = '/User/index.html';// Chuyển hướng patient
+                    window.location.href = '/Doctor/MainDoctor.html';// Chuyển hướng patient
                 }
             })
             .catch(function (error) {

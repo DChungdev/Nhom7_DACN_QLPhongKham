@@ -13,6 +13,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     public class DoctorsController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
+        private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
         public DoctorsController(IDoctorService doctorService, IMapper mapper)
@@ -74,6 +75,11 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
             // Thực hiện xóa bác sĩ
             var res = await _doctorService.DeleteAsync(bacSiId);
+            var user = await _authService.FindByIdAsync(bs.UserId);
+            if (user != null)
+            {
+                await _authService.DeleteUser(bs.UserId);
+            }
             if (res > 0)
             {
                 // Xóa thành công

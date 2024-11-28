@@ -123,7 +123,7 @@ namespace QuanLyPhongKham.Business.Services
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Doctor));
             }
             await _userRepository.AddToRoleAsync(user, UserRoles.Doctor);
-            return new Response { Status = "Success", Message = "User created successfully!" };
+            return new Response { Status = "Success", Message = "User created successfully!", Data = user.Id };
         }
 
         public async Task<Response> RegisterAdminAsync(RegisterModel model)

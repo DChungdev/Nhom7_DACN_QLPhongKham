@@ -13,11 +13,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IPatientService _petientService;
+        private readonly IDoctorService _doctorService;
 
-        public AuthController(IAuthService authService, IPatientService petientService)
+        public AuthController(IAuthService authService, IPatientService petientService, IDoctorService doctorService)
         {
             _authService = authService;
             _petientService = petientService;
+            _doctorService = doctorService;
         }
 
         [HttpPost("register")]
@@ -54,6 +56,16 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var result = await _authService.RegisterDoctorAsync(model);
             if (result.Status == "Success")
             {
+                //BenhNhan bn = new BenhNhan();
+                //bn.Email = model.Email;
+                //bn.HoTen = model.Username;
+                //bn.UserId = result.Data.ToString();
+                //await _petientService.AddAsync(bn);
+                BacSi bs = new BacSi();
+                bs.Email = model.Email;
+                bs.HoTen = model.Username;
+                bs.UserId = result.Data.ToString();
+                await _doctorService.AddAsync(bs);
                 return Ok(result); // Trả về thông báo thành công
             }
 

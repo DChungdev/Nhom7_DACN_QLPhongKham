@@ -119,16 +119,6 @@ $(document).ready(function () {
                 showErrorPopup();
                 console.error("Lỗi khi gọi API:", error);
             });
-
-        // axiosNoJWT
-        //     .get(`/api/Auth/chung`)  // Truyền trực tiếp username vào URL
-        //     .then(function (response) {
-        //         console.log(response.data);
-        //     })
-        //     .catch(function (error) {
-        //         showErrorPopup();
-        //         console.error("Lỗi khi gọi API:", error);
-        //     });
     }
     
 

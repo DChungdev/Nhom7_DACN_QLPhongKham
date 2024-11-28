@@ -102,6 +102,7 @@ function displayResults(results) {
                 <td class="chk"><input type="checkbox" /></td>
                 <td empIdCell style="display: none">${result.ketQuaKhamId}</td>
                 <td>${index + 1}</td>
+                <td>${result.lichKham || "Không có lịch khám"}</td>
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>
                 <td>${formatDate(result.ngayTao)}</td>
@@ -116,6 +117,7 @@ function displayResults(results) {
             </tr>
         `;
         resultTableBody.append(resultRow); // Thêm dòng vào bảng
+        console.log("abc",result)
     });
 }
 

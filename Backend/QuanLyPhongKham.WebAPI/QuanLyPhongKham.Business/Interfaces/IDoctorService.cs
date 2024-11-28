@@ -9,5 +9,7 @@ namespace QuanLyPhongKham.Business.Interfaces
 {
     public interface IDoctorService : IBaseService<BacSi>
     {
+        Task<BacSi> GetByUserId(string userId);
+
     }
 }

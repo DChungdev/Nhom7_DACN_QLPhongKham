@@ -1,4 +1,5 @@
-﻿using QuanLyPhongKham.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLyPhongKham.Data.Context;
 using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Resources;
@@ -130,6 +131,12 @@ namespace QuanLyPhongKham.Data.Repositories
 
             // Kết hợp phần chữ "BS" và phần số (cộng thêm 1), định dạng phần số với 3 chữ số
             return $"BS{nextSo:D3}";
+        }
+
+        public async Task<BacSi> GetByUserId(string userId)
+        {
+            var bn = await _context.BacSis.Where(bn => bn.UserId == userId).FirstOrDefaultAsync();
+            return bn;
         }
     }
 }

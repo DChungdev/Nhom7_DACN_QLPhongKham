@@ -22,7 +22,6 @@ namespace QuanLyPhongKham.Models.Helpers
 
 			CreateMap<DichVu, DichVuModel>().ReverseMap();
 
-		
+		}
 	}
-}
 }

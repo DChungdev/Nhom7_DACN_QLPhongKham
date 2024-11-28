@@ -37,6 +37,14 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return Ok(_mapper.Map<BacSiModel>(doctorById));
         }
 
+        [HttpGet("getbyuserid/{userId}")]
+        public async Task<IActionResult> GetByUserId(string userId)
+        {
+            var bs = await _doctorService.GetByUserId(userId);
+            return Ok(_mapper.Map<BacSiModel>(bs));
+
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddDoctor([FromBody] BacSiModel bacSi)
         {

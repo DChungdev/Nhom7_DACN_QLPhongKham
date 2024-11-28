@@ -50,7 +50,6 @@ $(document).ready(function () {
             const updatedResult = {
                 ketQuaKhamId: resultId,
                 maBenhNhan: $('#dialog-edit input[type="text"]').eq(0).val(),  // Mã bệnh nhân
-                tenBenhNhan: $('#dialog-edit input[type="text"]').eq(1).val(),  // Tên bệnh nhân
                 ngayKham: $('#dialog-edit input[type="date"]').eq(0).val(),     // Lịch khám
                 chanDoan: $('#dialog-edit input[type="text"]').eq(2).val(),      // Chuẩn đoán
                 chiDinhThuoc: $('#dialog-edit input[type="text"]').eq(3).val(),  // Chỉ định thuốc
@@ -101,21 +100,17 @@ function displayResults(results) {
         const resultRow = `
             <tr>
                 <td class="chk"><input type="checkbox" /></td>
-                <td style="display: none">${result.ketQuaKhamId}</td>
+                <td empIdCell style="display: none">${result.ketQuaKhamId}</td>
                 <td>${index + 1}</td>
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>
-                <td>${result.ghiChu || "Không có ghi chú"}</td>
                 <td>${formatDate(result.ngayTao)}</td>
                 <td>${formatDate(result.ngayCapNhat)}</td>
                 <td>
                   <div class="m-table-tool">
                     <div class="m-edit m-tool-icon" data-result-id="${result.ketQuaKhamId}" data-bs-toggle="modal" data-bs-target="#dialog-edit">
                       <i class="fas fa-edit text-primary"></i>
-                    </div>
-                    <div class="m-delete m-tool-icon" data-result-id="${result.ketQuaKhamId}" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                      <i class="fas fa-trash-alt text-danger"></i>
-                    </div>
+                    </div>                    
                   </div>
                 </td>
             </tr>

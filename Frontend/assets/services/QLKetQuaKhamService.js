@@ -102,6 +102,8 @@ function displayResults(results) {
                 <td class="chk"><input type="checkbox" /></td>
                 <td empIdCell style="display: none">${result.ketQuaKhamId}</td>
                 <td>${index + 1}</td>
+                <td>${result.maBenhNhan || "Không có "}</td>
+                <td>${result.tenBenhNhan || "Không có "}</td>
                 <td>${result.lichKham || "Không có lịch khám"}</td>
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>

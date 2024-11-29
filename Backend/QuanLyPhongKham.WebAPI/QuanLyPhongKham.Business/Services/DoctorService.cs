@@ -59,6 +59,11 @@ namespace QuanLyPhongKham.Business.Services
 
         }
 
+        public async Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id)
+        {
+            return await _doctorRepository.GetBacSisByKhoaId(id);
+        }
+
         public override async Task<int> UpdateAsync(BacSi entity)
         {
             var checkData = _doctorRepository.CheckDataValidate(entity);

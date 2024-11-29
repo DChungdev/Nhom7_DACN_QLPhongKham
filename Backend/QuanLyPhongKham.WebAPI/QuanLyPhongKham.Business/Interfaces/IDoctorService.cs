@@ -11,6 +11,8 @@ namespace QuanLyPhongKham.Business.Interfaces
     public interface IDoctorService : IBaseService<BacSi>
     {
         Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id);
+        Task<BacSi> GetByUserId(string userId);
+        
 
     }
 }

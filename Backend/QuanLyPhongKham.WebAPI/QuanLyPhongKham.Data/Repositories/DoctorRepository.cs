@@ -133,6 +133,12 @@ namespace QuanLyPhongKham.Data.Repositories
             return $"BS{nextSo:D3}";
         }
 
+        public async Task<BacSi> GetByUserId(string userId)
+        {
+            var bn = await _context.BacSis.Where(bn => bn.UserId == userId).FirstOrDefaultAsync();
+            return bn;
+        }
+
         public async Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id)
         {
             return await _context.BacSis.Where(b => b.KhoaId == id).ToListAsync();

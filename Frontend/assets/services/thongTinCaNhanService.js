@@ -25,6 +25,7 @@ $(document).ready(function () {
             .then(function (response) {
                 console.log('Cập nhật thông tin thành công:', response);
                 getData();
+                showSuccessPopup();
             })
             .catch(function (error) {
                 showErrorPopup();
@@ -96,4 +97,19 @@ function showErrorPopup() {
 function hideErrorPopup() {
     const errorPopup = document.getElementById("error-popup");
     errorPopup.style.visibility = "hidden";
+}
+function showSuccessPopup() {
+    // Hiển thị popup
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "visible";  // Hoặc có thể dùng popup.classList.add('visible');
+
+    // Tự động ẩn popup sau 3 giây (3000ms)
+    setTimeout(() => {
+        closePopup();
+    }, 3000);
+}
+
+function closePopup() {
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "hidden";  // Ẩn popup
 }

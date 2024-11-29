@@ -13,5 +13,7 @@ namespace QuanLyPhongKham.Data.Interfaces
         Dictionary<string, string>? CheckDataValidate (BacSi bacSi);
         Dictionary<string, string>? CheckDataValidateForInsert(BacSi bacSi);
         Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id);
+        Task<BacSi> GetByUserId(string userId);
+
     }
 }

@@ -3,6 +3,7 @@ using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Data.Repositories;
 using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Exceptions;
+using QuanLyPhongKham.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,17 @@ namespace QuanLyPhongKham.Business.Services
                     throw new ErrorCreateException();
                 }
             }
+        }
+
+        public async Task<BacSi> GetByUserId(string userId)
+        {
+            var bs = await _doctorRepository.GetByUserId(userId);
+            if (bs == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            return bs;
+
         }
 
         public async Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id)

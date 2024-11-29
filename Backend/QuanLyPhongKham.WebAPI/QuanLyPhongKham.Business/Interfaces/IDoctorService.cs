@@ -1,4 +1,5 @@
-﻿using QuanLyPhongKham.Models.Entities;
+﻿using QuanLyPhongKham.Data.Interfaces;
+using QuanLyPhongKham.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace QuanLyPhongKham.Business.Interfaces
 {
     public interface IDoctorService : IBaseService<BacSi>
     {
+        Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id);
+
     }
 }

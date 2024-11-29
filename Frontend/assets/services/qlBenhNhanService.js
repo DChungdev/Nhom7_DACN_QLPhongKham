@@ -27,6 +27,7 @@ $(document).ready(function () {
     $("#btnAdd").click(function (){
         const genderValue = parseInt($("#gender-add").val());
         const newPatient = {
+            maBenhNhan:  $("#mabn-add").val(),
             hoTen: $("#hoten-add").val(),
             email: $("#email-add").val() || null,
             soDienThoai: $("#sdt-add").val() || null,

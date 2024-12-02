@@ -138,5 +138,10 @@ namespace QuanLyPhongKham.Data.Repositories
             var bn = await _context.BacSis.Where(bn => bn.UserId == userId).FirstOrDefaultAsync();
             return bn;
         }
+
+        public async Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id)
+        {
+            return await _context.BacSis.Where(b => b.KhoaId == id).ToListAsync();
+        }
     }
 }

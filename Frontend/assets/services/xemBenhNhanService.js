@@ -1,12 +1,14 @@
 var dsBN;
-var bnID = "";
-$(document).ready(function () {
+var bsId = "";
+$(document).ready(async function () {
+    await getDoctorId();
     getData();
 });
 
-function getData() {
+ function getData() {
+    console.log(bsId);
     axiosJWT
-        .get(`/api/Patients/getbydoctorid/${bacSiId}`)
+        .get(`/api/Patients/getbydoctorid/${bsId}`)
         .then(function (response) {
             dsBN = response.data;
             console.log(dsBN);
@@ -44,4 +46,15 @@ function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
+
+async function getDoctorId() {
+    try {
+        let userId = localStorage.getItem("userId");
+        const response = await axiosJWT.get(`/api/Doctors/getbyuserid/${userId}`);
+        bsId = response.data.bacSiId; // Lấy giá trị ID bác sĩ
+    } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
+    }
+}
+
 

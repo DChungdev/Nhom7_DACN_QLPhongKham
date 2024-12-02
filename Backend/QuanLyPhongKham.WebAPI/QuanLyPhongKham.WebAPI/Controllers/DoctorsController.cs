@@ -64,6 +64,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             existingBS.SoDienThoai = bacSi.SoDienThoai;
             existingBS.Email = bacSi.Email;
             existingBS.DiaChi = bacSi.DiaChi;
+            existingBS.BangCap = bacSi.BangCap;
             existingBS.SoNamKinhNghiem = bacSi.SoNamKinhNghiem;
             existingBS.GioLamViec = bacSi.GioLamViec;
             int res = await _doctorService.UpdateAsync(existingBS);

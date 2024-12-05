@@ -3,6 +3,7 @@ var bsID = "";
 
 $(document).ready(function () {
     getData();
+    loadDepartments();
 
     // Gắn sự kiện cho nút hiển thị modal sửa
     $(document).on("click", ".m-edit", function () {
@@ -26,6 +27,7 @@ $(document).ready(function () {
     // Gắn sự kiện cho nút Thêm
     $("#btnAdd").click(function (){
         const bangCapValue = parseInt($("#add-bangCap").val());
+        const khoaIdValue = $("#add-khoa").val(); // Lấy ID khoa từ combobox
         const newDoctor = {
             maBacSi: $("#add-mabs").val(),
             hoTen: $("#add-tenbs").val(),
@@ -35,6 +37,7 @@ $(document).ready(function () {
             diaChi: $("#add-diaChi").val() || null,
             soNamKinhNghiem: $("#add-namKinhNghiem").val() || null,
             gioLamViec: $("#add-gioLamViec").val() || null,
+            khoaId: khoaIdValue || null,
         };
         console.log("Dữ liệu thêm:", newDoctor);
 
@@ -61,7 +64,7 @@ $(document).ready(function () {
             email: $("#edit-email").val(),
             soDienThoai: $("#edit-sdt").val() || null,
             bangCap: bangCapValue,
-            diaChi: $("#edit-diachi").val() || null,
+            diaChi: $("#edit-diaChi").val() || null,
             soNamKinhNghiem: $("#edit-namKinhNghiem").val() || null,
             gioLamViec: $("#edit-gioLamViec").val() || null,
         };
@@ -89,13 +92,6 @@ $(document).ready(function () {
         console.log(bsID);
         const bacSi = dsBS.find((bs) => bs.bacSiId === bacSiId); // Tìm bệnh nhân trong danh sách
     });
-    // $("#confirm-delete").click(function(){
-    //     const benhNhanId = $(this).closest("tr").attr("bn-id");
-    //     bnID = benhNhanId;
-    //     console.log(bnID);
-    //     const benhNhan = dsBN.find((bn) => bn.benhNhanId === benhNhanId); // Tìm bệnh nhân trong danh sách
-   
-    // });
 
     $("#btnDelete").click(function(){
         axiosJWT
@@ -125,7 +121,6 @@ function getData() {
             console.error("Lỗi không tìm được:", error);
         });
 }
-
 function display(data) {
     const tableBody = document.querySelector('#tblBacSi tbody');
     tableBody.innerHTML = ''; // Xóa nội dung cũ nếu có
@@ -133,30 +128,52 @@ function display(data) {
     data.forEach((item, index) => {
         const row = `
       <tr bs-id="${item.bacSiId}">
-        <td class="chk">
-          <input type="checkbox" />
-        </td>
-        <td class="m-data-left">${index + 1}</td>
+        <td class="text-center">${index + 1}</td>
         <td class="m-data-left">${item.maBacSi}</td>
         <td class="m-data-left">${item.hoTen}</td>
         <td class="m-data-left">${item.tenBangCap}</td>
-        <td class="m-data-left">${item.soDienThoai || "Chưa có SĐT"}</td>
+        <td class="m-data-left">${item.soDienThoai}</td>
         <td class="m-data-left">${item.email || "Chưa có email"}</td>
         <td class="m-data-left">${item.diaChi || "Chưa có địa chỉ"}</td>
         <td>
-            <div class="m-table-tool">
-            <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#modalSuaBacSi" data-id="${item.bacSiId}">
-                <i class="fas fa-edit text-primary"></i>
-            </div>
-            <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#dialog-confirm-delete">
-                <i class="fas fa-trash-alt text-danger"></i>
-            </div>
-            </div>
-        </td>
+                  <div class="m-table-tool">
+                    <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#modalSuaBacSi" data-id="${item.bacSiId}">
+                      <i class="fas fa-edit text-primary"></i>
+                    </div>
+                    <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#confirm-delete">
+                      <i class="fas fa-trash-alt text-danger"></i>
+                    </div>
+                  </div>
+                </td>
       </tr>
     `;
         tableBody.innerHTML += row; // Thêm hàng vào bảng
     });
+}
+// Gọi API lấy danh sách khoa
+function loadDepartments() {
+    axiosJWT
+        .get(`/api/Departments`)
+        .then(function (response) {
+            const departments = response.data;
+            const departmentDropdown = $("#add-khoa");
+            
+            // Xóa các option cũ (nếu có)
+            departmentDropdown.empty();
+
+            // Thêm option mặc định
+            departmentDropdown.append('<option value="">-- Chọn khoa --</option>');
+
+            // Đổ dữ liệu vào combobox
+            departments.forEach(function (khoa) {
+                departmentDropdown.append(
+                    `<option value="${khoa.khoaId}">${khoa.tenKhoa}</option>`
+                );
+            });
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi lấy danh sách khoa:", error);
+        });
 }
 
 // Hàm điền thông tin vào modal
@@ -167,17 +184,11 @@ function fillEditModal(bacSi) {
     $("#edit-sdt").val(bacSi.soDienThoai); // Số điện thoại
     $("#edit-email").val(bacSi.email || ""); // Email
     // Gán bằng cấp
-    const bangCapValue = bacSi.bangCap === "Giáo sư Y khoa" ? 0 :
-                     bacSi.bangCap === "Phó Giáo sư Y khoa" ? 1 :
-                     bacSi.bangCap === "Tiến sĩ Y khoa" ? 2 :
-                     bacSi.bangCap === "Bác sĩ Chuyên khoa 2" ? 3 :
-                     bacSi.bangCap === "Thạc sĩ Y khoa" ? 4 :
-                     bacSi.bangCap === "Bác sĩ Chuyên khoa 1" ? 5 :
-                     bacSi.bangCap === "Bác sĩ Đa khoa" ? 6 : -1; // -1 để xử lý giá trị không hợp lệ
+    const bangCapValue = bacSi.bangCap;
     $("#edit-bangCap").val(bangCapValue);
     $("#edit-namKinhNghiem").val(bacSi.soNamKinhNghiem); // Số năm kinh nghiệm
     // Gán địa chỉ
-    $("#diachi").val(bacSi.diaChi || "");
+    $("#edit-diaChi").val(bacSi.diaChi || "");
     $("#edit-gioLamViec").val(bacSi.gioLamViec); // Giờ làm việc
 
 }

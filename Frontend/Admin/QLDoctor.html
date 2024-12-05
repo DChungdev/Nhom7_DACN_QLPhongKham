@@ -42,7 +42,7 @@
               <span>Sửa thông tin thành công!</span>
           </div>
           <div class="m-popup-tool">
-              <span class="m-popup-close"></span>
+              <span class="m-popup-close">x</span>
           </div>
         </div>
     </div>
@@ -469,9 +469,18 @@
                       <input id="add-email" type="email" class="m-input" oninput="kiemTraEmail()"/>
                     </div>
                     <div class="input-item">
-                      <div class="title-input">Khoa</div>
-                      <select name="khoa" id="add-khoa">
-                        <option value="">Chọn khoa</option>
+                      <div class="title-input">Giờ làm việc</div>
+                      <select name="gioLamViec" id="add-gioLamViec" multiple>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
                       </select>
                     </div>
                   </div>
@@ -483,10 +492,6 @@
                     <div class="input-item-center">
                       <div class="title-input">Địa chỉ</div>
                       <input id="add-diaChi" type="text" class="m-input" />
-                    </div>
-                    <div class="input-item">
-                      <div class="title-input">Giờ làm việc</div>
-                      <input id="add-gioLamViec" type="text" class="m-input" />
                     </div>
                   </div>
 

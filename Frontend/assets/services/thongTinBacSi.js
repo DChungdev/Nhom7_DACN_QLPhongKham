@@ -1,3 +1,7 @@
+$(document).ready(function () {
+  getData(); //lấy danh sách bác sĩ từ API.
+
+});
 function getData() {
     var bacSiId = localStorage.getItem("bacSiId");
     console.log("BacSiId từ localStorage:", bacSiId); // Lấy bacSiId từ localStorage
@@ -43,7 +47,7 @@ function displayDoctors(data) {
               <h4 id="tenBacSi">${data.hoTen}</h4>
               <span id="tenBangCap">${data.bangCap}</span>
               <div class="social">
-                <i class="bi bi-twitter-x"></i>
+                <a href=""><i class="bi bi-twitter-x"></i></a>
                 <a href=""><i class="bi bi-facebook"></i></a>
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""> <i class="bi bi-linkedin"></i> </a>

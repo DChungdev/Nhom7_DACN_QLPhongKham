@@ -91,21 +91,26 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
             // Thực hiện xóa bác sĩ
             var res = await _doctorService.DeleteAsync(bacSiId);
-            var user = await _authService.FindByIdAsync(bs.UserId);
-            if (user != null)
+            if (bs.UserId != null)
             {
-                await _authService.DeleteUser(bs.UserId);
+                var user = await _authService.FindByIdAsync(bs.UserId);
+                if (user != null)
+                {
+                    await _authService.DeleteUser(bs.UserId);
+                }
+                if (res > 0)
+                {
+                    // Xóa thành công
+                    return StatusCode(201, res);
+                }
+                else
+                {
+                    // Nếu có lỗi xảy ra khi xóa, trả về mã lỗi
+                    return StatusCode(500);
+                }
             }
-            if (res > 0)
-            {
-                // Xóa thành công
-                return StatusCode(201, res);
-            }
-            else
-            {
-                // Nếu có lỗi xảy ra khi xóa, trả về mã lỗi
-                return StatusCode(500);
-            }
+            return Ok();
+            
         }
     }
 }

@@ -25,5 +25,6 @@ namespace QuanLyPhongKham.Business.Interfaces
         Task<LichKham>? GetLichKhamLatest(Guid benhNhanId);
 
         Task<int> EditAsync(LichKham lichKham, Guid id);
+        Task<int> AcceptAppointment(Guid id);
     }
 }

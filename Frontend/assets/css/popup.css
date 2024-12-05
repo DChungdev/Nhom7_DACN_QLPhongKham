@@ -1,18 +1,18 @@
 .m-popup-block{
     position: fixed;
-    top: 15%;
+    top: 20%;
     right: 50%;
     min-width: 450px;
     max-width: 650px;
     left: 50%;
     transform: translate(-50%, -20%);
     visibility: hidden;
-    z-index: 3;
+    z-index: 1050;
 }
 .m-popup-block .m-popup-item{
     display: flex;
     align-items: center;
-    height: 56px;
+    height: 70px;
     width: 100%;
     padding:0 16px;
     border-radius: 4px;
@@ -21,7 +21,12 @@
     box-shadow: 0px 4px 40px rgba(0,0,0,0.078);
     position: relative;
     margin-bottom: 16px;
+    transition: opacity 0.3s ease; /* Hiệu ứng mượt */
 }
+.m-popup-block .m-popup-item.show {
+    visibility: visible; /* Hiển thị khi có class "show" */
+}
+
 .m-popup-block .m-popup-item .m-popup-icon{
     background-repeat: no-repeat;
     background-size: 20px;
@@ -31,7 +36,7 @@
     height: 24px;
 }
 .m-popup-block .m-popup-item .m-popup-icon-success{
-    background-image: url(../../assets/icon/success-48.png);
+    background-image: url(../../assets/css/icons/success-48.png);
 }
 .m-popup-block .m-popup-item .m-popup-text-warning,.m-popup-text-info{
     width: calc(100% - 65px);
@@ -59,7 +64,7 @@
 .m-popup-block .m-popup-item .m-popup-tool .m-popup-close{
     width: 16px;
     height: 16px;
-    background-image: url(../../assets/icon/close-48.png);
+    background-image: url(../../assets/css/icons/close-48.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -67,19 +72,19 @@
 }
 
 .m-popup-block .m-popup-item .m-popup-icon-error{
-    background-image: url(../../assets/icon/error-48.png);
+    background-image: url(../../assets/css/icons/error-48.png);
 }
 .m-popup-block .m-popup-item .m-popup-text-error span{
     color: #DE3618;
 }
 .m-popup-block .m-popup-item .m-popup-icon-warning{
-    background-image: url(../../assets/icon/warning-48.png);
+    background-image: url(../../assets/css/icons/warning-48.png);
 }
 .m-popup-block .m-popup-item .m-popup-text-warning span{
     color: #F49342;
 }
 .m-popup-block .m-popup-item .m-popup-icon-info{
-    background-image: url(../../assets/icon/info-48.png);
+    background-image: url(../../assets/css/icons/info-48.png);
 }
 .m-popup-block .m-popup-item .m-popup-text-info span{
     color: #009EEB;

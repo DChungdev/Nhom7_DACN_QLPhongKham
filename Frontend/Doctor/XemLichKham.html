@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <!-- Favicon icon -->
-    <title>Quản lý lịch khám</title>
+    <title>Xem thông tin lịch khám</title>
     <!-- Custom CSS -->
     <link href="../assets/extra-libs/c3/c3.min.css" rel="stylesheet" />
     <link
@@ -19,6 +19,9 @@
       href="../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css"
       rel="stylesheet"
     />
+    <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="../assets/services/appointmentServiceByDoctor.js"></script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/content.css" />
@@ -31,10 +34,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-    <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+
     <script src="../assets/vendor/axios.min.js"></script>
     <script src="../assets/services/axios.js"></script>
-    <script src="../assets/services/appointmentService.js"></script>
+    
   </head>
 
   <body>
@@ -222,7 +225,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link sidebar-link"
-                  href="MainAdmin.html"
+                  href="MainDoctor.html"
                   aria-expanded="false"
                   ><i data-feather="home" class="feather-icon"></i
                   ><span class="hide-menu">Trang chủ</span></a
@@ -233,86 +236,22 @@
                 <span class="hide-menu">Quản lý</span>
               </li>
 
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="QLBenhNhan.html"
-                  aria-expanded="false"
-                  ><i data-feather="user" class="feather-icon"></i
-                  ><span class="hide-menu">Bệnh nhân</span></a
-                >
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="QLBacSi.html"
-                  aria-expanded="false"
-                  ><i data-feather="users" class="feather-icon"></i
-                  ><span class="hide-menu">Bác sĩ</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="QLThuocVatTu.html"
-                  aria-expanded="false"
-                  ><i data-feather="database" class="feather-icon"></i
-                  ><span class="hide-menu">Kho thuốc - Vật tư</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="QLKhamBenh.html"
-                  aria-expanded="false"
-                  ><i data-feather="activity" class="feather-icon"></i
-                  ><span class="hide-menu">Khám chữa bệnh</span></a
-                >
-              </li>
-
               <li class="sidebar-item selected">
                 <a
-                  class="sidebar-link sidebar-link active"
-                  href="QLLichKham.html"
+                  class="sidebar-link"
+                  href="XemLichKham.html"
                   aria-expanded="false"
-                  ><i data-feather="calendar" class="feather-icon"></i
+                  ><i data-feather="user" class="feather-icon"></i
                   ><span class="hide-menu">Lịch khám</span></a
                 >
               </li>
-
               <li class="sidebar-item">
                 <a
-                  class="sidebar-link sidebar-link"
-                  href="QLDichVu.html"
+                  class="sidebar-link sidebar-link active"
+                  href="XemBenhNhan.html"
                   aria-expanded="false"
-                  ><i data-feather="file-text" class="feather-icon"></i
-                  ><span class="hide-menu">Dịch vụ</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="QLTaiChinh.html"
-                  aria-expanded="false"
-                  ><i data-feather="dollar-sign" class="feather-icon"></i
-                  ><span class="hide-menu">Tài chính</span></a
-                >
-              </li>
-
-              <li class="list-divider"></li>
-              <li class="nav-small-cap">
-                <span class="hide-menu">Khách hàng</span>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="app-calendar.html"
-                  aria-expanded="false"
-                  ><i data-feather="calendar" class="feather-icon"></i
-                  ><span class="hide-menu">Đánh giá - Phản hồi</span></a
+                  ><i data-feather="users" class="feather-icon"></i
+                  ><span class="hide-menu">Bệnh nhân</span></a
                 >
               </li>
 
@@ -320,19 +259,11 @@
               <li class="nav-small-cap">
                 <span class="hide-menu">Người dùng</span>
               </li>
+
               <li class="sidebar-item">
                 <a
                   class="sidebar-link sidebar-link"
-                  href="QLTaiKhoan.html"
-                  aria-expanded="false"
-                  ><i data-feather="edit-3" class="feather-icon"></i
-                  ><span class="hide-menu">Quản lý tài khoản</span></a
-                >
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="authentication-login1.html"
+                  href="/authentication-login1.html"
                   aria-expanded="false"
                   ><i data-feather="log-out" class="feather-icon"></i
                   ><span class="hide-menu">Logout</span></a
@@ -354,7 +285,7 @@
         <div class="main">
           <div class="m-title-table">
             <div class="m-title-table-left">
-              <div class="m-title-text"><h2>Quản lý lịch khám</h2></div>
+              <div class="m-title-text"><h2>Xem thông tin lịch khám</h2></div>
             </div>
             <div class="m-title-table-right"></div>
           </div>
@@ -395,7 +326,6 @@
                   >
                     Ca khám
                   </th>
-                  <th class="m-data-left" style="text-align: center">Bác sĩ</th>
                   <th class="m-data-left" style="text-align: center">
                     Trạng thái
                   </th>
@@ -415,18 +345,25 @@
                   <td>
                     <div class="m-table-tool">
                       <div
-                        class="m-edit m-tool-icon"
+                        class="m-detail m-edit m-tool-icon"
                         data-bs-toggle="modal"
-                        data-bs-target="#dialog-appointment-edit"
+                        data-bs-target="#dialog-appointment-detail"
                       >
-                        <i class="fas fa-edit text-primary"></i>
+                        <i class="fas fa-eye text-primary"></i>
                       </div>
                       <div
-                        class="m-delete m-tool-icon"
+                        class="m-agree m-edit m-tool-icon"
                         data-bs-toggle="modal"
-                        data-bs-target="#dialog-confirm-delete"
+                        data-bs-target="#dialog-confirm-agree"
                       >
-                        <i class="fas fa-trash-alt text-danger"></i>
+                        <i class="fas fa-check text-success"></i>
+                      </div>
+                      <div
+                        class="m-refuse m-delete m-tool-icon"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dialog-confirm-refuse"
+                      >
+                        <i class="fas fa-times text-danger"></i>
                       </div>
                     </div>
                   </td>
@@ -435,14 +372,14 @@
             </table>
           </div>
 
-          <!-- DIALOG EDIT APPOINTMENT -->
+          <!-- DIALOG DETAIL APPOINTMENT -->
           <!-- The Modal -->
-          <div class="modal fade" id="dialog-appointment-edit">
+          <div class="modal fade" id="dialog-appointment-detail">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                  <h4 class="modal-title">Sửa lịch khám</h4>
+                  <h4 class="modal-title">Xem thông tin lịch khám</h4>
                   <button
                     type="button"
                     class="btn-close"
@@ -455,21 +392,26 @@
                   <div class="row-item d-flex">
                     <div class="input-item">
                       <div class="title-input">Họ tên bệnh nhân</div>
-                      <input id="name" type="text" class="m-input" />
+                      <input id="name" type="text" class="m-input" readonly />
                     </div>
                     <div class="input-item input-item-center">
                       <div class="title-input">Số điện thoại</div>
-                      <input id="phone-number" type="text" class="m-input" />
+                      <input
+                        id="phone-number"
+                        type="text"
+                        class="m-input"
+                        readonly
+                      />
                     </div>
                     <div class="input-item">
                       <div class="title-input">Địa chỉ email</div>
-                      <input id="email" type="email" class="m-input" />
+                      <input id="email" type="email" class="m-input" readonly />
                     </div>
                   </div>
                   <div class="row-item d-flex">
                     <div class="input-item">
                       <div class="title-input">Giới tính</div>
-                      <select name="gender" id="gender">
+                      <select name="gender" id="gender" disabled>
                         <option value="">Chọn giới tính</option>
                         <option value="0">Nam</option>
                         <option value="1">Nữ</option>
@@ -478,11 +420,16 @@
                     </div>
                     <div class="input-item input-item-center">
                       <div class="title-input">Ngày sinh</div>
-                      <input id="dOBirth" type="date" class="m-input" />
+                      <input
+                        id="dOBirth"
+                        type="date"
+                        class="m-input"
+                        readonly
+                      />
                     </div>
                     <div class="input-item">
                       <div class="title-input">Khoa</div>
-                      <select name="department" id="department">
+                      <select name="department" id="department" disabled>
                         <option value="">Chọn khoa</option>
                       </select>
                     </div>
@@ -490,7 +437,7 @@
                   <div class="row-item d-flex">
                     <div class="input-item">
                       <div class="title-input">Bác sĩ</div>
-                      <select name="doctor" id="doctor">
+                      <select name="doctor" id="doctor" disabled>
                         <option value="">Chọn bác sĩ</option>
                       </select>
                     </div>
@@ -506,19 +453,34 @@
                     </div>
                     <div class="input-item">
                       <div class="title-input">Ngày khám</div>
-                      <input id="appointmentDate" type="date" class="m-input" />
+                      <input
+                        id="appointmentDate"
+                        type="date"
+                        class="m-input"
+                        readonly
+                      />
                     </div>
                   </div>
                   <div class="row-item-long">
                     <div class="input-item">
                       <div class="title-input">Địa chỉ</div>
-                      <input id="address" type="text" class="m-input" />
+                      <input
+                        id="address"
+                        type="text"
+                        class="m-input"
+                        readonly
+                      />
                     </div>
                   </div>
                   <div class="row-item-long">
                     <div class="input-item">
                       <div class="title-input">Tiền sử bệnh lý</div>
-                      <input id="medicalHistory" type="text" class="m-input" />
+                      <input
+                        id="medicalHistory"
+                        type="text"
+                        class="m-input"
+                        readonly
+                      />
                     </div>
                   </div>
                 </div>
@@ -535,55 +497,36 @@
                   >
                     Hủy
                   </button>
-                  <button type="button" id="btnEdit" class="btn btn-success">
-                    Lưu
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- DIALOG HIỂN THỊ LỖI -->
-          <div class="modal fade" id="dialog-errorList">
-            <div class="modal-dialog modal-md">
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Lỗi</h4>
                   <button
                     type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                  ></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <div class="content"></div>
-                </div>
-                <!-- Modal footer -->
-                <div
-                  class="modal-footer"
-                  style="background: rgb(232, 232, 232)"
-                >
+                    class="btn btn-danger"
+                    data-bs-target="#dialog-confirm-refuse"
+                    data-bs-toggle="modal"
+                    id="btnRefuse1"
+                  >
+                    Từ chối
+                  </button>
                   <button
-                  id="btnClose"
                     type="button"
                     class="btn btn-success"
-                    data-bs-dismiss="modal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#dialog-confirm-agree"
+                    id="btnAgree1"
                   >
-                    Đóng
+                    Đồng ý
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <!-- DIALOG XÁC NHẬN XÓA -->
-          <div class="modal fade" id="dialog-confirm-delete">
+
+          <!-- DIALOG XÁC NHẬN ĐỒNG Ý -->
+          <div class="modal fade" id="dialog-confirm-agree">
             <div class="modal-dialog modal-md">
               <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                  <h4 class="modal-title">Xác nhận xóa</h4>
+                  <h4 class="modal-title">Xác nhận đồng ý</h4>
                   <button
                     type="button"
                     class="btn-close"
@@ -593,7 +536,9 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                  <div class="content">Bạn có chắc chắn muốn xóa?</div>
+                  <div class="content">
+                    Bạn có chắc chắn muốn đồng ý lịch khám này?
+                  </div>
                 </div>
                 <!-- Modal footer -->
                 <div
@@ -607,12 +552,47 @@
                   >
                     Hủy
                   </button>
+                  <button type="button" id="btnAgree" class="btn btn-success" data-bs-dismiss="modal">
+                    Đồng ý
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- DIALOG XÁC NHẬN TỪ CHỐI -->
+          <div class="modal fade" id="dialog-confirm-refuse">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Xác nhận từ chối</h4>
                   <button
                     type="button"
-                    id="btnDelete"
-                    class="btn btn-danger"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                  ></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <div class="content">
+                    Bạn có chắc chắn muốn từ chối lịch khám này?
+                  </div>
+                </div>
+                <!-- Modal footer -->
+                <div
+                  class="modal-footer"
+                  style="background: rgb(232, 232, 232)"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-light me-2"
+                    data-bs-dismiss="modal"
                   >
-                    Xóa
+                    Hủy
+                  </button>
+                  <button type="button" id="btnRefuse" class="btn btn-danger" data-bs-dismiss="modal">
+                    Đồng ý
                   </button>
                 </div>
               </div>

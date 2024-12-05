@@ -21,5 +21,9 @@ namespace QuanLyPhongKham.Business.Interfaces
         Task<Response> DeleteUser(string userId);
         Task<Service> ChangePasswordAsync(string username, string curPassword, string newPassword);
         Task<string> FindByUserNameAsync(string userName);
+        Task<Response> ResetPasswordAsync(string email);
+        Task<IEnumerable<ApplicationUser>> GetAllUserAsync();
+        Task<IList<string>> GetUserRole(string userId);
+        Task<Response> DeleteUserAsync(string userId); 
     }
 }

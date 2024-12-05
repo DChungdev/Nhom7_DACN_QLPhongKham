@@ -33,13 +33,9 @@
   <!-- Dialog CSS File -->
   <link rel="stylesheet" href="../assets/css/dialog.css">
 
-  <!-- =======================================================
-  * Template Name: Medilab
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="../assets/vendor/axios.min.js"></script>
+    <script src="../assets/services/axios.js"></script>
 </head>
 
 <body class="index-page">
@@ -88,7 +84,7 @@
         <div class="dropdown cta-btn" style="background-color: white;">
           <!-- <button type="button" class="btn btn-getstarted" data-bs-toggle="dropdown"> -->
           <div class="" data-bs-toggle="dropdown">
-            <img style="height: 35px; width: 35px;" src="../assets/img/user.png" class="rounded-circle">
+            <img id="avatar" style="height: 35px; width: 35px;" src="../assets/img/user.png" class="rounded-circle">
             <script>
               $(document).ready(function () {
                 // Lấy tên người dùng từ localStorage
@@ -312,7 +308,7 @@
       <div class="container">
 
         <div class="row gy-4">
-          <a  class="btn btn-primary" href="xemdichvu.html">Xem dịch vụ</a>
+          <a class="btn btn-primary" href="xemdichvu.html">Xem dịch vụ</a>
         </div>
 
       </div>
@@ -620,7 +616,8 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Bác sĩ</h2>
-        <p>Với nhiều y bác sĩ là chuyên gia trong ngành, chúng tôi cam kết mang đến dịch vụ chăm sóc y tế tận tâm và chất lượng cho bệnh nhân.</p>
+        <p>Với nhiều y bác sĩ là chuyên gia trong ngành, chúng tôi cam kết mang đến dịch vụ chăm sóc y tế tận tâm và
+          chất lượng cho bệnh nhân.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -1211,7 +1208,29 @@
 
   <!-- Dialog JS File -->
   <script src="../assets/js/scheduleappointment.js"></script>
+  <script>
+    function getAvata() {
+      var userId = localStorage.getItem("userId");
+      console.log(userId);
+      // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
+      axiosJWT
+        .get(`/api/Patients/getbyuserid/${userId}`)
+        .then(function (response) {
+          let bn = response.data;
+          if(bn.hinhAnh != null){
+            $("#avatar").attr('src', "http://localhost:37649" + bn.hinhAnh);
+          }
+        })
+        .catch(function (error) {
+          console.error("Lỗi không tìm được:", error);
+        });
+    }
 
+    $(document).ready(function(){
+      getAvata();
+    })
+  </script>
+  
 </body>
 
 </html>

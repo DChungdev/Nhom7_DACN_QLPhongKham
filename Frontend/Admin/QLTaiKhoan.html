@@ -31,6 +31,17 @@
             font-size: 14px;
             outline: none;
         }
+         /* CSS cho viền đỏ */
+         .input-error {
+            border: 2px solid red !important;
+        }
+
+        /* CSS cho thông báo lỗi */
+        .error-message {
+            color: red;
+            font-size: 11px;
+            visibility: hidden;
+        }
     </style>
 </head>
 
@@ -336,13 +347,19 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="title-input">Password</div>
-                                        <input id="password-add" type="text" class="m-input1 col-12">
+                                        <input id="password-add" type="text" class="m-input1 col-12" oninput="kiemTraMatKhau()">
+                                        <div id="error-message" class="error-message">
+                                            Mật khẩu phải có chữ hoa, chữ thường và ký tự đặc biệt.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row-item-long">
                                     <div class="input-item">
                                         <div class="title-input">Email</div>
-                                        <input id="email-add" type="text" class="m-input">
+                                        <input id="email-add" type="text" class="m-input" oninput="kiemTraEmail()">
+                                        <div id="email-error-message" class="error-message">
+                                            Vui lòng nhập địa chỉ email hợp lệ.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -458,6 +475,38 @@
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <!-- <script src="../assets/js/pages/dashboards/dashboard1.min.js"></script> -->
+
+    <script>
+        function kiemTraMatKhau() {
+                const passwordInput = document.getElementById("password-add");
+                const errorMessage = document.getElementById("error-message");
+                const password = passwordInput.value;
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{4,}$/;
+    
+                if (regex.test(password)) {
+                    passwordInput.classList.remove("input-error");
+                    errorMessage.style.visibility = "hidden";  // Ẩn thông báo
+                } else {
+                    passwordInput.classList.add("input-error");
+                    errorMessage.style.visibility = "visible";  // Hiển thị thông báo
+                }
+            }
+            function kiemTraEmail() {
+                const emailInput = document.getElementById("email-add");
+                const emailErrorMessage = document.getElementById("email-error-message");
+                const email = emailInput.value;
+                // Biểu thức chính quy kiểm tra định dạng email hợp lệ
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    
+                if (emailRegex.test(email)) {
+                    emailInput.classList.remove("input-error");
+                    emailErrorMessage.style.visibility = "hidden";  // Ẩn thông báo
+                } else {
+                    emailInput.classList.add("input-error");
+                    emailErrorMessage.style.visibility = "visible";  // Hiển thị thông báo
+                }
+            }
+    </script>
 </body>
 
 </html>

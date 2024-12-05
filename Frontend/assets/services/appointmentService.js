@@ -507,9 +507,6 @@ function addEventSelect(selectElement, dsBacSi, appointmentTimeSelect) {
         timeOption.textContent = time;
         appointmentTimeSelect.appendChild(timeOption);
       });
-
-      // Loại bỏ `disabled` của appointmentTimeSelect
-      appointmentTimeSelect.removeAttribute("disabled");
     }
   }
 }

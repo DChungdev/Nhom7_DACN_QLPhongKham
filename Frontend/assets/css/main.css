@@ -1244,8 +1244,7 @@ section,
   padding: 10px 12px;
 }
 
-.appointment .php-email-form button[type=submit],
-button#btnExitDialog, button#btnXemLichKham {
+.appointment .php-email-form button#btnDatLich, button#btnXemLichKham {
   background: var(--accent-color);
   border: 0;
   padding: 10px 35px;
@@ -1835,7 +1834,7 @@ button#btnExitDialog, button#btnXemLichKham {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button#btnDatLich {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1844,7 +1843,7 @@ button#btnExitDialog, button#btnXemLichKham {
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button#btnDatLich:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 

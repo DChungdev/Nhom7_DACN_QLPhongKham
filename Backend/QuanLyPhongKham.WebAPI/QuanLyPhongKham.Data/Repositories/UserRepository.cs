@@ -120,5 +120,20 @@ namespace QuanLyPhongKham.Data.Repositories
             return hasUpperChar && hasLowerChar && hasDigit && hasSpecialChar;
         }
 
+        public async Task<bool> ResetPassWordAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, resetToken, "Abc@123");
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

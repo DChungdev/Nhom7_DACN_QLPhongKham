@@ -32,6 +32,11 @@
     <!-- Main CSS File -->
     <link href="../assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/popup.css">
+    <style>
+        .input-error {
+            border: 2px solid red !important;
+        }
+    </style>
 </head>
 
 <body style="background-color: aliceblue;">
@@ -42,7 +47,7 @@
                 <span>Sửa thông tin thành công!</span>
             </div>
             <div class="m-popup-tool">
-                <span class="m-popup-close">x</span>
+                <span class="m-popup-close"></span>
             </div>
         </div>
     </div>
@@ -53,7 +58,7 @@
                 <span>Có lỗi xảy ra!</span>
             </div>
             <div class="m-popup-tool">
-                <div class="m-popup-close">x</div>
+                <div class="m-popup-close"></div>
             </div>
         </div>
     </div>
@@ -102,8 +107,20 @@
                 <div class="dropdown cta-btn" style="background-color: white;">
                     <!-- <button type="button" class="btn btn-getstarted" data-bs-toggle="dropdown"> -->
                     <div class="" data-bs-toggle="dropdown">
-                        <img style="height: 35px; width: 35px;" src="../assets/img/user.png" class="rounded-circle">
-                        <span class="text-primary">Chung</span>
+                        <img id="avatar" style="height: 35px; width: 35px;" src="../assets/img/user.png"
+                            class="rounded-circle">
+                        <script>
+                            $(document).ready(function () {
+                                // Lấy tên người dùng từ localStorage
+                                const loggedInUsername = localStorage.getItem('userName');
+
+                                // Kiểm tra nếu có tên người dùng và cập nhật hiển thị
+                                if (loggedInUsername) {
+                                    $('#displayUser').text(loggedInUsername); // Cập nhật phần tử #displayUser
+                                }
+                            });
+                        </script>
+                        <span id="displayUser" class="text-primary">Chung</span>
                     </div>
                     <!-- </button> -->
                     <ul class="dropdown-menu border-0"
@@ -129,24 +146,21 @@
             <div class="d-flex flex-column">
 
                 <div class="profile pt-5">
-                    <img src="../assets/img/user.png" alt="" class="img-fluid rounded-circle">
+                    <img id="uploadedImage" src="../assets/img/user.png" alt="" class="img-fluid rounded-circle"
+                        style="border: 0;height: 200px;width: 200px;">
                     <h1 id="hotenHeader" class="text-dark">Đức Chung</h1>
-                    <!-- <div class="social-links mt-3 text-center">
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                  </div> -->
                 </div>
 
                 <nav id="navbar" class="nav-menu navbar">
                     <ul>
-                        <li><a href="#about" class="nav-link  active text-dark"><i class="bi bi-person"></i> <span>Thông tin tài
+                        <li><a href="#about" class="nav-link  active text-dark"><i class="bi bi-person"></i> <span>Thông
+                                    tin tài
                                     khoản</span></a></li>
-                        <li><a href="#resume" class="nav-link text-dark"><i class="bi bi-arrow-counterclockwise"></i> <span>Lịch
+                        <li><a href="#resume" class="nav-link text-dark"><i class="bi bi-arrow-counterclockwise"></i>
+                                <span>Lịch
                                     sử khám bệnh</span></a></li>
-                        <li><a href="xemketquakham.html" class="nav-link text-dark"><i class="bi bi-file-earmark-text"></i> <span>Kết quả khám</span></a></li>
+                        <li><a href="xemketquakham.html" class="nav-link text-dark"><i
+                                    class="bi bi-file-earmark-text"></i> <span>Kết quả khám</span></a></li>
                     </ul>
                 </nav><!-- .nav-menu -->
             </div>
@@ -170,14 +184,16 @@
                                         <th scope="row" class="col-3">Mật khẩu</th>
                                         <td>
                                             <div class="input-group">
-                                                <input id="password" type="password" class="form-control" value="*************" readonly>
+                                                <input id="password" type="password" class="form-control"
+                                                    value="*************" readonly>
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn btn-link" title="Đổi mật khẩu"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    <button  type="button" class="btn btn-link" title="Đổi mật khẩu"><i
+                                                            class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#changePasswordModal"></i></button>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <th scope="row">Tên</th>
                                         <td><input id="hoten" type="text" class="form-control" value=""></td>
@@ -186,13 +202,15 @@
                                         <th scope="row">Email</th>
                                         <td>
                                             <!-- <button id="email" type="button" class="btn btn-link">Thêm</button> -->
-                                            <input id="email" type="text" class="form-control" value="">
+                                            <input id="email" type="text" class="form-control" value=""
+                                                oninput="kiemTraEmail()">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Số điện thoại</th>
                                         <td>
-                                            <input id="sdt" type="text" class="form-control" value="">
+                                            <input id="sdt" type="text" class="form-control" value=""
+                                                oninput="kiemTraSDT()">
                                             <!-- <button type="button" class="btn btn-link">Thay Đổi</button> -->
                                         </td>
                                     </tr>
@@ -214,12 +232,12 @@
                                         <th scope="row">Ngày sinh</th>
                                         <div class="row">
                                             <td>
-                                               <div class="col-12">
-                                                <input id="ngaysinh" type="date" class="form-control">
-                                               </div>
+                                                <div class="col-12">
+                                                    <input id="ngaysinh" type="date" class="form-control">
+                                                </div>
                                             </td>
                                         </div>
-                                       
+
                                     </tr>
                                     <tr>
                                         <th scope="row">Địa chỉ</th>
@@ -241,38 +259,76 @@
                         <div class="col-lg-3 col-md-12">
                             <div scope="row">Chọn Ảnh</div>
                             <div>
-                                <img class="img-thumnail" src="../assets/img/user.png" alt="" style="width: 100%;">
+                                <img id="previewImage" class="img-thumnail" src="../assets/img/user.png" alt=""
+                                    style="width: 100%;">
                             </div>
                             <div>
-                                <input type="file" class="form-control" accept=".jpeg, .png">
+                                <input id="fileInput" type="file" class="form-control" accept=".jpeg, .png">
                                 <small class="form-text text-muted">Dung lượng file tối đa 1 MB. Định dạng:
                                     JPEG, PNG</small>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success col-lg-1 col-sm-3" >Lưu</button>
+                        <button type="submit" class="btn btn-success col-lg-1 col-sm-3">Lưu</button>
                     </form>
                 </div>
 
             </div>
+
+            <!-- Modal Change Password-->
+            <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel">Đổi Mật Khẩu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="changePasswordForm">
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                                    <input type="password" class="form-control" id="currentPassword" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="newPassword" required oninput="kiemTraMatKhau()">
+                                    <span id="pass-msg" class="text-danger" style="font-size: 10px;"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required oninput="checkConfirm()">
+                                </div>
+                                <span class="text-danger" id="msg" style="font-size: 10px;"></span>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="savePasswordBtn">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer id="footer" class="footer light-background">
 
-    
+
                 <div class="container copyright text-center mt-4">
-                  <p>© <span>Copyright</span> <strong class="px-1 sitename">Medilab</strong> <span>All Rights Reserved</span></p>
-                  <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you've purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                  </div>
+                    <p>© <span>Copyright</span> <strong class="px-1 sitename">Medilab</strong> <span>All Rights
+                            Reserved</span></p>
+                    <div class="credits">
+                        <!-- All the links in the footer should remain intact. -->
+                        <!-- You can delete the links only if you've purchased the pro version. -->
+                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    </div>
                 </div>
-            
-              </footer>
+
+            </footer>
         </div>
-        
+
     </main>
-    
+
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -291,6 +347,82 @@
     <!-- Main JS File -->
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/sidebarUser.js"></script>
+    <script>
+        function getAvata() {
+            var userId = localStorage.getItem("userId");
+            console.log(userId);
+            // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
+            axiosJWT
+                .get(`/api/Patients/getbyuserid/${userId}`)
+                .then(function (response) {
+                    let bn = response.data;
+                    if (bn.hinhAnh != null) {
+                        $("#avatar").attr('src', "http://localhost:37649" + bn.hinhAnh);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Lỗi không tìm được:", error);
+                });
+        }
+        function kiemTraEmail() {
+            const emailInput = document.getElementById("email");
+            const email = emailInput.value;
+            // Biểu thức chính quy kiểm tra định dạng email hợp lệ
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (emailRegex.test(email)) {
+                emailInput.classList.remove("input-error");
+            } else {
+                emailInput.classList.add("input-error");
+            }
+        }
+        function kiemTraSDT() {
+            const sdtInput = document.getElementById("sdt");
+            const sdt = sdtInput.value;
+            // Biểu thức chính quy kiểm tra định dạng email hợp lệ
+            const sdtRegex = /^0[0-9]*$/;
+
+            if (sdtRegex.test(sdt)) {
+                sdtInput.classList.remove("input-error");
+            } else {
+                sdtInput.classList.add("input-error");
+            }
+        }
+        function kiemTraMatKhau() {
+            const passwordInput = document.getElementById("newPassword");
+
+            const password = passwordInput.value;
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{4,}$/;
+
+            if (regex.test(password)) {
+                passwordInput.classList.remove("input-error");
+                $("#pass-msg").text("");
+            } else {
+                passwordInput.classList.add("input-error");
+                $("#pass-msg").text("Mật khẩu phải chứa ít nhất 1 ký tự hoa, thường, số, ký tự đặc biệt");
+            }
+        }
+        $(document).ready(function () {
+            console.log("co chay");
+            document.getElementById('fileInput').addEventListener('change', function (event) {
+
+                var file = event.target.files[0]; // Lấy file người dùng chọn
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        // Set nguồn ảnh mới cho thẻ <img>
+                        document.getElementById('previewImage').src = e.target.result;
+                    };
+
+                    // Đọc file ảnh dưới dạng Data URL (base64)
+                    reader.readAsDataURL(file);
+                }
+            });
+            getAvata();
+        });
+
+    </script>
 </body>
 
 </html>

@@ -21,6 +21,23 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             _petientService = petientService;
             _doctorService = doctorService;
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllUser()
+        {
+            var res = await _authService.GetAllUserAsync();
+            var ds = new List<UserModel>();
+            foreach (var user in res)
+            {
+                var roles = await _authService.GetUserRole(user.Id);
+                var item = new UserModel();
+                item.Id = user.Id;
+                item.UserName = user.UserName;
+                item.Email = user.Email;
+                item.Roles = roles;
+                ds.Add(item);
+            }
+            return Ok(ds);
+        }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -119,6 +136,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] string email)
+        {
+            var res = await _authService.ResetPasswordAsync(email);
+            if (res.Status == "Error")
+            {
+                return BadRequest(res);
+            }
+            return Ok(res);
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
@@ -150,6 +178,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(new { message = "Không tìm thấy" });
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var res = await _authService.DeleteUserAsync(userId);
+            if (res.Status == "Error")
+            {
+                return BadRequest(res);
+            }
+            return Ok(res);
         }
     }
 }

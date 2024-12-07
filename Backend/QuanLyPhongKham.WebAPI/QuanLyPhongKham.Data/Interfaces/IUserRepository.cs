@@ -22,5 +22,6 @@ namespace QuanLyPhongKham.Data.Interfaces
         Task<ApplicationUser> FindByIdAsync(string userId);
         Task<bool> DeleteUserAsync(string userId);
         Task<bool> ChangePasswordAsync(string username, string curPassword, string newPassword);
+        Task<bool> ResetPassWordAsync(string email);
     }
 }

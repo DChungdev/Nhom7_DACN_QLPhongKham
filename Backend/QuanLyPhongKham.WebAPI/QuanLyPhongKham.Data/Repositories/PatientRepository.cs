@@ -138,11 +138,16 @@ namespace QuanLyPhongKham.Data.Repositories
 
         public async Task<IEnumerable<BenhNhan>> GetAllByDoctorIdAsync(Guid BacSiId)
         {
-            var benhNhans = await _context.BenhNhans
-            .Where(bn => bn.LichKhams.Any(lk => lk.BacSiId == BacSiId))
-            .Include(bn => bn.LichKhams) // Bao gồm các lịch khám của bệnh nhân
-            .ToListAsync();
+            //var benhNhans = await _context.BenhNhans
+            //.Where(bn => bn.LichKhams.Any(lk => lk.BacSiId == BacSiId))
+            //.Include(bn => bn.LichKhams) // Bao gồm các lịch khám của bệnh nhân
+            //.ToListAsync();
 
+            var benhNhans = await _context.LichKhams
+                                    .Where(lk => lk.BacSiId == BacSiId)
+                                    .Select(lk => lk.BenhNhan)
+                                    .Distinct() // Loại bỏ trùng lặp
+                                    .ToListAsync();
             return benhNhans;
         }
 

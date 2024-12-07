@@ -3,13 +3,16 @@ var bnID = "";
 $(document).ready(function () {
     getData();
 
+    $("#refresh-data").click(function(){
+        getData();
+      });
     // Gắn sự kiện cho nút hiển thị modal sửa
     $(document).on("click", ".m-edit", function () {
         // const benhNhanId = $(this).data("id"); // Lấy id từ thuộc tính data-id
         const benhNhanId = $(this).closest("tr").attr("bn-id");
         bnID = benhNhanId;
         const benhNhan = dsBN.find((bn) => bn.benhNhanId === benhNhanId); // Tìm bệnh nhân trong danh sách
-   
+
         if (benhNhan) {
             fillEditModal(benhNhan); // Hiển thị thông tin lên modal
             console.log($("#gender").val());
@@ -19,14 +22,15 @@ $(document).ready(function () {
     });
 
     // Gắn sự kiện cho nút hiển thị modal Thêm
-    $("#btnOpenModalAdd").click(function(){
+    $("#btnOpenModalAdd").click(function () {
         let maBNNext = getMaxBenhNhanCode(dsBN);
         $("#mabn-add").val(maBNNext);
     })
     // Gắn sự kiện cho nút Thêm
-    $("#btnAdd").click(function (){
+    $("#btnAdd").click(function () {
         const genderValue = parseInt($("#gender-add").val());
         const newPatient = {
+            maBenhNhan:  $("#mabn-add").val(),
             hoTen: $("#hoten-add").val(),
             email: $("#email-add").val() || null,
             soDienThoai: $("#sdt-add").val() || null,
@@ -77,6 +81,7 @@ $(document).ready(function () {
             .then(function (response) {
                 console.log("Cập nhật thành công:", response.data);
                 getData(); // Tải lại dữ liệu sau khi cập nhật
+                showSuccessPopup();
             })
             .catch(function (error) {
                 showErrorPopup();
@@ -96,10 +101,10 @@ $(document).ready(function () {
     //     bnID = benhNhanId;
     //     console.log(bnID);
     //     const benhNhan = dsBN.find((bn) => bn.benhNhanId === benhNhanId); // Tìm bệnh nhân trong danh sách
-   
+
     // });
 
-    $("#btnDelete").click(function(){
+    $("#btnDelete").click(function () {
         axiosJWT
             .delete(`/api/Patients/${bnID}`)
             .then(function (response) {
@@ -172,9 +177,13 @@ function fillEditModal(benhNhan) {
     const genderValue = benhNhan.gioiTinh === "Nam" ? 0 : benhNhan.gioiTinh === "Nữ" ? 1 : 2;
     $("#gender-edit").val(genderValue);
 
-    // Gán ngày sinh
+    // // Gán ngày sinh
+    // const formattedDate = benhNhan.ngaySinh
+    //     ? new Date(benhNhan.ngaySinh).toISOString().split("T")[0]
+    //     : "";
+    // $("#ngaysinh").val(formattedDate);
     const formattedDate = benhNhan.ngaySinh
-        ? new Date(benhNhan.ngaySinh).toISOString().split("T")[0]
+        ? new Date(benhNhan.ngaySinh).toLocaleDateString('en-CA') // Định dạng YYYY-MM-DD theo múi giờ cục bộ
         : "";
     $("#ngaysinh").val(formattedDate);
 
@@ -216,4 +225,20 @@ function getMaxBenhNhanCode(dsBN) {
     });
     const nextCode = maxCode + 1;
     return 'BN' + nextCode.toString().padStart(3, '0');
+}
+
+function showSuccessPopup() {
+    // Hiển thị popup
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "visible";  // Hoặc có thể dùng popup.classList.add('visible');
+
+    // Tự động ẩn popup sau 3 giây (3000ms)
+    setTimeout(() => {
+        closePopup();
+    }, 3000);
+}
+
+function closePopup() {
+    const popup = document.getElementById("success-popup");
+    popup.style.visibility = "hidden";  // Ẩn popup
 }

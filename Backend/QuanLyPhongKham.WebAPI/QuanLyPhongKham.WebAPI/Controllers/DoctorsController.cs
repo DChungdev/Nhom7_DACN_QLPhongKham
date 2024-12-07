@@ -13,6 +13,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     public class DoctorsController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
+        private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
         public DoctorsController(IDoctorService doctorService, IMapper mapper)
@@ -34,6 +35,21 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             //Lấy dữ liệu
             var doctorById = await _doctorService.GetByIdAsync(bacSiId);
             return Ok(_mapper.Map<BacSiModel>(doctorById));
+        }
+
+        [HttpGet("getbyuserid/{userId}")]
+        public async Task<IActionResult> GetByUserId(string userId)
+        {
+            var bs = await _doctorService.GetByUserId(userId);
+            return Ok(_mapper.Map<BacSiModel>(bs));
+
+        }
+
+        [HttpGet("doctor/{departmentId}")]
+        public async Task<IActionResult> GetDoctorsByDepartmentId(Guid departmentId)
+        {
+            var doctors = await _doctorService.GetBacSisByKhoaId(departmentId);
+            return Ok(_mapper.Map<IEnumerable<BacSiModel>>(doctors));
         }
 
         [HttpPost]
@@ -74,6 +90,11 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
             // Thực hiện xóa bác sĩ
             var res = await _doctorService.DeleteAsync(bacSiId);
+            var user = await _authService.FindByIdAsync(bs.UserId);
+            if (user != null)
+            {
+                await _authService.DeleteUser(bs.UserId);
+            }
             if (res > 0)
             {
                 // Xóa thành công

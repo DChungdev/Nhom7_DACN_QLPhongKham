@@ -1,30 +1,26 @@
-﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyPhongKham.Business.Interfaces;
-using QuanLyPhongKham.Business.Services;
-using QuanLyPhongKham.Models.Models;
 
 namespace QuanLyPhongKham.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-        private readonly IDepartmentService _departmentService;
-        private readonly IMapper _mapper;
+        private readonly IDepartmentService _departmentsService;
 
-        public DepartmentsController(IDepartmentService departmentService, IMapper mapper)
+        public DepartmentsController(IDepartmentService departmentsService)
         {
-            _departmentService = departmentService;
-            _mapper = mapper;
+            _departmentsService = departmentsService;
         }
 
+        
         [HttpGet]
-        public async Task<ActionResult> GetAllKhoas()
+        public async Task<IActionResult> Get()
         {
-            var khoas = await _departmentService.GetAllAsync();
-            return Ok(khoas); // Trả về danh sách khoa dưới dạng JSON
+            var departments = await _departmentsService.GetAllAsync();
+            return Ok(departments);
         }
     }
 }

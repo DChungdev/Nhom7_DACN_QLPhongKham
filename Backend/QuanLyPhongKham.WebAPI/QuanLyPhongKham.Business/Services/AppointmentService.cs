@@ -27,7 +27,7 @@ namespace QuanLyPhongKham.Business.Services
         public override async Task<int> AddAsync(LichKham entity)
         {
             var checkData = await CheckDataValidate(entity);
-            var existingLichKhams = await _appointmentRepository.GetLichKhamByDateAndTimeAsync((DateTime) entity.NgayKham, entity.GioKham);
+            var existingLichKhams = await _appointmentRepository.GetLichKhamByDateAndTimeAsync((DateTime)entity.NgayKham, entity.GioKham);
             var count = existingLichKhams.Count(lk => lk.TrangThaiLichKham == "Đang xử lý" || lk.TrangThaiLichKham == "Đã đặt");
 
             // Kiểm tra giới hạn tối đa
@@ -93,14 +93,14 @@ namespace QuanLyPhongKham.Business.Services
             }
             //2.Kiểm tra dữ liệu
             var checkData = await CheckDataValidate(lichKham);
-            if(appointment.TrangThaiLichKham == "Đã hủy" || appointment.TrangThaiLichKham == "Hoàn thành")
+            if (appointment.TrangThaiLichKham == "Đã hủy" || appointment.TrangThaiLichKham == "Hoàn thành")
             {
                 throw new ErrorEditException();
             }
 
-            if(appointment.NgayKham != lichKham.NgayKham || appointment.GioKham != lichKham.GioKham)
+            if (appointment.NgayKham != lichKham.NgayKham || appointment.GioKham != lichKham.GioKham)
             {
-                var appointments = await _appointmentRepository.GetLichKhamByDateAndTimeAsync((DateTime) lichKham.NgayKham, lichKham.GioKham);
+                var appointments = await _appointmentRepository.GetLichKhamByDateAndTimeAsync((DateTime)lichKham.NgayKham, lichKham.GioKham);
                 var count = appointments.Count(l => l.TrangThaiLichKham == "Đang xử lý" || l.TrangThaiLichKham == "Đã đặt");
                 if (count >= 3)
                 {
@@ -114,12 +114,6 @@ namespace QuanLyPhongKham.Business.Services
             }
             else
             {
-                //appointment.BenhNhanId = lichKham.BenhNhanId;
-                //appointment.BacSiId = lichKham.BacSiId;
-                //appointment.NgayKham = lichKham.NgayKham;
-                //appointment.GioKham = lichKham.GioKham;
-                //appointment.TrangThaiLichKham = "Đang xử lý";
-                //appointment.NgayCapNhat = DateTime.Now;
                 int res = await _appointmentRepository.UpdateAsync(appointment);
                 if (res > 0)
                 {
@@ -250,5 +244,27 @@ namespace QuanLyPhongKham.Business.Services
             return errorData;
         }
 
+        public async Task<int> AcceptAppointment(Guid id)
+        {
+            var appointment = await _repository.GetByIdAsync(id);
+            if (appointment == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            else
+            {
+                if(appointment.TrangThaiLichKham == "Đang xử lý")
+                {
+                    appointment.TrangThaiLichKham = "Đã đặt";
+                    int res = await _repository.UpdateAsync(appointment);
+                    if (res > 0)
+                    {
+                        return res;
+                    }
+                    throw new ErrorEditException();
+                }
+                throw new ErrorEditException();
+            }
+        }
     }
 }

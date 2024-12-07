@@ -13,11 +13,30 @@ namespace QuanLyPhongKham.WebAPI.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IPatientService _petientService;
+        private readonly IDoctorService _doctorService;
 
-        public AuthController(IAuthService authService, IPatientService petientService)
+        public AuthController(IAuthService authService, IPatientService petientService, IDoctorService doctorService)
         {
             _authService = authService;
             _petientService = petientService;
+            _doctorService = doctorService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllUser()
+        {
+            var res = await _authService.GetAllUserAsync();
+            var ds = new List<UserModel>();
+            foreach (var user in res)
+            {
+                var roles = await _authService.GetUserRole(user.Id);
+                var item = new UserModel();
+                item.Id = user.Id;
+                item.UserName = user.UserName;
+                item.Email = user.Email;
+                item.Roles = roles;
+                ds.Add(item);
+            }
+            return Ok(ds);
         }
 
         [HttpPost("register")]
@@ -54,6 +73,16 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var result = await _authService.RegisterDoctorAsync(model);
             if (result.Status == "Success")
             {
+                //BenhNhan bn = new BenhNhan();
+                //bn.Email = model.Email;
+                //bn.HoTen = model.Username;
+                //bn.UserId = result.Data.ToString();
+                //await _petientService.AddAsync(bn);
+                BacSi bs = new BacSi();
+                bs.Email = model.Email;
+                bs.HoTen = model.Username;
+                bs.UserId = result.Data.ToString();
+                await _doctorService.AddAsync(bs);
                 return Ok(result); // Trả về thông báo thành công
             }
 
@@ -107,6 +136,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] string email)
+        {
+            var res = await _authService.ResetPasswordAsync(email);
+            if (res.Status == "Error")
+            {
+                return BadRequest(res);
+            }
+            return Ok(res);
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
@@ -138,6 +178,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(new { message = "Không tìm thấy" });
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var res = await _authService.DeleteUserAsync(userId);
+            if (res.Status == "Error")
+            {
+                return BadRequest(res);
+            }
+            return Ok(res);
         }
     }
 }

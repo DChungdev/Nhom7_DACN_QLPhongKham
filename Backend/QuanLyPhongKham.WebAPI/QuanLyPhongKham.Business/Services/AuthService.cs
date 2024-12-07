@@ -123,7 +123,7 @@ namespace QuanLyPhongKham.Business.Services
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Doctor));
             }
             await _userRepository.AddToRoleAsync(user, UserRoles.Doctor);
-            return new Response { Status = "Success", Message = "User created successfully!" };
+            return new Response { Status = "Success", Message = "User created successfully!", Data = user.Id };
         }
 
         public async Task<Response> RegisterAdminAsync(RegisterModel model)
@@ -310,6 +310,46 @@ namespace QuanLyPhongKham.Business.Services
             var user = await _userRepository.FindByNameAsync(userName);
             if (user == null) return "Invalid user name";
             return user.Id;
+        }
+
+        public async Task<Response> ResetPasswordAsync(string email)
+        {
+            var res = await _userRepository.ResetPassWordAsync(email);
+            if (!res)
+            {
+                return new Response { Status = "Error", Message = "Có lỗi xảy ra!" };
+            }
+            return new Response { Status = "Success", Message = "Reset mật khẩu thành công" };
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> GetAllUserAsync()
+        {
+            var res = await _userRepository.GetAllUserAsync();
+            return res;
+        }
+
+        public async Task<IList<string>> GetUserRole(string userId)
+        {
+            var user = await _userRepository.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+
+            // Lấy danh sách các vai trò của người dùng
+            var roles = await _userRepository.GetRolesAsync(user);
+            return roles;
+
+        }
+
+        public async Task<Response> DeleteUserAsync(string userId)
+        {
+            var res = await _userRepository.DeleteUserAsync(userId);
+            if (!res)
+            {
+                return new Response { Status = "Error", Message = "Có lỗi xảy ra!" };
+            }
+            return new Response { Status = "Success", Message = "Xóa người dùng thành công" };
         }
     }
 }

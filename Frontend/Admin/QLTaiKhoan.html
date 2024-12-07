@@ -17,12 +17,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/content.css" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="../assets/vendor/axios.min.js"></script>
+    <script src="../assets/services/axios.js"></script>
+    <script src="../assets/services/qlTaiKhoanService.js"></script>
     <style>
         .m-input1 {
             height: 36px;
@@ -33,10 +31,43 @@
             font-size: 14px;
             outline: none;
         }
+         /* CSS cho viền đỏ */
+         .input-error {
+            border: 2px solid red !important;
+        }
+
+        /* CSS cho thông báo lỗi */
+        .error-message {
+            color: red;
+            font-size: 11px;
+            visibility: hidden;
+        }
     </style>
 </head>
 
 <body>
+    <div class="m-popup-block" id="success-popup" style="top: 8%;z-index: 101;">
+        <div class="m-popup-item">
+          <div class="m-popup-icon m-popup-icon-success"></div>
+          <div class="m-popup-text-success">
+            <span>Thành công!</span>
+          </div>
+          <div class="m-popup-tool">
+            <span class="m-popup-close">x</span>
+          </div>
+        </div>
+      </div>
+    <div id="error-popup" class="m-popup-block" style="top: 8%; z-index: 100;">
+        <div class="m-popup-item">
+          <!-- <div class="m-popup-icon m-popup-icon-error"></div> -->
+          <div class="m-popup-text-error" style="width: calc(100% - 80px);">
+            <span>Có lỗi xảy ra!</span>
+          </div>
+          <div class="m-popup-tool">
+            <div class="">x</div>
+          </div>
+        </div>
+      </div>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -207,8 +238,9 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link sidebar-link" href="QLTaiChinh.html" aria-expanded="false"><i
-                                    data-feather="dollar-sign" class="feather-icon"></i><span class="hide-menu">Tài chính</span></a>
-                        </li>                        
+                                    data-feather="dollar-sign" class="feather-icon"></i><span class="hide-menu">Tài
+                                    chính</span></a>
+                        </li>
 
                         <li class="list-divider"></li>
                         <li class="nav-small-cap">
@@ -271,53 +303,26 @@
                         <div class="m-toolbar-export m-toolbar-icon">
                             <i class="fas fa-download" style="color: #35a9d0"></i>
                         </div>
-                        <div class="m-toolbar-refresh m-toolbar-icon">
+                        <div id="refresh-data" class="m-toolbar-refresh m-toolbar-icon">
                             <i class="fas fa-sync-alt" style="color: #35a9d0"></i>
                         </div>
                     </div>
                 </div>
                 <div class="data-table">
-                    <table id="tblEmployee" class="table-hover">
+                    <table id="tblTaiKhoan" class="table-hover">
                         <thead class="table-success">
                             <tr>
-                                <th class="chk">
-                                    <input type="checkbox" id="check-all" />
-                                </th>
                                 <th style="display: none"></th>
-                                <th class="m-data-left">STT</th>
-                                <th class="m-data-left" style="width: 190px">Tài khoản</th>
-                                <th class="m-data-left" style="width: 190px">Số điện thoại</th>
+                                <th class="text-center">STT</th>
+                                <th class="text-center" style="width: 190px">Tài khoản</th>
                                 <th class="text-center">Địa chỉ Email</th>
-                                <th class="m-data-left">Vai trò</th>
+                                <!-- <th class="m-data-left">Vai trò</th> -->
+                                <th class="text-center">Vai trò</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="chk"><input type="checkbox" /></td>
-                                <td empIdCell style="display: none"></td>
-                                <td>1</td>
-                                <td>Admin</td>
-                                <td>0123456789</td>
-                                <td>chung12345@gmail.com</td>
-                                <td>Admin</td>
-                                <td>
-                                    <div class="m-table-tool">
-                                        <div class="m-edit m-tool-icon" data-bs-toggle="modal"
-                                            data-bs-target="#dialog-appointment">
-                                            <i class="fas fa-edit text-primary"></i>
-                                        </div>
-                                        <div class="m-delete m-tool-icon" data-bs-toggle="modal"
-                                            data-bs-target="#dialog-confirm-delete">
-                                            <i class="fas fa-trash-alt text-danger"></i>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-
                         </tbody>
                     </table>
                 </div>
@@ -338,46 +343,68 @@
                                 <div class="row-item d-flex">
                                     <div class="col-6 ps-0">
                                         <div class="title-input ">Username</div>
-                                        <input type="text" class="m-input1 col-12">
+                                        <input id="username-add" type="text" class="m-input1 col-12">
                                     </div>
-                                    <div class="col-6 ps-0">
+                                    <div class="col-6">
                                         <div class="title-input">Password</div>
-                                        <input type="text" class="m-input1 col-12">
+                                        <input id="password-add" type="text" class="m-input1 col-12" oninput="kiemTraMatKhau()">
+                                        <div id="error-message" class="error-message">
+                                            Mật khẩu phải có chữ hoa, chữ thường và ký tự đặc biệt.
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row-item">
+                                <div class="row-item-long">
+                                    <div class="input-item">
+                                        <div class="title-input">Email</div>
+                                        <input id="email-add" type="text" class="m-input" oninput="kiemTraEmail()">
+                                        <div id="email-error-message" class="error-message">
+                                            Vui lòng nhập địa chỉ email hợp lệ.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row-item-long">
                                     <div class="col-12 ps-0">
-                                        <div class="title-input ">Email</div>
-                                        <input type="text" class="m-input1 col-12">
-                                    </div>
-                                </div>
-                                <div class="row-item d-flex">
-                                    <div class="col-6 ps-0">
-                                        <div class="title-input">Số điện thoại</div>
-                                        <input type="text" class="m-input1 col-12">
-                                    </div>
-                                    <div class="col-6 ps-0">
                                         <div class="title-input">Vai trò</div>
-                                        <select name="doctor" id="doctor" class="col-12">
+                                        <select name="doctor" id="role-add" class="col-12">
                                             <option value="0">Admin</option>
                                             <option value="1">Bác sĩ</option>
                                             <option value="2">Bệnh nhân</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row-item-long">
-                                    <div class="input-item">
-                                        <div class="title-input">Địa chỉ</div>
-                                        <input type="text" class="m-input1">
-                                    </div>
-                                </div>
+
                             </div>
 
                             <!-- Modal footer -->
                             <div class="modal-footer" style="background: rgb(232, 232, 232);">
                                 <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Hủy</button>
-                                <button type="button" id="btnAdd" class="btn btn-success"
+                                <button type="button" id="btnAddAccount" class="btn btn-success"
                                     data-bs-dismiss="modal">Thêm</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- DIALOG XÁC NHẬN RESET MK -->
+                <div class="modal fade" id="dialog-confirm-reset">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Xác nhận reset mật khẩu</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="content">Bạn có chắc chắn muốn reset mật khẩu mặc định cho tài khoản này? </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer" style="background: rgb(232, 232, 232);">
+                                <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Hủy</button>
+                                <button type="button" id="btnReset" class="btn btn-danger" data-bs-dismiss="modal">Reset</button>
                             </div>
 
                         </div>
@@ -396,7 +423,7 @@
 
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <div class="content">Bạn có chắc chắn muốn xóa </div>
+                                <div class="content">Bạn có chắc chắn muốn xóa? </div>
                             </div>
                             <!-- Modal footer -->
                             <div class="modal-footer" style="background: rgb(232, 232, 232);">
@@ -448,6 +475,38 @@
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <!-- <script src="../assets/js/pages/dashboards/dashboard1.min.js"></script> -->
+
+    <script>
+        function kiemTraMatKhau() {
+                const passwordInput = document.getElementById("password-add");
+                const errorMessage = document.getElementById("error-message");
+                const password = passwordInput.value;
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{4,}$/;
+    
+                if (regex.test(password)) {
+                    passwordInput.classList.remove("input-error");
+                    errorMessage.style.visibility = "hidden";  // Ẩn thông báo
+                } else {
+                    passwordInput.classList.add("input-error");
+                    errorMessage.style.visibility = "visible";  // Hiển thị thông báo
+                }
+            }
+            function kiemTraEmail() {
+                const emailInput = document.getElementById("email-add");
+                const emailErrorMessage = document.getElementById("email-error-message");
+                const email = emailInput.value;
+                // Biểu thức chính quy kiểm tra định dạng email hợp lệ
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    
+                if (emailRegex.test(email)) {
+                    emailInput.classList.remove("input-error");
+                    emailErrorMessage.style.visibility = "hidden";  // Ẩn thông báo
+                } else {
+                    emailInput.classList.add("input-error");
+                    emailErrorMessage.style.visibility = "visible";  // Hiển thị thông báo
+                }
+            }
+    </script>
 </body>
 
 </html>

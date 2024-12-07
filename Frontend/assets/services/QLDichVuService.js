@@ -2,20 +2,32 @@ let services = []; // Biến lưu trữ toàn bộ danh sách dịch vụ
 
 $(document).ready(function () {
     loadServices(); // Tải danh sách dịch vụ khi trang được load
-
+    loadKhoas(); // Gọi hàm để tải danh sách khoa
+    $(".m-input-search").on("input", function () {
+        const searchValue = removeAccents($(this).val().toLowerCase()); // Lấy giá trị nhập vào và chuẩn hóa
+        filterServices(searchValue); // Gọi hàm lọc danh sách
+    });
+    
     // Gắn sự kiện cho nút hiển thị modal Thêm
     $("#btnThemMoi").click(function(){
         let maDVNext = getMaxDichVuCode(services);
+        $('#dialog-add input[type="text"]').val(""); 
+        $('#khoaSelect').val("");
         $('#dialog-add input[type="text"]').eq(1).val(maDVNext);
+        loadKhoas('khoaSelect');
+
     })
+
     // Sự kiện thêm mới dịch vụ
     $('#btnAdd').on('click', function () {
+        const khoaIdValue = $('#khoaSelect').val(); // Lấy giá trị khoa từ dropdown
         const newService = {
             maDichVu: $('#dialog-add input[type="text"]').eq(1).val(),
             tenDichVu: $('#dialog-add input[type="text"]').eq(0).val(),
             donGia: parseFloat($('#dialog-add input[type="text"]').eq(2).val()),
             ngayTao: $('#dialog-add input[type="date"]').val(),
             moTaDichVu: $('#dialog-add input[type="text"]').eq(3).val(),
+            khoaId: khoaIdValue === "" ? null : khoaIdValue // Nếu không chọn thì để null
         };
 
         axiosJWT.post('/api/Services', newService)
@@ -46,8 +58,12 @@ $(document).ready(function () {
         $('#dialog-edit input[type="date"]').eq(0).val(service.ngayTao.split('T')[0]);
         $('#dialog-edit input[type="text"]').eq(3).val(service.moTaDichVu);
 
+        // Tải danh sách khoa và chọn khoa hiện tại
+        loadKhoas('editKhoaSelect', service.khoaId);
+
         // Sự kiện sửa
         $('#btnEdit').off('click').on('click', function () {
+            const khoaIdValue = $('#editKhoaSelect').val(); // Lấy giá trị từ dropdown
             const updatedService = {
                 dichVuId: serviceId,
                 maDichVu: service.maDichVu,
@@ -55,6 +71,7 @@ $(document).ready(function () {
                 donGia: parseFloat($('#dialog-edit input[type="text"]').eq(2).val()),
                 ngayCapNhat: $('#dialog-edit input[type="date"]').eq(1).val(),
                 moTaDichVu: $('#dialog-edit input[type="text"]').eq(3).val(),
+                khoaId: khoaIdValue === "" ? null : khoaIdValue // Nếu không chọn thì để null
             };
 
             axiosJWT.put(`/api/Services/${serviceId}`, updatedService)
@@ -112,6 +129,28 @@ function loadServices() {
             console.error('Lỗi khi tải danh sách dịch vụ:', error);
         });
 }
+
+function loadKhoas(selectId, selectedKhoaId = null) {
+    axiosJWT
+        .get(`/api/v1/Departments`)
+        .then(function (response) {
+            const khoas = response.data;
+            const khoaSelect = $(`#${selectId}`); // Lấy thẻ <select> từ HTML
+            // Xóa danh sách cũ nếu có
+            khoaSelect.empty();
+
+            khoaSelect.append(`<option value="">Chọn khoa</option>`);
+            khoas.forEach(khoa => {
+                const isSelected = selectedKhoaId === khoa.khoaId ? 'selected' : '';
+                const option = `<option value="${khoa.khoaId}" ${isSelected}>${khoa.tenKhoa}</option>`;
+                khoaSelect.append(option); // Thêm từng khoa vào <select>
+            });
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi lấy danh sách khoa:", error);
+        });
+}
+
 
 // Hàm hiển thị danh sách dịch vụ
 function displayServices(data) {
@@ -182,4 +221,20 @@ function getMaxDichVuCode(service) {
     });
     const nextCode = maxCode + 1;
     return 'DV' + nextCode.toString().padStart(3, '0');
+}
+
+// Hàm lọc danh sách dịch vụ theo từ khóa tìm kiếm
+function filterServices(searchValue) {
+    const filteredServices = services.filter(service =>
+        removeAccents(service.tenDichVu.toLowerCase()).includes(searchValue)
+    );
+    displayServices(filteredServices); // Hiển thị danh sách sau khi lọc
+}
+
+// Hàm loại bỏ dấu tiếng Việt và chuyển thành chữ thường
+function removeAccents(str) {
+    return str
+        .normalize("NFD") // Chuẩn hóa chuỗi Unicode
+        .replace(/[\u0300-\u036f]/g, "") // Loại bỏ các dấu tiếng Việt
+        .toLowerCase(); // Chuyển thành chữ thường
 }

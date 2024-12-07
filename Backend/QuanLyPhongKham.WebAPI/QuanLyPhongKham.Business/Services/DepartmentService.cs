@@ -1,4 +1,4 @@
-﻿using QuanLyPhongKham.Business.Interfaces;
+using QuanLyPhongKham.Business.Interfaces;
 using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Models.Entities;
 using System;

@@ -40,6 +40,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         public async Task<IActionResult> GetAll()
         {
             var appoinments = await _appointmentService.GetAllAsync();
+            appoinments = appoinments.OrderByDescending(l => l.NgayCapNhat).ToList();
             return Ok(_mapper.Map<IEnumerable<AppointmentModel>>(appoinments));
         }
         /// <summary>
@@ -154,7 +155,14 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         public async Task<IActionResult> GetAppointmentsByPatient(Guid PatientId)
         {
             var lichKhams = await _appointmentService.GetAppointmentsByPatient(PatientId);
+            lichKhams = lichKhams.OrderByDescending(l => l.NgayCapNhat).ToList();
             return Ok(_mapper.Map<IEnumerable<AppointmentModel>>(lichKhams));
+        }
+        [HttpGet("appointment/{PatientId}")]
+        public async Task<IActionResult> GetAppointmentLatest(Guid PatientId)
+        {
+            var lichKham = await _appointmentService.GetLichKhamLatest(PatientId);
+            return Ok(_mapper.Map<AppointmentModel>(lichKham));
         }
     }
 }

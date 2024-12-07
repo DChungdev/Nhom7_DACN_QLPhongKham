@@ -85,8 +85,11 @@ $(document).ready(function () {
             }
         }
 
-        // Sau khi upload file thành công (hoặc không có file), gửi yêu cầu cập nhật thông tin bệnh nhân
-        let ngaySinh = $("#ngaysinh").val() + "T00:00:00";
+        // Sau khi upload file thành công (hoặc không có file),
+        let ngaySinh;
+        if ($("#ngaysinh").val() != "") {
+            ngaySinh = $("#ngaysinh").val() + "T00:00:00";
+        }
         let checkedRadio = $('input[name="gender"]:checked');
         let valueGT = checkedRadio.val();
 

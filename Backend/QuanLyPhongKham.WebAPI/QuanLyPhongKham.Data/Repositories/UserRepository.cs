@@ -122,7 +122,7 @@ namespace QuanLyPhongKham.Data.Repositories
 
         public async Task<bool> ResetPassWordAsync(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByIdAsync(email);
             if (user == null)
             {
                 throw new ErrorNotFoundException();

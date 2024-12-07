@@ -58,12 +58,8 @@ $(document).ready(function () {
   });
 
   $("#btnReset").click(function () {
-    const account = dsTK.find((tk) => tk.id === accountId);
-
-    if (account) {
-      let email = `"${account.email}"`; // Đóng chuỗi email trong dấu ngoặc kép
       axiosJWT
-        .post(`/api/Auth/reset-password`, email, {
+        .post(`/api/Auth/reset-password`, accountId, {
           headers: {
             "Content-Type": "application/json", // Định dạng dữ liệu là JSON
           },
@@ -75,10 +71,6 @@ $(document).ready(function () {
           showErrorPopup();
           console.error("Lỗi không tìm được:", error);
         });
-    }
-    else {
-
-    }
   })
 
   $("#btnDelete").click(function(){

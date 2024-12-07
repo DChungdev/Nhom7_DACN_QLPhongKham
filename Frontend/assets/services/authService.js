@@ -41,15 +41,15 @@ $(document).ready(function () {
 
                 // Kiểm tra role và chuyển hướng
                 if (userRole === 'Admin') {
-                    window.location.href = '/Admin/MainAdmin.html'; // Chuyển hướng admin
+                    window.location.href = '/Frontend/Admin/MainAdmin.html'; // Chuyển hướng admin
                     console.log(username);
                     $("#displayUser").text(username);
                 }
                 else if (userRole === 'Patient') {
-                    window.location.href = '/User/index.html'; // Chuyển hướng user
+                    window.location.href = '/Frontend/User/index.html'; // Chuyển hướng user
                 }
                 else if (userRole === 'Doctor') {
-                    window.location.href = '/User/index.html';
+                    window.location.href = '/Frontend/User/index.html';
                 }
             })
             .catch(function (error) {

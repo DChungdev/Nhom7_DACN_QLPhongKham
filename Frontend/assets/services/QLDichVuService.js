@@ -1,5 +1,5 @@
 let services = []; // Biến lưu trữ toàn bộ danh sách dịch vụ
-
+let khoas = []; 
 $(document).ready(function () {
     loadServices(); // Tải danh sách dịch vụ khi trang được load
     loadKhoas(); // Gọi hàm để tải danh sách khoa
@@ -134,7 +134,7 @@ function loadKhoas(selectId, selectedKhoaId = null) {
     axiosJWT
         .get(`/api/v1/Departments`)
         .then(function (response) {
-            const khoas = response.data;
+            khoas = response.data;
             const khoaSelect = $(`#${selectId}`); // Lấy thẻ <select> từ HTML
             // Xóa danh sách cũ nếu có
             khoaSelect.empty();
@@ -164,6 +164,8 @@ function displayServices(data) {
 
     // Lặp qua danh sách dịch vụ và tạo từng dòng
     data.forEach((service, index) => {
+        const khoa = khoas.find(k => k.khoaId === service.khoaId);
+        const khoaName = khoa ? khoa.tenKhoa : "Chưa phân khoa";
         const serviceRow = `
             <tr>
                 <td class="chk"><input type="checkbox" /></td>
@@ -171,6 +173,7 @@ function displayServices(data) {
                 <td>${index + 1}</td>
                 <td>${service.tenDichVu}</td>
                 <td>${service.donGia.toLocaleString()}đ</td>
+                <td>${khoaName}</td> <!-- Hiển thị tên khoa -->
                 <td>${service.moTaDichVu || "Không có mô tả"}</td>
                 <td>${formatDate(service.ngayTao)}</td>
                 <td>${formatDate(service.ngayCapNhat)}</td>

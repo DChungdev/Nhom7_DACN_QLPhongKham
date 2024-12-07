@@ -11,6 +11,8 @@ $(document).ready(function () {
     // Gắn sự kiện cho nút hiển thị modal Thêm
     $("#btnThemMoi").click(function(){
         let maDVNext = getMaxDichVuCode(services);
+        $('#dialog-add input[type="text"]').val(""); 
+        $('#khoaSelect').val("");
         $('#dialog-add input[type="text"]').eq(1).val(maDVNext);
         loadKhoas('khoaSelect');
 
@@ -130,7 +132,7 @@ function loadServices() {
 
 function loadKhoas(selectId, selectedKhoaId = null) {
     axiosJWT
-        .get(`/api/Departments`)
+        .get(`/api/v1/Departments`)
         .then(function (response) {
             const khoas = response.data;
             const khoaSelect = $(`#${selectId}`); // Lấy thẻ <select> từ HTML

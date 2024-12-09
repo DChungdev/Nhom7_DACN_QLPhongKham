@@ -32,15 +32,15 @@
 <body>
   <div class="m-popup-block" id="success-popup" style="top: 8%;z-index: 101;">
     <div class="m-popup-item">
-        <div class="m-popup-icon m-popup-icon-success"></div>
-        <div class="m-popup-text-success">
-            <span>Sửa thông tin thành công!</span>
-        </div>
-        <div class="m-popup-tool">
-            <span class="m-popup-close">x</span>
-        </div>
+      <div class="m-popup-icon m-popup-icon-success"></div>
+      <div class="m-popup-text-success">
+        <span>Sửa thông tin thành công!</span>
+      </div>
+      <div class="m-popup-tool">
+        <span class="m-popup-close">x</span>
+      </div>
     </div>
-</div>
+  </div>
   <div id="error-popup" class="m-popup-block" style="top: 8%; z-index: 100;">
     <div class="m-popup-item">
       <!-- <div class="m-popup-icon m-popup-icon-error"></div> -->
@@ -274,7 +274,7 @@
             <div class="m-toolbar-export m-toolbar-icon">
               <i class="fas fa-download" style="color: #35a9d0"></i>
             </div>
-            <div class="m-toolbar-refresh m-toolbar-icon">
+            <div id="refresh-data" class="m-toolbar-refresh m-toolbar-icon">
               <i class="fas fa-sync-alt" style="color: #35a9d0"></i>
             </div>
           </div>
@@ -526,18 +526,18 @@
 
     // Kiểm tra nếu email trống
     if (emailInput.value.trim() === "") {
-        emailInput.style.border = "2px solid red"; // Viền đỏ khi trống
-        emailInput.setCustomValidity("Email không được để trống");
-    } 
+      emailInput.style.border = "2px solid red"; // Viền đỏ khi trống
+      emailInput.setCustomValidity("Email không được để trống");
+    }
     // Kiểm tra email hợp lệ
     else if (!emailRegex.test(emailInput.value)) {
-        emailInput.style.border = "2px solid red"; // Viền đỏ nếu email không hợp lệ
-        emailInput.setCustomValidity("Email không hợp lệ");
+      emailInput.style.border = "2px solid red"; // Viền đỏ nếu email không hợp lệ
+      emailInput.setCustomValidity("Email không hợp lệ");
     } else {
-        emailInput.style.border = ""; // Xóa viền đỏ nếu email hợp lệ
-        emailInput.setCustomValidity(""); // Không có lỗi
+      emailInput.style.border = ""; // Xóa viền đỏ nếu email hợp lệ
+      emailInput.setCustomValidity(""); // Không có lỗi
     }
-}
+  }
 
 
 

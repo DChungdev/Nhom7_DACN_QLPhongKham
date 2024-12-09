@@ -98,6 +98,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
 // Sử dụng CORS
 app.UseCors("AllowAll");
 

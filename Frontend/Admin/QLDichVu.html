@@ -261,7 +261,7 @@
         </div>
         <div class="m-toolbar-table">
           <div class="m-toolbar-quickfilter">
-            <input class="m-input m-input-icon m-input-search" type="text" placeholder="Tìm kiếm theo mã, họ tên" />
+            <input class="m-input m-input-icon m-input-search" type="text" placeholder="Tìm kiếm theo tên" />
           </div>
           <div class="m-toolbar-actionbar">
             <div class="m-toolbar-export m-toolbar-icon">
@@ -281,9 +281,10 @@
                 </th>
                 <th style="display: none"></th>
                 <th class="m-data-left" style="width: 50px">STT</th>
-                <th class="m-data-left" style="width: 250px">Tên dịch vụ</th>
+                <th class="m-data-left" style="width: 220px">Tên dịch vụ</th>
                 <th class="m-data-left" style="width: 125px;">Giá</th>
-                <th class="m-data-left" style="width: 380px">Mô tả</th>
+                <th class="m-data-left" style="width: 150px">Khoa</th>
+                <th class="m-data-left" style="width: 350px">Mô tả</th>
                 <th class="m-data-left" style="width: 120px">Ngày tạo</th>
                 <th class="m-data-left">Ngày cập nhật</th>
                 <th></th>
@@ -316,6 +317,12 @@
                     <input type="text" class="m-input">
                   </div>
 
+                  <div class="input-item">
+                    <div class="title-input">Khoa</div>
+                    <select id="khoaSelect" class="form-control">
+                        <option value="" disabled selected>Chọn khoa</option>
+                    </select>
+                  </div>
                   
                 </div>
                 <div class="row-item d-flex">
@@ -372,7 +379,14 @@
                     <input type="text" class="m-input">
                   </div>
 
-                  
+                  <div class="input-item">
+                    <div class="title-input">Khoa</div>
+                    <select id="editKhoaSelect" class="form-control">
+                        <option value="" disabled selected>Chọn khoa</option>
+                    </select>
+                </div>
+                
+
                 </div>
                 <div class="row-item d-flex">
                   <div class="input-item ">

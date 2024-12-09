@@ -3,37 +3,154 @@ $(document).ready(function () {
 
     getData();
 
-    $('#suaThongTin').on('submit', function (e) {
-        e.preventDefault();
+    // $('#suaThongTin').on('submit', function (e) {
+    //     e.preventDefault();
+    //     let imgUrl;
+    //     let fileInput = document.getElementById('fileInput');
+    //     let file = fileInput.files[0];
+    //     if (file) {
+    //         // Tạo đối tượng FormData và append file vào đó
+    //         var formData = new FormData();
+    //         formData.append("file", file);
 
-        let ngaySinh = $("#ngaysinh").val() + "T00:00:00";
+    //         // Sử dụng Axios để gửi file
+    //         axiosJWT
+    //             .post('/api/Files/upload', formData)
+    //             .then(function (response) {
+    //                 // Thành công, nhận URL từ phản hồi
+    //                 console.log("File URL: ", response.data.fileUrl);
+    //                 imgUrl = response.data.fileUrl
+    //                 // Hiển thị ảnh vừa upload (nếu cần)
+    //                 document.getElementById('uploadedImage').src = "http://localhost:37649" + response.data.fileUrl;
+    //             })
+    //             .catch(function (error) {
+    //                 console.error(error);
+    //             });
+    //     }
+    //     console.log(imgUrl);
+    //     let ngaySinh = $("#ngaysinh").val() + "T00:00:00";
+    //     let checkedRadio = $('input[name="gender"]:checked');
+    //     let valueGT = checkedRadio.val();
+    //     // Gửi request đăng ký
+    //     axiosJWT
+    //         .put(`/api/Patients/${bn.benhNhanId}`, {
+    //             benhNhanId: bn.benhNhanId,
+    //             maBenhNhan: bn.maBenhNhan,
+    //             hoTen: $("#hoten").val(),
+    //             hinhAnh: imgUrl,
+    //             ngaySinh: ngaySinh,
+    //             loaiGioiTinh: parseInt(valueGT),
+    //             soDienThoai: $("#sdt").val(),
+    //             email: $("#email").val(),
+    //             diaChi: $("#diachi").val(),
+    //             tienSuBenhLy: $("#tiensubenhly").val()
+    //         })
+    //         .then(function (response) {
+    //             console.log('Cập nhật thông tin thành công:', response);
+    //             getData();
+    //             showSuccessPopup();
+    //         })
+    //         .catch(function (error) {
+    //             showErrorPopup();
+    //             console.error("Lỗi khi đăng ký:", error);
+    //         });
+    // });
+
+    $('#suaThongTin').on('submit', async function (e) {
+        e.preventDefault();
+        let imgUrl;  // Khai báo imgUrl ở bên ngoài để sử dụng trong toàn bộ hàm
+        let fileInput = document.getElementById('fileInput');
+        let file = fileInput.files[0];
+
+        // Nếu có file, upload file trước khi gửi request cập nhật bệnh nhân
+        if (file) {
+            try {
+                // Tạo đối tượng FormData và append file vào đó
+                var formData = new FormData();
+                formData.append("file", file);
+
+                // Sử dụng Axios để gửi file và chờ đợi kết quả
+                const response = await axiosJWT.post('/api/Files/upload', formData);
+
+                // Thành công, nhận URL từ phản hồi
+                console.log("File URL: ", response.data.fileUrl);
+                imgUrl = response.data.fileUrl;
+
+                // Hiển thị ảnh vừa upload (nếu cần)
+
+
+            } catch (error) {
+                console.error("Lỗi khi upload file:", error);
+                return;  // Nếu upload file thất bại, không tiếp tục gửi yêu cầu cập nhật bệnh nhân
+            }
+        }
+
+        // Sau khi upload file thành công (hoặc không có file),
+        let ngaySinh;
+        if ($("#ngaysinh").val() != "") {
+            ngaySinh = $("#ngaysinh").val() + "T00:00:00";
+        }
         let checkedRadio = $('input[name="gender"]:checked');
         let valueGT = checkedRadio.val();
-        // Gửi request đăng ký
-        axiosJWT
-            .put(`/api/Patients/${bn.benhNhanId}`, {
+
+        try {
+            const updateResponse = await axiosJWT.put(`/api/Patients/${bn.benhNhanId}`, {
                 benhNhanId: bn.benhNhanId,
                 maBenhNhan: bn.maBenhNhan,
                 hoTen: $("#hoten").val(),
+                hinhAnh: imgUrl,  // imgUrl có thể là null nếu không có file
                 ngaySinh: ngaySinh,
                 loaiGioiTinh: parseInt(valueGT),
                 soDienThoai: $("#sdt").val(),
                 email: $("#email").val(),
                 diaChi: $("#diachi").val(),
                 tienSuBenhLy: $("#tiensubenhly").val()
-            })
+            });
+
+            console.log('Cập nhật thông tin thành công:', updateResponse);
+            getData();
+
+            showSuccessPopup();
+        } catch (error) {
+            showErrorPopup();
+            console.error("Lỗi khi cập nhật thông tin bệnh nhân:", error);
+        }
+    });
+
+    $("#savePasswordBtn").click(function () {
+        let currentPassword = $("#currentPassword").val();
+        let newPassword = $("#newPassword").val();
+        let username = localStorage.getItem('userName');
+        var change = {
+            username: username,
+            currentPassword: currentPassword,
+            newPassword: newPassword
+        }
+        console.log(change);
+        axiosJWT
+            .post(`/api/Auth/change-password`, change)
             .then(function (response) {
-                console.log('Cập nhật thông tin thành công:', response);
-                getData();
                 showSuccessPopup();
             })
             .catch(function (error) {
                 showErrorPopup();
-                console.error("Lỗi khi đăng ký:", error);
             });
     });
 
 });
+function checkConfirm() {
+    let newPassword = $("#newPassword").val();
+    let confirmPassword = $("#confirmPassword").val();
+    if (newPassword != confirmPassword) {
+        $("#msg").text("Mật khẩu xác nhận không giống!");
+        $("#savePasswordBtn").prop("disabled", true);  // Disable button
+    }
+    else {
+        $("#msg").text("");
+        $("#savePasswordBtn").prop("disabled", false);  // Disable button
+
+    }
+}
 function getData() {
     var userId = localStorage.getItem("userId");
     console.log(userId);
@@ -43,6 +160,7 @@ function getData() {
         .then(function (response) {
             bn = response.data;
             display();
+            getAvata();
         })
         .catch(function (error) {
             showErrorPopup();
@@ -66,11 +184,14 @@ function display() {
     else
         $('#other').prop('checked', true);
     // Lấy phần ngày bằng cách cắt chuỗi trước ký tự 'T'
-    if(bn.ngaySinh != null){
+    if (bn.ngaySinh != null) {
         let formattedDate = bn.ngaySinh.split('T')[0];
         $("#ngaysinh").val(formattedDate);
     }
-    
+    // document.getElementById('uploadedImage').src = "http://localhost:37649" + response.data.fileUrl;
+    if (bn.hinhAnh != null) {
+        $('#uploadedImage').attr('src', "http://localhost:37649" + bn.hinhAnh);
+    }
 }
 
 

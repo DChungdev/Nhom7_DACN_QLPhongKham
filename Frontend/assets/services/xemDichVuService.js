@@ -1,10 +1,9 @@
 var services = []; // Lưu danh sách dịch vụ toàn bộ
+let khoas = []; 
 
 $(document).ready(function () {
+    loadKhoas();
     loadServices();
-
-    // Xử lý sự kiện tìm kiếm
-  
 });
 
 // Hàm lấy danh sách dịch vụ từ API
@@ -20,6 +19,17 @@ function loadServices() {
         });
 }
 
+function loadKhoas() {
+    axiosJWT
+        .get(`/api/v1/Departments`)
+        .then(function (response) {
+            khoas = response.data;
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi lấy danh sách khoa:", error);
+        });
+}
+
 // Hàm hiển thị danh sách dịch vụ
 function displayServices(data) {
     const serviceList = $("#serviceList"); // Vùng chứa danh sách dịch vụ
@@ -32,13 +42,16 @@ function displayServices(data) {
 
     // Lặp qua danh sách dịch vụ và tạo HTML cho từng dịch vụ
     data.forEach((service) => {
+        const khoa = khoas.find(k => k.khoaId === service.khoaId);
+        const khoaName = khoa ? khoa.tenKhoa : "Tất cả";
         const serviceHTML = `
             <div class="col-md-4 mb-3 service-item">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" id="tenDichVu">${service.tenDichVu}</h5>
                         <p class="card-text" id="giaDichVu">Giá: ${service.donGia.toLocaleString()}đ</p>
-                        <p class="card-text" id="moTaDichVu">${service.moTaDichVu || "Không có mô tả"}</p>
+                        <p class="card-text" id="tenKhoa">Khoa: ${khoaName}</p>
+                        <p class="card-text" id="moTaDichVu">Mô tả: ${service.moTaDichVu || "Không có mô tả"}</p>
                     </div>
                 </div>
             </div>
@@ -46,6 +59,7 @@ function displayServices(data) {
         serviceList.append(serviceHTML); // Thêm dịch vụ vào vùng chứa
     });
 }
+
 
 // Hàm lọc danh sách dịch vụ dựa trên giá trị tìm kiếm
 function filterServices(searchValue) {

@@ -77,6 +77,10 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             existingBN.Email = benhNhan.Email;
             existingBN.DiaChi = benhNhan.DiaChi;
             existingBN.TienSuBenhLy = benhNhan.TienSuBenhLy;
+            if (benhNhan.HinhAnh != null)
+            {
+                existingBN.HinhAnh = benhNhan.HinhAnh;
+            }
             int res = await _patientService.UpdateAsync(existingBN);
             return StatusCode(201, res);
         }

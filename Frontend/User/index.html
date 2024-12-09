@@ -39,6 +39,7 @@
   <script src="../assets/vendor/axios.min.js"></script>
   <script src="../assets/services/axios.js"></script>
   <script src="../assets/services/dichVuIndexService.js"></script>
+  <script src="../assets/services/thongTinBacSiIndex.js"></script>
 </head>
 
 <body class="index-page">
@@ -679,59 +680,7 @@
 
       <div class="container">
 
-        <div class="row gy-4">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <a href="ThongTinBacSi.html" style="color: inherit; text-decoration: none;">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="../assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                  <h4>Walter White</h4>
-                  <span>Chief Medical Officer</span>
-                  <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                </div>
-              </div>
-            </a>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <a href="#" style="color: inherit; text-decoration: none;">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="../assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Anesthesiologist</span>
-                  <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                </div>
-              </div>
-            </a>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <a href="#" style="color: inherit; text-decoration: none;">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="../assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                  <h4>William Anderson</h4>
-                  <span>Cardiology</span>
-                  <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                </div>
-              </div>
-            </a>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-            <a href="#" style="color: inherit; text-decoration: none;">
-              <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="../assets/img/doctors/doctors-4.jpg" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                  <h4>Amanda Jepson</h4>
-                  <span>Neurosurgeon</span>
-                  <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                </div>
-              </div>
-            </a>
-          </div><!-- End Team Member -->
+        <div class="row gy-4" id="Doctorslist">
 
         </div>
         <div class="text-center mt-3">

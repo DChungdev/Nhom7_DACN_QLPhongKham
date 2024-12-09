@@ -172,36 +172,6 @@ function display(data) {
     `;
     tableBody.innerHTML += row; // Thêm hàng vào bảng
   });
-  // data.forEach((item, index) => {
-  //     const tenKhoa="";
-  //     dsKhoa.forEach((item1) => {
-  //         if(item1.khoaId === item.khoaId){
-  //             tenKhoa =item1.tenKhoa;
-  //         }
-  //     })
-  //     const row = `
-  //   <tr bs-id="${item.bacSiId}">
-  //     <td class="text-center">${index + 1}</td>
-  //     <td class="m-data-left">${item.maBacSi}</td>
-  //     <td class="m-data-left">${item.hoTen}</td>
-  //     <td class="m-data-left">${item.tenBangCap}</td>
-  //     <td class="m-data-left">${tenKhoa}</td>
-  //     <td class="m-data-left">${item.soDienThoai}</td>
-  //     <td class="m-data-left">${item.email || "Chưa có email"}</td>
-  //     <td>
-  //               <div class="m-table-tool">
-  //                 <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#modalSuaBacSi" data-id="${item.bacSiId}">
-  //                   <i class="fas fa-edit text-primary"></i>
-  //                 </div>
-  //                 <div class="m-delete m-tool-icon" data-bs-toggle="modal" data-bs-target="#confirm-delete">
-  //                   <i class="fas fa-trash-alt text-danger"></i>
-  //                 </div>
-  //               </div>
-  //             </td>
-  //   </tr>
-  // `;
-  //     tableBody.innerHTML += row; // Thêm hàng vào bảng
-  // });
 }
 
 // Lấy toàn bộ khoa

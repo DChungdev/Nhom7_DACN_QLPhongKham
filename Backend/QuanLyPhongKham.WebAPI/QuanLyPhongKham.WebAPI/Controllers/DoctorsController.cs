@@ -68,6 +68,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
             var existingBS = await _doctorService.GetByIdAsync(bacSiId);
             existingBS.HoTen = bacSi.HoTen;
+            existingBS.KhoaId = bacSi.KhoaId;
             existingBS.SoDienThoai = bacSi.SoDienThoai;
             existingBS.Email = bacSi.Email;
             existingBS.DiaChi = bacSi.DiaChi;

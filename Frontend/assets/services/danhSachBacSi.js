@@ -37,10 +37,10 @@ function displayDoctors(data) {
                         <h4 id="tenBacSi">${doctor.hoTen}</h4>
                         <span id="tenBangCap">${doctor.tenBangCap}</span>
                         <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""> <i class="bi bi-linkedin"></i> </a>
+                            <a href="https://x.com"><i class="bi bi-twitter-x"></i></a>
+                            <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.linkedin.com"> <i class="bi bi-linkedin"></i> </a>
                             
                         </div>
                         <button class="btn btn-primary mt-3" onclick="showDoctorDetails(${doctor.bacSiId})">

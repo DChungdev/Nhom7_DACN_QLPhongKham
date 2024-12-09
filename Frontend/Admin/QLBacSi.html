@@ -393,7 +393,7 @@
               <div class="m-toolbar-export m-toolbar-icon">
                 <i class="fas fa-download" style="color: #35a9d0"></i>
               </div>
-              <div class="m-toolbar-refresh m-toolbar-icon">
+              <div class="m-toolbar-refresh m-toolbar-icon" id="refresh-data">
                 <i class="fas fa-sync-alt" style="color: #35a9d0"></i>
               </div>
             </div>
@@ -410,9 +410,10 @@
                   <th class="m-data-left" style="width: 150px">Mã bác sĩ</th>
                   <th class="m-data-left">Họ và tên</th>
                   <th class="m-data-left">Bằng cấp</th>
+                  <th class="m-data-left">Khoa</th>
                   <th class="m-data-left" style="width: 120px">SĐT</th>
                   <th class="m-data-left">Email</th>
-                  <th class="m-data-left">Địa chỉ</th>
+                  <!-- <th class="m-data-left">Địa chỉ</th> -->
                   <th></th>
                 </tr>
               </thead>
@@ -567,8 +568,10 @@
                       <input id="edit-email" type="email" class="m-input" oninput="kiemTraEmail()"/>
                     </div>
                     <div class="input-item">
-                      <div class="title-input">Giờ làm việc</div>
-                      <input id="edit-gioLamViec" type="text" class="m-input" />
+                      <div class="title-input">Khoa</div>
+                      <select name="khoa" id="edit-khoa">
+                        <option value="">Chọn khoa</option>
+                      </select>
                     </div>
                   </div>
                   <div class="row-item d-flex">
@@ -579,6 +582,10 @@
                     <div class="input-item-center">
                       <div class="title-input">Địa chỉ</div>
                       <input id="edit-diaChi" type="text" class="m-input" />
+                    </div>
+                    <div class="input-item">
+                      <div class="title-input">Giờ làm việc</div>
+                      <input id="edit-gioLamViec" type="text" class="m-input" />
                     </div>
                   </div>
 

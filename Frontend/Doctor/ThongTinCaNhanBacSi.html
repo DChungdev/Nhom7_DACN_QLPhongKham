@@ -187,7 +187,7 @@
                   />
                   <span class="ml-2 d-none d-lg-inline-block"
                     ><span>Hello,</span>
-                    <span class="text-dark">Jason Doe</span>
+                    <span class="text-dark" id="hotenHeader">Jason Doe</span>
                     <i data-feather="chevron-down" class="svg-icon"></i
                   ></span>
                 </a>
@@ -297,7 +297,7 @@
               <li class="sidebar-item ">
                 <a
                   class="sidebar-link  "
-                  href="/authentication-login1.html"
+                  href="../login.html"
                   aria-expanded="false"
                   ><i data-feather="log-out" class="feather-icon"></i
                   ><span class="hide-menu">Logout</span></a
@@ -439,7 +439,7 @@
                             <td>
                               <!-- <button id="email" type="button" class="btn btn-link">Thêm</button> -->
                               <input
-                                id="namKinhnghiem"
+                                id="namKinhNghiem"
                                 type="text"
                                 class="form-control"
                                 value=""
@@ -478,6 +478,96 @@
                   </form>
                 </div>
               </div>
+              <!-- Modal Change Password-->
+        <div
+        class="modal fade"
+        id="changePasswordModal"
+        tabindex="-1"
+        aria-labelledby="changePasswordModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="changePasswordModalLabel">
+                Đổi Mật Khẩu
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="changePasswordForm">
+                <div class="mb-3">
+                  <label for="currentPassword" class="form-label"
+                    >Mật khẩu hiện tại</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="currentPassword"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="newPassword" class="form-label"
+                    >Mật khẩu mới</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="newPassword"
+                    required
+                    oninput="kiemTraMatKhau()"
+                  />
+                  <span
+                    id="pass-msg"
+                    class="text-danger"
+                    style="font-size: 10px"
+                  ></span>
+                </div>
+                <div class="mb-3">
+                  <label for="confirmPassword" class="form-label"
+                    >Xác nhận mật khẩu mới</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    required
+                    oninput="checkConfirm()"
+                  />
+                </div>
+                <span
+                  class="text-danger"
+                  id="msg"
+                  style="font-size: 10px"
+                ></span>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Đóng
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                id="savePasswordBtn"
+              >
+                Lưu thay đổi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <footer class="footer text-center text-muted">
           Designed and Developed by <b class="text-primary">Nhóm 7</b>
@@ -521,7 +611,7 @@
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <!-- <script src="../assets/js/pages/dashboards/dashboard1.min.js"></script> -->
-     <!-- <script>
+     <script>
       function getAvata() {
         var userId = localStorage.getItem("userId");
         console.log(userId);
@@ -598,6 +688,6 @@
           });
         getAvata();
       });
-    </script> -->
+    </script>
   </body>
 </html>

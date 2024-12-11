@@ -39,11 +39,12 @@ function displayDoctors(data) {
     // Lặp qua danh sách bác sĩ và tạo HTML cho từng bác sĩ
     data.forEach((doctor) => {
       const tenKhoa = khoaMap.get(doctor.khoaId) || "Chưa có khoa"; // Lấy tên khoa từ Map
+      const imageUrl = doctor.hinhAnh ? `http://localhost:37649${doctor.hinhAnh}` : "../assets/img/doctors/doctors-1.jpg"; // URL hình ảnh từ API hoặc ảnh mặc định
         const doctorHTML = `
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100" id="doctorInfor">
                 <div bs-id="${doctor.bacSiId}"></div>
                     <div class="team-member d-flex align-items-start">
-                    <div class="pic"><img src="../assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                    <div class="pic"><img src="${imageUrl}" class="img-fluid" alt="${doctor.hoTen}"></div>
                     <div class="member-info">
                         <h4 id="tenBacSi">${doctor.hoTen}</h4>
                         <span id="tenBangCap">${doctor.tenBangCap}</span>
@@ -79,6 +80,7 @@ function displayDoctorDetails(doctor) {
     modalBody.empty(); // Làm sạch nội dung modal trước khi thêm mới.
 
     const tenKhoa = dsKhoa.find(khoa => khoa.khoaId === doctor.khoaId)?.tenKhoa || "Chưa có khoa";
+    const imageUrl = doctor.hinhAnh ? `http://localhost:37649${doctor.hinhAnh}` : "../assets/img/doctors/doctors-1.jpg"; // URL hình ảnh từ API hoặc ảnh mặc định
 
     const modalContent = `
         <div class="row d-flex justify-content-center align-items-stretch mt-3">
@@ -87,9 +89,9 @@ function displayDoctorDetails(doctor) {
                 <div class="team-member card text-center p-3 d-flex flex-column align-items-center w-100">
                     <div class="pic mb-3">
                         <img
-                            src="../assets/img/doctors/doctors-1.jpg"
+                            src="${imageUrl}"
                             class="img-fluid rounded-circle"
-                            alt="Doctor"
+                            alt="${doctor.hoTen}"
                             style="width: 150px; height: 150px; object-fit: cover;"
                         />
                     </div>

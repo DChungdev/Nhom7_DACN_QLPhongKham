@@ -180,6 +180,7 @@
                   aria-expanded="false"
                 >
                   <img
+                    id="uploadedImage"
                     src="../assets/img/users/profile-pic.jpg"
                     alt="user"
                     class="rounded-circle"
@@ -614,7 +615,7 @@
      <script>
       function getAvata() {
         var userId = localStorage.getItem("userId");
-        console.log(userId);
+        // console.log(userId);
         // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
         axiosJWT
           .get(`/api/Doctors/getbyuserid/${userId}`)
@@ -669,7 +670,7 @@
         }
       }
       $(document).ready(function () {
-        console.log("co chay");
+        // console.log("co chay");
         document
           .getElementById("fileInput")
           .addEventListener("change", function (event) {

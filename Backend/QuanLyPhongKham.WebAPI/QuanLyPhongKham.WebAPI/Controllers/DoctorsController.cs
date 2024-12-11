@@ -110,6 +110,10 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             existingBS.BangCap = bacSi.BangCap;
             existingBS.SoNamKinhNghiem = bacSi.SoNamKinhNghiem;
             existingBS.GioLamViec = bacSi.GioLamViec;
+            if (bacSi.HinhAnh != null)
+            {
+                existingBS.HinhAnh = bacSi.HinhAnh;
+            }
             int res = await _doctorService.UpdateAsync(existingBS);
             return StatusCode(204, res);
         }

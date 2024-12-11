@@ -3,40 +3,31 @@ $(document).ready(function () {
     getDataDoctorsInfo();
     $('#suaThongTin').on('submit', async function (e) {
         e.preventDefault();
-        // let imgUrl;  // Khai báo imgUrl ở bên ngoài để sử dụng trong toàn bộ hàm
-        // let fileInput = document.getElementById('fileInput');
-        // let file = fileInput.files[0];
+        let imgUrl;  // Khai báo imgUrl ở bên ngoài để sử dụng trong toàn bộ hàm
+        let fileInput = document.getElementById('fileInput');
+        let file = fileInput.files[0];
 
-        // // Nếu có file, upload file trước khi gửi request cập nhật bệnh nhân
-        // if (file) {
-        //     try {
-        //         // Tạo đối tượng FormData và append file vào đó
-        //         var formData = new FormData();
-        //         formData.append("file", file);
+        // Nếu có file, upload file trước khi gửi request cập nhật bệnh nhân
+        if (file) {
+            try {
+                // Tạo đối tượng FormData và append file vào đó
+                var formData = new FormData();
+                formData.append("file", file);
 
-        //         // Sử dụng Axios để gửi file và chờ đợi kết quả
-        //         const response = await axiosJWT.post('/api/Files/upload', formData);
+                // Sử dụng Axios để gửi file và chờ đợi kết quả
+                const response = await axiosJWT.post('/api/Files/upload', formData);
 
-        //         // Thành công, nhận URL từ phản hồi
-        //         console.log("File URL: ", response.data.fileUrl);
-        //         imgUrl = response.data.fileUrl;
+                // Thành công, nhận URL từ phản hồi
+                console.log("File URL: ", response.data.fileUrl);
+                imgUrl = response.data.fileUrl;
 
-        //         // Hiển thị ảnh vừa upload (nếu cần)
+                // Hiển thị ảnh vừa upload (nếu cần)
 
-
-        //     } catch (error) {
-        //         console.error("Lỗi khi upload file:", error);
-        //         return;  // Nếu upload file thất bại, không tiếp tục gửi yêu cầu cập nhật bệnh nhân
-        //     }
-        // }
-
-        // Sau khi upload file thành công (hoặc không có file),
-        // let ngaySinh;
-        // if ($("#ngaysinh").val() != "") {
-        //     ngaySinh = $("#ngaysinh").val() + "T00:00:00";
-        // }
-        // let checkedRadio = $('input[name="gender"]:checked');
-        // let valueGT = checkedRadio.val();
+            } catch (error) {
+                console.error("Lỗi khi upload file:", error);
+                return;  // Nếu upload file thất bại, không tiếp tục gửi yêu cầu cập nhật bệnh nhân
+            }
+        }
 
         try {
             const bangCapValue = parseInt($("#bangCap").val());
@@ -44,20 +35,20 @@ $(document).ready(function () {
                 bacSiId: bs.bacSiId,
                 maBacSi: bs.maBacSi, 
                 hoTen: $("#hoten").val(),
-                // hinhAnh: imgUrl,  // imgUrl có thể là null nếu không có file
+                hinhAnh: imgUrl,  // imgUrl có thể là null nếu không có file
                 // ngaySinh: ngaySinh,
                 // loaiGioiTinh: parseInt(valueGT),
                 bangCap: bangCapValue,
                 soDienThoai: $("#sdt").val(),
                 email: $("#email").val(),
-                diaChi: $("#diachi").val(),
+                diaChi: $("#diaChi").val(),
                 soNamKinhNghiem: $("#namKinhNghiem").val()
             });
             // Gửi yêu cầu PUT tới API
-            const updateResponse = await axiosJWT.put(`/api/Doctors/${bs.bacSiId}`, updatedDoctorData);
+            // const updateResponse = await axiosJWT.put(`/api/Doctors/${bs.bacSiId}`, updatedDoctorData);
 
-            console.log('Cập nhật thông tin thành công:', updateResponse);
-            getData();
+            console.log('Cập nhật thông tin thành công:', updatedDoctorData);
+            getDataDoctorsInfo();
 
             showSuccessPopup();
         } catch (error) {
@@ -111,7 +102,7 @@ function getDataDoctorsInfo() {
         .then(function (response) {
             bs = response.data;
             displayDoctorsInfo();
-            // getAvata();
+            getAvata();
         })
         .catch(function (error) {
             showErrorPopup();
@@ -149,9 +140,9 @@ function displayDoctorsInfo() {
     $("#namKinhNghiem").val(bs.soNamKinhNghiem);
 
     // document.getElementById('uploadedImage').src = "http://localhost:37649" + response.data.fileUrl;
-    // if (bn.hinhAnh != null) {
-    //     $('#uploadedImage').attr('src', "http://localhost:37649" + bn.hinhAnh);
-    // }
+    if (bs.hinhAnh != null) {
+        $('#uploadedImage').attr('src', "http://localhost:37649" + bs.hinhAnh);
+    }
 }
 
 function showErrorPopup() {

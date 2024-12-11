@@ -44,10 +44,11 @@ function displayDoctors(data) {
     // Lặp qua 4 bác sĩ đầu tiên và tạo HTML cho từng bác sĩ
     displayDoctors.forEach((doctor) => {
       const tenKhoa = khoaMap.get(doctor.khoaId) || "Chưa có khoa"; // Lấy tên khoa từ Map
+      const imageUrl = doctor.hinhAnh ? `http://localhost:37649${doctor.hinhAnh}` : "../assets/img/doctors/doctors-1.jpg"; // URL hình ảnh từ API hoặc ảnh mặc định
         const doctorHTML = `
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
               <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="../assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="${imageUrl}" class="img-fluid" alt="${doctor.hoTen}"></div>
                 <div class="member-info">
                   <h4>${doctor.hoTen}</h4>
                   <span>${doctor.tenBangCap}</span>

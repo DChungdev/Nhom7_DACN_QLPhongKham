@@ -33,9 +33,6 @@ function displayResults(results) {
                 <td>${formatDate(result.ngayTao)}</td>           
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>
-                <td class="text-center">
-                      <a href="Frontend/User/DanhGiaPhanhoi.html" class="btn btn-outline-primary btn-sm fw-bold rounded-pill">Đánh giá</a>
-                  </td>
             </tr>
         `;
         resultTableBody.append(resultRow); // Thêm dòng vào bảng

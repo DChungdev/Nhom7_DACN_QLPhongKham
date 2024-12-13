@@ -7,11 +7,12 @@ $(document).ready(function () {
     // Sự kiện thêm mới dịch vụ
     $('#btnAdd').on('click', function () {
         const newResult = {
-            maBenhNhan: $('#dialog-add input[type="text"]').eq(0).val(), // Mã bệnh nhân
-            tenBenhNhan: $('#dialog-add input[type="text"]').eq(1).val(), // Tên bệnh nhân
+
             lichKham: $('#dialog-add input[type="date"]').eq(0).val(),   // Lịch khám
-            chanDoan: $('#dialog-add input[type="text"]').eq(2).val(),    // Chuẩn đoán
-            chiDinhThuoc: $('#dialog-add input[type="text"]').eq(3).val(), // Chỉ định thuốc
+            chanDoan: $('#dialog-add input').eq(0).val(),    // Chuẩn đoán
+            chiDinhThuoc: $('#dialog-add input').eq(1).val(), // Chỉ định thuốc
+            ghiChu: $('#dialog-add input').eq(2).val(), // Chỉ định thuốc
+
             ngayTao: $('#dialog-add input[type="date"]').eq(1).val(),     // Ngày tạo
         };
 
@@ -38,22 +39,22 @@ $(document).ready(function () {
         }
 
         // Đổ dữ liệu vào modal chỉnh sửa
-        $('#dialog-edit input[type="text"]').eq(0).val(result.maBenhNhan);  // Mã bệnh nhân
-        $('#dialog-edit input[type="text"]').eq(1).val(result.tenBenhNhan); // Tên bệnh nhân
         $('#dialog-edit input[type="date"]').eq(0).val(result.ngayKham.split('T')[0]); // Lịch khám
-        $('#dialog-edit input[type="text"]').eq(2).val(result.chanDoan);   // Chuẩn đoán
-        $('#dialog-edit input[type="text"]').eq(3).val(result.chiDinhThuoc); // Chỉ định thuốc
+        $('#dialog-edit input[type="text"]').eq(0).val(result.chanDoan);   // Chuẩn đoán
+        $('#dialog-edit input[type="text"]').eq(1).val(result.chiDinhThuoc); // Chỉ định thuốc
+        $('#dialog-edit input[type="text"]').eq(2).val(result.ghiChu);
         $('#dialog-edit input[type="date"]').eq(1).val(result.ngayCapNhat.split('T')[0]); // Ngày cập nhật
 
         // Sự kiện sửa
         $('#btnSua').off('click').on('click', function () {
             const updatedResult = {
                 ketQuaKhamId: resultId,
-                maBenhNhan: $('#dialog-edit input[type="text"]').eq(0).val(),  // Mã bệnh nhân
-                ngayKham: $('#dialog-edit input[type="date"]').eq(0).val(),     // Lịch khám
-                chanDoan: $('#dialog-edit input[type="text"]').eq(2).val(),      // Chuẩn đoán
-                chiDinhThuoc: $('#dialog-edit input[type="text"]').eq(3).val(),  // Chỉ định thuốc
-                ngayCapNhat: $('#dialog-edit input[type="date"]').eq(1).val(),   // Ngày cập nhật
+                lichKham: $('#dialog-add input[type="date"]').eq(0).val(),   // Lịch khám
+                chanDoan: $('#dialog-add input').eq(0).val(),    // Chuẩn đoán
+                chiDinhThuoc: $('#dialog-add input').eq(1).val(), // Chỉ định thuốc
+                ghiChu: $('#dialog-add input').eq(2).val(), // Chỉ định thuốc
+
+                ngayCapNhat: $('#dialog-add input[type="date"]').eq(1).val(),     // Ngày tạo
             };
 
             axiosJWT.put(`/api/Results/${resultId}`, updatedResult)
@@ -102,11 +103,11 @@ function displayResults(results) {
                 <td class="chk"><input type="checkbox" /></td>
                 <td empIdCell style="display: none">${result.ketQuaKhamId}</td>
                 <td>${index + 1}</td>
-                <td>${result.maBenhNhan || "Không có "}</td>
-                <td>${result.tenBenhNhan || "Không có "}</td>
+                <td>${result.ketQuaKhamId || "Không có "}</td>
                 <td>${result.lichKham || "Không có lịch khám"}</td>
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>
+                <td>${result.ghiChu || "Không có "}</td>
                 <td>${formatDate(result.ngayTao)}</td>
                 <td>${formatDate(result.ngayCapNhat)}</td>
                 <td>
@@ -119,7 +120,7 @@ function displayResults(results) {
             </tr>
         `;
         resultTableBody.append(resultRow); // Thêm dòng vào bảng
-        console.log("abc",result)
+        console.log("abc", result)
     });
 }
 

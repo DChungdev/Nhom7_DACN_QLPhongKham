@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ Select Multiple</title>
+</head>
+<body>
+    <h1>Chọn các ngôn ngữ lập trình bạn yêu thích:</h1>
+    <form action="/submit" method="post">
+        <label for="languages">Ngôn ngữ lập trình:</label>
+        <select id="languages" name="languages[]" multiple size="5">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="csharp">C#</option>
+            <option value="php">PHP</option>
+            <option value="cpp">C++</option>
+            <option value="ruby">Ruby</option>
+        </select>
+        <br><br>
+        <button type="submit">Gửi</button>
+    </form>
+</body>
+</html>

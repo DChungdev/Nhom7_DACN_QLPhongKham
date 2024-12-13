@@ -46,11 +46,23 @@ function displayServices(data) {
         const khoaName = khoa ? khoa.tenKhoa : "Tất cả";
         const serviceHTML = `
             <div class="col-md-4 mb-3 service-item">
-                <div class="card">
+                <div style="
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    background-color: #f9f9f9;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    text-align: center;">
                     <div class="card-body">
-                        <h5 class="card-title" id="tenDichVu">${service.tenDichVu}</h5>
-                        <p class="card-text" id="giaDichVu">Giá: ${service.donGia.toLocaleString()}đ</p>
-                        <p class="card-text" id="tenKhoa">Khoa: ${khoaName}</p>
+                        <h5 class="card-title" id="tenDichVu" style="
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-bottom: 10px;">${service.tenDichVu}</h5>
+                        <p class="card-text" id="giaDichVu" style="
+                        font-size: 16px;
+                        color: #28a745;
+                        margin-bottom: 8px;">Giá: ${service.donGia.toLocaleString()}đ</p>
+                        <p class="card-text" id="tenKhoa">${khoaName}</p>
                         <p class="card-text" id="moTaDichVu">Mô tả: ${service.moTaDichVu || "Không có mô tả"}</p>
                     </div>
                 </div>

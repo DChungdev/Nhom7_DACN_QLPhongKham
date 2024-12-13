@@ -21,70 +21,105 @@ $(document).ready(function () {
     // Sự kiện thêm mới dịch vụ
     $('#btnAdd').on('click', function () {
         const khoaIdValue = $('#khoaSelect').val(); // Lấy giá trị khoa từ dropdown
+        const tenDichVu = $('#dialog-add input[type="text"]').eq(0).val();
+        const maDichVu = $('#dialog-add input[type="text"]').eq(1).val();
+        const donGiaValue = $('#dialog-add input[type="text"]').eq(2).val();
+        const moTaDichVu = $('#dialog-add input[type="text"]').eq(3).val();
+        const ngayTao = $('#dialog-add input[type="date"]').val();
+    
+        // Kiểm tra các trường dữ liệu
+        if (!tenDichVu || !donGiaValue) {
+            showErrorPopup("Thêm không thành công: Tên dịch vụ và giá không được để trống!");
+            return;
+        }
+    
+        if (isNaN(parseFloat(donGiaValue)) || parseFloat(donGiaValue) <= 0) {
+            showErrorPopup("Thêm không thành công: Giá phải là số hợp lệ!");
+            return;
+        }
+    
         const newService = {
-            maDichVu: $('#dialog-add input[type="text"]').eq(1).val(),
-            tenDichVu: $('#dialog-add input[type="text"]').eq(0).val(),
-            donGia: parseFloat($('#dialog-add input[type="text"]').eq(2).val()),
-            ngayTao: $('#dialog-add input[type="date"]').val(),
-            moTaDichVu: $('#dialog-add input[type="text"]').eq(3).val(),
+            maDichVu: maDichVu,
+            tenDichVu: tenDichVu,
+            donGia: parseFloat(donGiaValue),
+            ngayTao: ngayTao,
+            moTaDichVu: moTaDichVu,
             khoaId: khoaIdValue === "" ? null : khoaIdValue // Nếu không chọn thì để null
         };
-
+    
         axiosJWT.post('/api/Services', newService)
             .then(() => {
                 loadServices(); // Tải lại danh sách
                 $('#dialog-add').modal('hide'); // Đóng modal
+                showSuccessPopup("Thêm dịch vụ thành công!"); // Thông báo thành công
             })
             .catch((error) => {
-                showErrorPopup();
                 console.error('Lỗi khi thêm dịch vụ:', error);
+                showErrorPopup("Thêm không thành công: Đã xảy ra lỗi từ server!");
             });
     });
-
+    
     // Sự kiện chỉnh sửa dịch vụ
     $(document).on('click', '.m-edit', function () {
         const serviceId = $(this).data('serviceId');
         const service = services.find(s => s.dichVuId === serviceId);
-
+    
         if (!service) {
-            alert('Không tìm thấy dịch vụ để chỉnh sửa.');
+            showErrorPopup("Không tìm thấy dịch vụ để chỉnh sửa.");
             return;
         }
-
+    
         // Đổ dữ liệu vào modal chỉnh sửa
         $('#dialog-edit input[type="text"]').eq(0).val(service.tenDichVu);
         $('#dialog-edit input[type="text"]').eq(1).val(service.maDichVu);
         $('#dialog-edit input[type="text"]').eq(2).val(service.donGia);
         $('#dialog-edit input[type="date"]').eq(0).val(service.ngayTao.split('T')[0]);
         $('#dialog-edit input[type="text"]').eq(3).val(service.moTaDichVu);
-
-        // Tải danh sách khoa và chọn khoa hiện tại
-        loadKhoas('editKhoaSelect', service.khoaId);
-
-        // Sự kiện sửa
+        loadKhoas('editKhoaSelect', service.khoaId); // Hiển thị danh sách khoa với khoa hiện tại được chọn
+    
+        // Xử lý sự kiện sửa
         $('#btnEdit').off('click').on('click', function () {
             const khoaIdValue = $('#editKhoaSelect').val(); // Lấy giá trị từ dropdown
+            const tenDichVu = $('#dialog-edit input[type="text"]').eq(0).val();
+            const maDichVu = $('#dialog-edit input[type="text"]').eq(1).val();
+            const donGiaValue = $('#dialog-edit input[type="text"]').eq(2).val();
+            const moTaDichVu = $('#dialog-edit input[type="text"]').eq(3).val();
+            const ngayCapNhat = $('#dialog-edit input[type="date"]').eq(1).val();
+    
+            // Kiểm tra các trường dữ liệu
+            if (!tenDichVu || !donGiaValue) {
+                showErrorPopup("Sửa không thành công: Tên dịch vụ và giá không được để trống!");
+                return;
+            }
+    
+            if (isNaN(parseFloat(donGiaValue)) || parseFloat(donGiaValue) <= 0) {
+                showErrorPopup("Sửa không thành công: Giá phải là số hợp lệ!");
+                return;
+            }
+    
             const updatedService = {
                 dichVuId: serviceId,
-                maDichVu: service.maDichVu,
-                tenDichVu: $('#dialog-edit input[type="text"]').eq(0).val(),
-                donGia: parseFloat($('#dialog-edit input[type="text"]').eq(2).val()),
-                ngayCapNhat: $('#dialog-edit input[type="date"]').eq(1).val(),
-                moTaDichVu: $('#dialog-edit input[type="text"]').eq(3).val(),
+                maDichVu: maDichVu,
+                tenDichVu: tenDichVu,
+                donGia: parseFloat(donGiaValue),
+                ngayCapNhat: ngayCapNhat,
+                moTaDichVu: moTaDichVu,
                 khoaId: khoaIdValue === "" ? null : khoaIdValue // Nếu không chọn thì để null
             };
-
+    
             axiosJWT.put(`/api/Services/${serviceId}`, updatedService)
                 .then(() => {
                     loadServices(); // Tải lại danh sách
                     $('#dialog-edit').modal('hide'); // Đóng modal
+                    showSuccessPopup("Sửa dịch vụ thành công!"); // Thông báo thành công
                 })
                 .catch((error) => {
-                    showErrorPopup();
                     console.error('Lỗi khi chỉnh sửa dịch vụ:', error);
+                    showErrorPopup("Sửa không thành công: Đã xảy ra lỗi từ server!");
                 });
         });
     });
+    
 
 
     let selectedServiceId = null;
@@ -98,7 +133,7 @@ $(document).ready(function () {
     // Xử lý sự kiện khi xác nhận xóa trong modal
     $('#btnDelete').on('click', function () {
         if (!selectedServiceId) {
-            alert('Không tìm thấy ID dịch vụ để xóa!');
+            showErrorPopup('Không tìm thấy ID dịch vụ để xóa!');
             return;
         }
 
@@ -107,6 +142,7 @@ $(document).ready(function () {
             .delete(`/api/Services/${selectedServiceId}`)
             .then(() => {
                 loadServices(); // Tải lại danh sách dịch vụ
+                showSuccessPopup("Xóa dịch vụ thành công!"); // Thông báo thành công
             })
             .catch((error) => {
                 showErrorPopup();
@@ -200,8 +236,12 @@ function formatDate(dateString) {
     return date.toLocaleDateString('vi-VN'); // Định dạng theo ngày Việt Nam
 }
 
-function showErrorPopup() {
+function showErrorPopup(errorMessage) {
     const errorPopup = document.getElementById("error-popup");
+    const errorText = errorPopup.querySelector(".m-popup-text-error span");
+
+    // Hiển thị thông báo lỗi tùy chỉnh
+    errorText.textContent = errorMessage || "Có lỗi xảy ra!";
     errorPopup.style.visibility = "visible";
 
     // Ẩn popup sau 3 giây
@@ -209,6 +249,21 @@ function showErrorPopup() {
         hideErrorPopup();
     }, 3000);
 }
+
+function showSuccessPopup(message) {
+    const successPopup = document.getElementById("success-popup");
+    const successText = successPopup.querySelector(".m-popup-text-success span");
+
+    successText.textContent = message || "Thành công!";
+    successPopup.style.visibility = "visible";
+
+    // Ẩn popup sau 3 giây
+    setTimeout(() => {
+        successPopup.style.visibility = "hidden";
+    }, 3000);
+}
+
+
 function hideErrorPopup() {
     const errorPopup = document.getElementById("error-popup");
     errorPopup.style.visibility = "hidden";

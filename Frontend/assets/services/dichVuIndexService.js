@@ -1,8 +1,9 @@
 var services = []; // Lưu danh sách dịch vụ toàn bộ
+let khoas = []; 
 
 $(document).ready(function () {
     loadServices();
-
+    loadKhoas();
     // Xử lý sự kiện tìm kiếm
   
 });
@@ -17,6 +18,17 @@ function loadServices() {
         })
         .catch(function (error) {
             console.error("Lỗi khi lấy danh sách dịch vụ:", error);
+        });
+}
+
+function loadKhoas() {
+    axiosJWT
+        .get(`/api/v1/Departments`)
+        .then(function (response) {
+            khoas = response.data;
+        })
+        .catch(function (error) {
+            console.error("Lỗi khi lấy danh sách khoa:", error);
         });
 }
 
@@ -35,6 +47,8 @@ function displayServices(data) {
 
     // Lặp qua 6 dịch vụ đầu tiên và tạo HTML cho từng dịch vụ
     displayedServices.forEach((service) => {
+        const khoa = khoas.find(k => k.khoaId === service.khoaId);
+        const khoaName = khoa ? khoa.tenKhoa : "Tất cả";
         const serviceHTML = `
             <div class="col-md-4 mb-3 service-item">
                 <div style="
@@ -54,7 +68,10 @@ function displayServices(data) {
                         margin-bottom: 8px;">Giá: ${service.donGia.toLocaleString()}đ</p>
                     <p style="
                         font-size: 14px;
-                        color: #666;">${service.moTaDichVu || "Không có mô tả"}</p>
+                        color: #666;">${khoaName}</p>
+                    <p style="
+                        font-size: 14px;
+                        color: #666;">Mô tả: ${service.moTaDichVu || "Không có mô tả"}</p>
                 </div>
             </div>
         `;

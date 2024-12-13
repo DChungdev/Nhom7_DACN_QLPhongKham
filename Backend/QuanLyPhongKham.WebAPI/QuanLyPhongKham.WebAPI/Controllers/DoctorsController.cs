@@ -16,10 +16,11 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
-        public DoctorsController(IDoctorService doctorService, IMapper mapper)
+        public DoctorsController(IDoctorService doctorService, IMapper mapper, IAuthService authService)
         {
             _doctorService = doctorService;
             _mapper = mapper;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -55,8 +56,42 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddDoctor([FromBody] BacSiModel bacSi)
         {
-            int res = await _doctorService.AddAsync(_mapper.Map<BacSi>(bacSi));
-            return StatusCode(201, res);
+            //int res = await _doctorService.AddAsync(_mapper.Map<BacSi>(bacSi));
+            //return StatusCode(201, res);
+            if (bacSi == null)
+            {
+                return BadRequest(new { message = "Invalid client request" });
+            }
+
+            // Tạo tài khoản cho bác sĩ
+            RegisterModel registerModel = new RegisterModel();
+            
+            registerModel.Email = bacSi.Email;
+            registerModel.Username = bacSi.Email;
+            registerModel.Password = "Doctor@123"; // Password được truyền từ client trong BacSiModel
+
+            // Kiểm tra _authService có null không
+            //if (_authService == null)
+            //{
+            //    return StatusCode(500, new { message = "Auth service not initialized" });
+            //}
+
+            var accountResult = await _authService.RegisterDoctorAsync(registerModel);
+
+            // Kiểm tra accountResult có null không và trạng thái có đúng không
+            if (accountResult == null || accountResult.Status != "Success")
+            {
+                // Trả về một phản hồi lỗi với thông báo cụ thể
+                return BadRequest(new { message = "Account creation failed", details = accountResult });
+            }
+
+            // Thêm thông tin bác sĩ vào hệ thống
+            var bacSiEntity = _mapper.Map<BacSi>(bacSi); // Đổi tên biến cục bộ
+            bacSiEntity.UserId = accountResult.Data.ToString(); // Liên kết UserId từ tài khoản mới tạo
+
+            int res = await _doctorService.AddAsync(bacSiEntity);
+
+            return StatusCode(201, new { DoctorId = res, Message = "Doctor and account created successfully" });
         }
 
         [HttpPut("{bacSiId}")]
@@ -68,11 +103,17 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             }
             var existingBS = await _doctorService.GetByIdAsync(bacSiId);
             existingBS.HoTen = bacSi.HoTen;
+            existingBS.KhoaId = bacSi.KhoaId;
             existingBS.SoDienThoai = bacSi.SoDienThoai;
             existingBS.Email = bacSi.Email;
             existingBS.DiaChi = bacSi.DiaChi;
+            existingBS.BangCap = bacSi.BangCap;
             existingBS.SoNamKinhNghiem = bacSi.SoNamKinhNghiem;
             existingBS.GioLamViec = bacSi.GioLamViec;
+            if (bacSi.HinhAnh != null)
+            {
+                existingBS.HinhAnh = bacSi.HinhAnh;
+            }
             int res = await _doctorService.UpdateAsync(existingBS);
             return StatusCode(204, res);
         }
@@ -90,21 +131,26 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
             // Thực hiện xóa bác sĩ
             var res = await _doctorService.DeleteAsync(bacSiId);
-            var user = await _authService.FindByIdAsync(bs.UserId);
-            if (user != null)
+            if (bs.UserId != null)
             {
-                await _authService.DeleteUser(bs.UserId);
+                var user = await _authService.FindByIdAsync(bs.UserId);
+                if (user != null)
+                {
+                    await _authService.DeleteUser(bs.UserId);
+                }
+                if (res > 0)
+                {
+                    // Xóa thành công
+                    return StatusCode(201, res);
+                }
+                else
+                {
+                    // Nếu có lỗi xảy ra khi xóa, trả về mã lỗi
+                    return StatusCode(500);
+                }
             }
-            if (res > 0)
-            {
-                // Xóa thành công
-                return StatusCode(201, res);
-            }
-            else
-            {
-                // Nếu có lỗi xảy ra khi xóa, trả về mã lỗi
-                return StatusCode(500);
-            }
+            return Ok();
+            
         }
     }
 }

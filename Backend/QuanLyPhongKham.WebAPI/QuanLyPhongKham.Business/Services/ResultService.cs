@@ -28,7 +28,7 @@ namespace QuanLyPhongKham.Business.Services
             entity.NgayCapNhat = DateTime.Now;
 
             // Kiểm tra dữ liệu hợp lệ khi thêm mới
-            var checkData = _resultRepository.CheckDataValidateForInsert(entity);
+            var checkData = _resultRepository.CheckDataValidate(entity);
 
             // Nếu có lỗi dữ liệu, ném ngoại lệ
             if (checkData != null && checkData.Count > 0)

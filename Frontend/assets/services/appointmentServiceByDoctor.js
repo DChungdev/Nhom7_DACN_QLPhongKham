@@ -2,7 +2,9 @@ var dsLK;
 var dsBacSi;
 var lkId = "";
 var bnId = "";
-$(document).ready(function () {
+var bsId = "";
+$(document).ready(async function () {
+  await getDoctorId();
   //Lấy tất cả dữ liệu
   getData();
   //Lấy danh sách bác sĩ điền vào select trong modal edit
@@ -34,6 +36,13 @@ $(document).ready(function () {
     // Gọi API Hủy lịch khám
     cancelAppointment();
   });
+  // Gắn sự kiện cho nút hiển thị modal xem chi tiết
+  findLichKham(".m-addResult.m-edit", () => {});
+  //Gắn sự kiện khi nhấn nút Tạo lịch khám
+  $("#btnAddResult").click(function () {
+    console.log(lkId);
+    addResultAppointment();
+  });
 
   //Xử lý sự kiện khi nhấn nút Refresh
   $(".m-toolbar-refresh").click(function () {
@@ -52,6 +61,86 @@ $(document).ready(function () {
     });
   });
 });
+
+function addResultAppointment() {
+  const ketQua = {
+    ketQuaKhamId: "d8a013a3-228d-4ccd-bae7-ca43b855d7b2",
+    lichKhamId: lkId,
+    chanDoan: $("#dialog-add-result #diagnose").val(),
+    chiDinhThuoc: $("#dialog-add-result #prescription").val(),
+    ghiChu: $("#dialog-add-result #note").val(),
+    ngayTao: "2024-12-14T10:13:33.3215854",
+    ngayCapNhat: "2024-12-14T10:13:33.3215854",
+  };
+  console.log(ketQua);
+  //Check data hợp lệ
+  checkData(ketQua);
+}
+
+//Check Data hợp lệ
+function checkData(ketQua) {
+  const errors = [];
+  let firstErrorSelector = null; // Để lưu selector của lỗi đầu tiên
+
+  // Hàm thêm lỗi cho input
+  const setError = (selector, message) => {
+    $(selector).addClass("input-error").attr("title", message);
+    errors.push(message);
+    if (!firstErrorSelector) firstErrorSelector = selector; // Lưu selector lỗi đầu tiên
+  };
+
+  // Hàm xóa lỗi khỏi input
+  const clearError = (selector) => {
+    $(selector).removeClass("input-error").removeAttr("title");
+  };
+
+  // Kiểm tra họ tên
+  if (!ketQua.chanDoan.trim()) {
+    setError("#dialog-add-result #diagnose", "Chẩn đoán không được để trống.");
+  } else {
+    clearError("#dialog-add-result #diagnose");
+  }
+
+  // Nếu có lỗi, hiển thị modal lỗi
+  if (errors.length > 0) {
+    $(firstErrorSelector).focus();
+  } else {
+    $("#dialog-errorList").modal("hide");
+    // Nếu không có lỗi, có thể tiếp tục xử lý lưu lịch khám tại đây
+    saveResulAppointment(ketQua);
+  }
+}
+
+//Lưu kết quả khám
+function saveResulAppointment(ketQua) {
+  // Hiển thị trạng thái đang xử lý
+  $("#dialog-add-result #btnAddResult")
+    .prop("disabled", true)
+    .text("Đang lưu...");
+  // Gửi yêu cầu cập nhật tới API
+  axiosJWT
+    .post(`/api/Results`, ketQua)
+    .then(function (response) {
+      console.log("Cập nhật thành công:", response.data);
+      // Hiển thị trạng thái thành công
+      showPopup("success", "Thành công! Kết quả khám đã được tạo.");
+      $("#dialog-add-result #btnAddResult").prop("disabled", false).text("Tạo");
+      $("#dialog-add-result").modal("hide");
+      getData(); // Tải lại dữ liệu sau khi cập nhật
+    })
+    .catch(function (error) {
+      if (
+        error.response.data.Error.LichKhamId === "Lich kham nay da co ket qua"
+      ) {
+        showPopup("error", "Lỗi! Lịch khám này đã có kết quả.");
+      } else {
+        console.error("Lỗi khi tạo: ", error);
+        showPopup("error", "Lỗi! Không thể lưu kết quả khám.");
+      }
+      $("#dialog-add-result #btnAddResult").prop("disabled", false).text("Tạo");
+      $("#dialog-add-result").modal("hide");
+    });
+}
 
 // Hàm dùng chung để xử lý sự kiện
 function findLichKham(selector, callback) {
@@ -292,7 +381,7 @@ function fillEditModal(lichKham) {
 // Lấy toàn bộ lịch khám
 function getData() {
   axiosJWT
-    .get(`/api/v1/Appointments`)
+    .get(`/api/v1/Appointments/doctor/${bsId}`)
     .then(function (response) {
       dsLK = response.data;
       console.log(dsLK);
@@ -301,6 +390,16 @@ function getData() {
     .catch(function (error) {
       console.error("Lỗi không tìm được:", error);
     });
+}
+
+async function getDoctorId() {
+  try {
+    let userId = localStorage.getItem("userId");
+    const response = await axiosJWT.get(`/api/Doctors/getbyuserid/${userId}`);
+    bsId = response.data.bacSiId; // Lấy giá trị ID bác sĩ
+  } catch (error) {
+    console.error("Lỗi khi gọi API:", error);
+  }
 }
 
 // Lấy toàn bộ Bác sĩ
@@ -369,6 +468,8 @@ async function display(data) {
     // Xử lý trạng thái của các control
     const editDisabled = status !== "Đang xử lý" ? "disabled" : "";
     const editClass = status !== "Đang xử lý" ? "disabled" : "";
+    const addDisabled = status !== "Đã đặt" ? "disabled" : "";
+    const addClass = status !== "Đã đặt" ? "disabled" : "";
 
     // Tạo hàng mới
     const row = document.createElement("tr");
@@ -400,12 +501,20 @@ async function display(data) {
                         <i class="fas fa-check text-success"></i>
                       </div>
                       <div
-                        class="m-refuse m-delete m-tool-icon ${editClass}"
+                        class="m-refuse m-edit m-tool-icon ${editClass}"
                         data-bs-toggle="modal"
                         data-bs-target="#dialog-confirm-refuse" 
                         ${editDisabled}
                       >
                         <i class="fas fa-times text-danger"></i>
+                      </div>
+                      <div
+                        class="m-addResult m-edit m-tool-icon ${addClass}"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dialog-add-result" 
+                        ${addDisabled}
+                      >
+                        <i class="fas fa-plus text-warning"></i>
                       </div>
                     </div>
       </td>

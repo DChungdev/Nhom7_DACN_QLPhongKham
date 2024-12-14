@@ -47,41 +47,21 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
 
 
-        public async Task<IActionResult> Post([FromBody] ResultModel ketQuaKham)
+        public async Task<IActionResult> Post([FromBody] KetQuaKham ketQuaKham)
         {
 
             if (ketQuaKham.LichKhamId == Guid.Empty) // Kiểm tra LichKhamId có hợp lệ không
             {
                 return BadRequest("LichKhamId không hợp lệ.");
             }
-            
-
-            var newKetQuaKham = new KetQuaKham
+            int result = await _resultService.AddAsync(ketQuaKham);
+            if (result > 0)
             {
-                KetQuaKhamId = Guid.NewGuid(),          // Tạo ID duy nhất.
-                LichKhamId = ketQuaKham.LichKhamId,    // Gắn ID lịch khám.
-                ChanDoan = ketQuaKham.ChanDoan,        // Chẩn đoán.
-                ChiDinhThuoc = ketQuaKham.ChiDinhThuoc,// Chỉ định thuốc (nếu có).
-                GhiChu = ketQuaKham.GhiChu,            // Ghi chú (nếu có).
-                NgayTao = DateTime.Now,                // Thiết lập thời gian tạo.
-                NgayCapNhat = DateTime.Now             // Thiết lập thời gian cập nhật.
-            };
-
-            try
-            {
-                int result = await _resultService.AddAsync(newKetQuaKham);
-                if (result > 0)
-                {
-                    return StatusCode(201, "Thêm mới kết quả khám thành công.");
-                }
-                else
-                {
-                    return BadRequest("Thêm mới kết quả khám thất bại.");
-                }
+                return StatusCode(201, "Thêm mới kết quả khám thành công.");
             }
-            catch (Exception ex)
+            else
             {
-                return StatusCode(500, $"Lỗi hệ thống: {ex.InnerException?.Message ?? ex.Message}");
+                return BadRequest("Thêm mới kết quả khám thất bại.");
             }
 
         }

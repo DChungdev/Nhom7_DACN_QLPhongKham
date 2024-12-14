@@ -222,9 +222,9 @@
           <!-- Sidebar navigation-->
           <nav class="sidebar-nav">
             <ul id="sidebarnav">
-              <li class="sidebar-item selected">
+              <li class="sidebar-item">
                 <a
-                  class="sidebar-link sidebar-link active"
+                  class="sidebar-link sidebar-link"
                   href="MainAdmin.html"
                   aria-expanded="false"
                   ><i data-feather="home" class="feather-icon"></i
@@ -236,9 +236,9 @@
                 <span class="hide-menu">Quản lý</span>
               </li>
 
-              <li class="sidebar-item">
+              <li class="sidebar-item selected">
                 <a
-                  class="sidebar-link"
+                  class="sidebar-link active"
                   href="XemLichKham.html"
                   aria-expanded="false"
                   ><i data-feather="user" class="feather-icon"></i
@@ -539,6 +539,81 @@
               </div>
             </div>
           </div>
+          <!-- DIALOG ADD RESULT APPOINTMENT -->
+          <!-- The Modal -->
+          <div class="modal fade" id="dialog-add-result">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Tạo kết quả lịch khám</h4>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                  ></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <div class="row-item-long">
+                    <div class="input-item">
+                      <div class="title-input">Chẩn đoán</div>
+                      <input
+                        id="diagnose"
+                        type="text"
+                        class="m-input"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="row-item-long">
+                    <div class="input-item">
+                      <div class="title-input">Chỉ định thuốc</div>
+                      <input
+                        id="prescription"
+                        type="text"
+                        class="m-input"
+                        
+                      />
+                    </div>
+                  </div>
+                  <div class="row-item-long">
+                    <div class="input-item">
+                      <div class="title-input">Ghi chú</div>
+                      <input
+                        id="note"
+                        type="text"
+                        class="m-input"
+                        
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div
+                  class="modal-footer"
+                  style="background: rgb(232, 232, 232)"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-light me-2"
+                    data-bs-dismiss="modal"
+                  >
+                    Thoát
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    id="btnAddResult"
+                  >
+                    Tạo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- DIALOG XÁC NHẬN ĐỒNG Ý -->
           <div class="modal fade" id="dialog-confirm-agree">
@@ -636,7 +711,6 @@
                 <span>Lỗi! </span>Không thể cập nhật được dữ liệu.
               </div>
               <div class="m-popup-tool">
-                <div class="m-popup-undo">Xem hướng dẫn</div>
                 <div class="m-popup-close"></div>
               </div>
             </div>

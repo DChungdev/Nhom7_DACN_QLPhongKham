@@ -10,6 +10,6 @@ namespace QuanLyPhongKham.Business.Interfaces
     public interface IResultService:IBaseService<KetQuaKham>
     {
         Task<IEnumerable<KetQuaKham>> GetAllByLichKhamIdAsync(Guid lichKhamId);
-
+        KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId);
     }
 }

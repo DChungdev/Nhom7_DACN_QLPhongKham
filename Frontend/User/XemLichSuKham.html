@@ -225,6 +225,43 @@
         </div>
         <!-- DIALOG XÁC NHẬN HỦY -->
         <!-- The Modal -->
+        <div class="modal fade" id="modal-confirm-complete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Xác nhận</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                Bạn có chắc chắn muốn hoàn thành lịch khám này?
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button class="btn btn-secondary me-3" data-bs-dismiss="modal">
+                  Không
+                </button>
+                <button
+                  id="btnComplete"
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                >
+                  Có
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- DIALOG XÁC NHẬN HỦY -->
+        <!-- The Modal -->
         <div class="modal fade" id="modal-confirm-cancel">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -239,7 +276,9 @@
               </div>
 
               <!-- Modal body -->
-              <div class="modal-body">Bạn có chắc chắn muốn hủy lịch khám này?</div>
+              <div class="modal-body">
+                Bạn có chắc chắn muốn hủy lịch khám này?
+              </div>
 
               <!-- Modal footer -->
               <div class="modal-footer">
@@ -274,7 +313,9 @@
               </div>
 
               <!-- Modal body -->
-              <div class="modal-body">Bạn có chắc chắn muốn xóa lịch khám này?</div>
+              <div class="modal-body">
+                Bạn có chắc chắn muốn xóa lịch khám này?
+              </div>
 
               <!-- Modal footer -->
               <div class="modal-footer">
@@ -288,6 +329,78 @@
                   data-bs-dismiss="modal"
                 >
                   Có
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- DIALOG ADD RESULT APPOINTMENT -->
+        <!-- The Modal -->
+        <div class="modal fade" id="modal-view-result">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Xem kết quả lịch khám</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="container" data-aos="fade-up" data-aos-delay="100">
+                  <div class="php-email-form">
+                    <div class="row">
+                      <div class="col-md form-group mt-3 mt-md-0">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="diagnose"
+                          id="diagnose"
+                          placeholder="Chẩn đoán"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md form-group mt-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="prescription"
+                          id="prescription"
+                          placeholder="Chỉ định thuốc"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md form-group mt-3">
+                        <textarea
+                          class="form-control"
+                          id="note"
+                          name="note"
+                          rows="5"
+                          placeholder="Ghi chú"
+                          readonly
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer" style="background: rgb(232, 232, 232)">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-dismiss="modal"
+                >
+                  Thoát
                 </button>
               </div>
             </div>

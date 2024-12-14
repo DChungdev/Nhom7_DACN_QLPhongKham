@@ -15,9 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +39,15 @@
   <script src="../assets/services/dichVuIndexService.js"></script>
   <script src="../assets/services/thongTinBacSiIndex.js"></script>
 </head>
+<style>
+  .content {
+  position: relative; /* Đảm bảo tương tự như lớp "position-relative" */
+  left: 0; /* Đặt lại vị trí để không bị lệch */
+  padding: 0; /* Loại bỏ khoảng cách bên trong nếu cần */
+  margin: 0; /* Loại bỏ khoảng cách bên ngoài nếu cần */
+}
 
+</style>
 <body class="index-page">
 
   <header id="header" class="header sticky-top">
@@ -136,8 +142,6 @@
 
         <!-- Nội dung chính -->
         <div class="content row gy-4">
-
-          <!-- Vì sao chọn chúng tôi -->
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
               <h3>Tại sao nên chọn phòng khám của chúng tôi?</h3>
@@ -194,29 +198,85 @@
       </div>
     </section><!-- /Hero Section -->
 
+    <style>
+      /* Container cho About Section */
+.about-content {
+  display: flex;
+  align-items: center; /* Canh giữa theo chiều dọc */
+  justify-content: space-between; /* Đảm bảo hình ảnh và nội dung có khoảng cách đều */
+  gap: 30px; /* Khoảng cách giữa hình ảnh và nội dung */
+}
 
-    <!-- About Section -->
+.about-image {
+  position: relative;
+}
+
+.about-image img {
+  width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của phần tử */
+  height: auto;
+  border-radius: 8px; /* Để có cạnh mềm mại */
+}
+
+.about-text {
+  max-width: 600px; /* Giới hạn chiều rộng của phần nội dung */
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-text li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.about-text li i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.about-text li div {
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column; /* Đối với màn hình nhỏ, bố trí theo chiều dọc */
+    gap: 20px;
+  }
+
+  .about-text {
+    max-width: none;
+  }
+}
+
+    </style>
     <section id="about" class="about section">
       <div class="container">
-
-        <div class="row gy-4 gx-5">
-
+        <div class="about-content">
+          
           <!-- Hình ảnh và video -->
-          <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+          <div class="about-image">
             <img src="../assets/img/about.jpg" class="img-fluid" alt="Giới thiệu về phòng khám">
-            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"
-              aria-label="Xem video giới thiệu về phòng khám"></a>
+            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn" aria-label="Xem video giới thiệu về phòng khám"></a>
           </div>
-
+    
           <!-- Nội dung giới thiệu -->
-          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-text">
             <h3>Về Phòng Khám của chúng tôi</h3>
             <p>
               Phòng khám tự hào mang đến dịch vụ chăm sóc sức khỏe chất lượng cao với đội ngũ y bác sĩ chuyên môn sâu và
               trang thiết bị hiện đại. Chúng tôi luôn nỗ lực để đảm bảo mỗi bệnh nhân được điều trị tận tình, chu đáo và
               hiệu quả nhất.
             </p>
-
+    
             <ul>
               <li>
                 <i class="fa-solid fa-vial-circle-check"></i>
@@ -225,7 +285,7 @@
                   <p>Cung cấp các gói khám sức khỏe toàn diện, giúp phát hiện sớm và phòng ngừa bệnh tật.</p>
                 </div>
               </li>
-
+    
               <li>
                 <i class="fa-solid fa-pump-medical"></i>
                 <div>
@@ -233,7 +293,7 @@
                   <p>Sử dụng máy móc tiên tiến trong chẩn đoán và điều trị, đảm bảo độ chính xác cao.</p>
                 </div>
               </li>
-
+    
               <li>
                 <i class="fa-solid fa-heart-circle-xmark"></i>
                 <div>
@@ -243,11 +303,11 @@
               </li>
             </ul>
           </div>
-
+    
         </div>
-
       </div>
-    </section><!-- /About Section -->
+    </section>
+    
 
 
     <!-- Stats Section -->
@@ -304,28 +364,19 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
+        <h2>Dịch vụ</h2>
         <p>Cung cấp các dịch vụ khám chữa bệnh đa khoa, tiên tiến, hiện đại nhất</p>
       </div><!-- End Section Title -->
 
       <!-- Service List -->
    
-        <div class="row" id="serviceList">
-      
-      
+      <div class="row" id="serviceList">
           <!-- Thêm nhiều dịch vụ khác -->
-          </div>
-      
-      
-
-      <div class="container">
-
-        <div class="row gy-4">
-          <a class="btn btn-primary" href="xemdichvu.html">Xem thêm dịch vụ</a>
-        </div>
-
       </div>
-
+      
+      <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-primary" onclick="location.href='xemdichvu.html'">Xem thêm dịch vụ</button>
+      </div>
     </section><!-- /Services Section -->
 
     <!-- Appointment Section -->

@@ -44,9 +44,6 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         }
 
         [HttpPost]
-
-
-
         public async Task<IActionResult> Post([FromBody] KetQuaKham ketQuaKham)
         {
 
@@ -98,8 +95,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             int res = await _resultService.UpdateAsync(existingKQ);
             Console.WriteLine($"UpdateAsync result: {res}");
             return StatusCode(204, res);
+        }
 
-
+        [HttpGet("ketqua/{LichKhamId}")]
+        public ActionResult GetKetQuaByLichKhamId(Guid LichKhamId)
+        {
+            var kq = _resultService.GetKetQuaKhamByLichKhamId(LichKhamId);
+            return Ok(kq);
         }
     }
 }

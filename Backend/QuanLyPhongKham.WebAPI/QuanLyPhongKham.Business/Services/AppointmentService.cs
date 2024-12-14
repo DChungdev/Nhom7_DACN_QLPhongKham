@@ -266,5 +266,28 @@ namespace QuanLyPhongKham.Business.Services
                 throw new ErrorEditException();
             }
         }
+
+        public async Task<int> CompleteAppointment(Guid LichKhamId)
+        {
+            var appointment = await _repository.GetByIdAsync(LichKhamId);
+            if (appointment == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            else
+            {
+                if (appointment.TrangThaiLichKham == "Đã đặt")
+                {
+                    appointment.TrangThaiLichKham = "Hoàn thành";
+                    int res = await _repository.UpdateAsync(appointment);
+                    if (res > 0)
+                    {
+                        return res;
+                    }
+                    throw new ErrorEditException();
+                }
+                throw new ErrorEditException();
+            }
+        }
     }
 }

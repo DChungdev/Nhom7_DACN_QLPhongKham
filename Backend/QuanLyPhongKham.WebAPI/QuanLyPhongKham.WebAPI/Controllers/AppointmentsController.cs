@@ -128,6 +128,12 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             int res = await _appointmentService.AcceptAppointment(LichKhamId);
             return StatusCode(201, res);
         }
+        [HttpPut("appointment/{LichKhamId}")]
+        public async Task<IActionResult> CompleteAppointment(Guid LichKhamId)
+        {
+            int res = await _appointmentService.CompleteAppointment(LichKhamId);
+            return StatusCode(201, res);
+        }
 
         /// <summary>
         /// Xóa lịch khám theo id

@@ -1,5 +1,6 @@
 var userId = localStorage.getItem("userId");
 var lkId = "";
+var kq;
 $(document).ready(function () {
   console.log(userId);
 
@@ -10,7 +11,9 @@ $(document).ready(function () {
 
     // Lấy giá trị lkId từ thuộc tính của phần tử cha
     lkId = parentCard.attr("lkId");
+    console.log(lkId);
   });
+
   //Xử lý khi nhấn nút đồng ý hủy
   $("#btnCancel").click(function () {
     console.log(lkId);
@@ -23,7 +26,62 @@ $(document).ready(function () {
     //Gọi API Hủy lịch khám
     deleteAppointment();
   });
+  //Xử lý khi nhấn nút đồng ý xóa
+  $("#btnComplete").click(function () {
+    console.log(lkId);
+    //Gọi API Hủy lịch khám
+    completeAppointment();
+  });
+
+  //Xử lý khi nhấn option xem
+  $(document).on("click", "#optionViewResult", function () {
+   getResultAppointment();
+  });
+  //Xử lý khi nhấn option xem
+  $(document).on("click", "#completeAppointment", function () {
+   completeAppointment();
+  });
 });
+
+//Hoàn thành lịch khám
+function completeAppointment() {
+  axiosJWT
+    .put(`/api/v1/Appointments/appointment/${lkId}`)
+    .then(function (response) {
+      console.log("Hoàn thành lịch khám thành công:", response.data);
+      getAvata();
+      showPopup("success", "Thành công! Lịch khám đã được hoàn thành.");
+      $("#modal-confirm-complete #btnComplete").prop("disabled", false).text("Có");
+    })
+    .catch(function (error) {
+      getAvata();
+      showPopup("error", "Lỗi! Không thể hoàn thành lịch khám.");
+      $("#modal-confirm-complete #btnComplete").prop("disabled", false).text("Có");
+      console.error("Lỗi khi hủy lịch khám: ", error);
+    });
+}
+
+//Lấy kết quả khám theo LichKhamId
+async function getResultAppointment() {
+  try {
+    const response = await axiosJWT.get(`/api/Results/ketqua/${lkId}`);
+    kq = response.data;
+    fillViewModal();
+  } catch (error) {
+    console.error("Lỗi không tìm được kết quả khám: ", error);
+  }
+}
+
+//Điền thông tin vào modal xem
+function fillViewModal() {
+  if (kq === null) {
+    showPopup("error", "Lỗi! Không có kết quả khám!");
+  } else {
+    $("#diagnose").val(kq.chanDoan);
+    $("#prescription").val(kq.chiDinhThuoc);
+    $("#note").val(kq.ghiChu);
+  }
+}
 
 //Xử lý khi nhấn đồng ý xóa lịch khám
 function deleteAppointment() {
@@ -175,6 +233,8 @@ async function display1(dsLK) {
       lichKham.trangThaiLichKham === "Hoàn thành"
         ? "disabled"
         : "";
+    const readDisabled =
+      lichKham.trangThaiLichKham !== "Đã đặt" ? "disabled" : "";
     const col = `
           <div class="col-md-4">
               <div class="card custom-card" lkId="${lichKham.lichKhamId}">
@@ -189,6 +249,16 @@ async function display1(dsLK) {
                               <i class="fas fa-ellipsis-v"></i>
                           </button>
                           <ul class="dropdown-menu">
+                              <li>
+                                  <div class="dropdown-item ${readDisabled}" data-bs-target="#modal-confirm-complete" data-bs-toggle="modal">
+                                      <i class="fas fa-check me-2" style="color: rgb(28, 212, 37)"></i> Hoàn thành
+                                  </div>
+                              </li>
+                              <li>
+                                  <div id="optionViewResult" class="dropdown-item ${readDisabled}" data-bs-target="#modal-view-result" data-bs-toggle="modal">
+                                      <i class="fas fa-eye me-2" style="color: rgb(28, 212, 212)"></i> Xem kết quả khám
+                                  </div>
+                              </li>
                               <li>
                                   <div class="dropdown-item ${editDisabled}" data-bs-target="#modal-confirm-cancel" data-bs-toggle="modal">
                                       <i class="fas fa-times-circle me-2" style="color: rgb(255, 123, 0)"></i> Hủy

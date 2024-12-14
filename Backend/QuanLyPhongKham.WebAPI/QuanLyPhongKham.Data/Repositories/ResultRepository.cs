@@ -52,5 +52,10 @@ namespace QuanLyPhongKham.Data.Repositories
             return errors;
         }
 
+        public KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId)
+        {
+            var kq =  _context.KetQuaKhams.Where(k=>k.LichKhamId == lichKhamId).FirstOrDefault();
+            return kq;
+        }
     }
 }

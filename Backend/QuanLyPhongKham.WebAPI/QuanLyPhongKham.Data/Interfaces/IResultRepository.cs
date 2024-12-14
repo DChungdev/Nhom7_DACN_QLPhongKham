@@ -12,6 +12,6 @@ namespace QuanLyPhongKham.Data.Interfaces
         Dictionary<string, string>? CheckDataValidate(KetQuaKham ketQuaKham);
         Dictionary<string, string>? CheckDataValidateForInsert(KetQuaKham ketQuaKham);
         
-
+        KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId);
     }
 }

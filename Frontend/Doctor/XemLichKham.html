@@ -21,7 +21,9 @@
     />
     <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
     <script src="../assets/services/appointmentServiceByDoctor.js"></script>
-
+    <script src="../assets/vendor/axios.min.js"></script>
+    <script src="../assets/services/axios.js"></script>
+    <script src="../assets/services/getDoctorNameAndAvt.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/content.css" />
@@ -156,6 +158,7 @@
                   aria-expanded="false"
                 >
                   <img
+                    id="avatar"
                     src="../assets/img/users/profile-pic.jpg"
                     alt="user"
                     class="rounded-circle"
@@ -163,11 +166,12 @@
                   />
                   <span class="ml-2 d-none d-lg-inline-block"
                     ><span>Hello,</span>
-                    <span class="text-dark">Jason Doe</span>
-                    <i data-feather="chevron-down" class="svg-icon"></i
-                  ></span>
+                    <span class="text-dark" id="nameDoctor" >Jason Doe</span>
+                    <!-- <i data-feather="chevron-down" class="svg-icon"></i
+                  > -->
+                </span>
                 </a>
-                <div
+                <!-- <div
                   class="dropdown-menu dropdown-menu-end user-dd animated flipInY"
                 >
                   <a class="dropdown-item my-2" href="javascript:void(0)"
@@ -201,7 +205,7 @@
                       >View Profile</a
                     >
                   </div>
-                </div>
+                </div> -->
               </li>
               <!-- ============================================================== -->
               <!-- User profile and search -->
@@ -225,7 +229,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link sidebar-link"
-                  href="MainAdmin.html"
+                  href="MainDoctor.html"
                   aria-expanded="false"
                   ><i data-feather="home" class="feather-icon"></i
                   ><span class="hide-menu">Trang chủ</span></a

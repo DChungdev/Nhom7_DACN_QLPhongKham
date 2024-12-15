@@ -63,7 +63,6 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return StatusCode(201, res);
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPut("{benhNhanId}")]
         public async Task<IActionResult> UpdatePatient(Guid benhNhanId, [FromBody] BenhNhanModel benhNhan)
         {

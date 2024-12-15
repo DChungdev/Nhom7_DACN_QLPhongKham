@@ -1,13 +1,30 @@
 let results = []; // Biến lưu trữ toàn bộ danh sách kết quả
+var bnId;
+$(document).ready(async function () {
+    await getBNId();
+    console.error('bnId đã lấy được là ', bnId);
 
-$(document).ready(function () {
     loadResults(); // Tải danh sách kết quả khi trang được load
 });
 
+
+async function getBNId() {
+    try {
+        let userId = localStorage.getItem("userId");
+        const response = await axiosJWT.get(`/api/Patients/getbyuserid/${userId}`);
+        bnId = response.data.benhNhanId; // Lấy giá trị ID bác sĩ
+        console.error('bnId đã lấy được là ', bnId);
+
+    } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
+    }
+}
+
 function loadResults() {
-    axiosJWT.get('/api/Results')
+    axiosJWT.get(`api/Results/ketquakham/${bnId}`)
         .then((response) => {
             results = response.data;
+            console.log('ket qua : ', results);
             displayResults(results); // Hiển thị danh sách kết quả
         })
         .catch((error) => {
@@ -29,14 +46,15 @@ function displayResults(results) {
     results.forEach((result, index) => {
         const resultRow = `
             <tr>
-                <td>${result.ketQuaKhamId}</td>                                 
                 <td>${formatDate(result.ngayTao)}</td>           
                 <td>${result.chanDoan || "Không có chẩn đoán"}</td>
                 <td>${result.chiDinhThuoc || "Không có chỉ định thuốc"}</td>
+                <td>${result.ghiChu || "Không có ghi chú"}</td>
+
             </tr>
         `;
         resultTableBody.append(resultRow); // Thêm dòng vào bảng
-        console.log("abc",result)
+        console.log("abc", result)
     });
 }
 // Hàm định dạng ngày (nếu ngày không null)

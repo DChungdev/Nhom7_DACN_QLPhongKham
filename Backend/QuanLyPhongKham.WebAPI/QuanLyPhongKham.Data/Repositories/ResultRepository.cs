@@ -26,16 +26,16 @@ namespace QuanLyPhongKham.Data.Repositories
 
             //Kiểm tra LichKhamId truyền vào có tồn tại hay không
             var lk = _context.LichKhams.Where(lk => lk.LichKhamId == ketQuaKham.LichKhamId).FirstOrDefault();
-            if (lk == null) 
-            { 
-                errors.Add("LichKhamId", "Lich kham khong ton tai!"); 
+            if (lk == null)
+            {
+                errors.Add("LichKhamId", "Lich kham khong ton tai!");
             }
-            else if(lk.TrangThaiLichKham != "Đã đặt")
+            else if (lk.TrangThaiLichKham != "Đã đặt")
             {
                 errors.Add("LichKham/TrangThai", "Khong the tao ket qua cho lich kham nay!");
             }
             var kq = _context.KetQuaKhams.Where(kq => kq.LichKhamId == ketQuaKham.LichKhamId).FirstOrDefault();
-            if(kq != null)
+            if (kq != null)
             {
                 errors.Add("LichKhamId", "Lich kham nay da co ket qua");
             }
@@ -54,8 +54,58 @@ namespace QuanLyPhongKham.Data.Repositories
 
         public KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId)
         {
-            var kq =  _context.KetQuaKhams.Where(k=>k.LichKhamId == lichKhamId).FirstOrDefault();
+            var kq = _context.KetQuaKhams.Where(k => k.LichKhamId == lichKhamId).FirstOrDefault();
             return kq;
+        }
+
+        // Phương thức lấy kết quả khám của bác sĩ thông qua LichKham
+        public IEnumerable<KetQuaKham> GetAllByDoctorId(Guid bacSiId)
+        {
+            var results = _context.KetQuaKhams
+                .Join(_context.LichKhams,
+                    kq => kq.LichKhamId,
+                    lk => lk.LichKhamId,
+                    (kq, lk) => new { KQ = kq, LK = lk })
+                .Where(x => x.LK.BacSiId == bacSiId)  // Lọc theo BacSiId trong bảng LichKham
+                .Select(x => x.KQ)
+                .ToList();
+
+            return results;
+        }
+
+        public string GetBenhNhanNameByLichKhamId(Guid lichKhamId)
+        {
+            // Truy vấn kết quả khám theo LichKhamId
+            var lichKham = _context.LichKhams
+                .Where(lk => lk.LichKhamId == lichKhamId)
+                .FirstOrDefault();
+
+            if (lichKham != null)
+            {
+                // Lấy BenhNhanId từ LichKham
+                var benhNhanId = lichKham.BenhNhanId;
+
+                // Truy vấn tên bệnh nhân theo BenhNhanId
+                var benhNhan = _context.BenhNhans
+                    .Where(bn => bn.BenhNhanId == benhNhanId)
+                    .FirstOrDefault();
+
+                if (benhNhan != null)
+                {
+                    return benhNhan.HoTen;  // Trả về tên bệnh nhân
+                }
+            }
+
+            return null;  // Nếu không tìm thấy tên bệnh nhân
+        }
+
+        public IEnumerable<KetQuaKham> GetAllByPatientId(Guid benhNhanId)
+        {
+            var results = _context.KetQuaKhams
+                    .Where(k => k.LichKham.BenhNhanId == benhNhanId)
+                    .ToList();
+
+            return results;
         }
     }
 }

@@ -20,6 +20,26 @@ namespace QuanLyPhongKham.Business.Services
             _resultRepository = resultRepository;
         }
 
+        // Phương thức lấy kết quả khám của bác sĩ
+        public async Task<IEnumerable<KetQuaKham>> GetAllByDoctorIdAsync(Guid bacSiId)
+        {
+            var results = _resultRepository.GetAllByDoctorId(bacSiId); // Lấy kết quả khám từ repository
+            return results;
+        }
+
+        public async Task<IEnumerable<KetQuaKham>> GetAllByPatientIdAsync(Guid benhNhanId)
+        {
+            var results = _resultRepository.GetAllByPatientId(benhNhanId); // Lấy kết quả khám từ repository
+            return results;
+        }
+
+        public string GetBenhNhanNameByLichKhamId(Guid lichKhamId)
+        {
+            return _resultRepository.GetBenhNhanNameByLichKhamId(lichKhamId);
+        }
+
+
+
         public override async Task<int> AddAsync(KetQuaKham entity)
         {
             // Tạo ID mới cho `KetQuaKham`

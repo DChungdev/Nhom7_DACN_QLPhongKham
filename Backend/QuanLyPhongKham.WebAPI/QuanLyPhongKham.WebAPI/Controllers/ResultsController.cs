@@ -103,5 +103,41 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var kq = _resultService.GetKetQuaKhamByLichKhamId(LichKhamId);
             return Ok(kq);
         }
+
+        [HttpGet("doctor/{bacSiId}")]
+        public async Task<IActionResult> GetResultsByDoctorId(Guid bacSiId)
+        {
+            var results = await _resultService.GetAllByDoctorIdAsync(bacSiId);
+            if (results == null || !results.Any())
+            {
+                return NotFound("Không có kết quả khám nào cho bác sĩ này.");
+            }
+            return Ok(results);
+        }
+
+        [HttpGet("ketquakham/{benhNhanId}")]
+        public async Task<IActionResult> GetResultsByPatientId(Guid benhNhanId)
+        {
+            var results = await _resultService.GetAllByPatientIdAsync(benhNhanId);
+            if (results == null || !results.Any())
+            {
+                return NotFound("Không có kết quả khám nào cho bệnh nhân này.");
+            }
+            return Ok(results);
+        }
+
+        [HttpGet("tenbenhnhan/{lichKhamId}")]
+        public ActionResult GetBenhNhanName(Guid lichKhamId)
+        {
+            var benhNhanName = _resultService.GetBenhNhanNameByLichKhamId(lichKhamId);
+            if (benhNhanName != null)
+            {
+                return Ok(benhNhanName);
+            }
+            else
+            {
+                return NotFound("Không tìm thấy bệnh nhân.");
+            }
+        }
     }
 }

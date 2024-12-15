@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace QuanLyPhongKham.Business.Interfaces
 {
-    public interface IResultService:IBaseService<KetQuaKham>
+    public interface IResultService : IBaseService<KetQuaKham>
     {
+        // Thêm phương thức để lấy kết quả khám theo bác sĩ ID
+        Task<IEnumerable<KetQuaKham>> GetAllByDoctorIdAsync(Guid bacSiId);
+        Task<IEnumerable<KetQuaKham>> GetAllByPatientIdAsync(Guid benhNhanId);
+
         Task<IEnumerable<KetQuaKham>> GetAllByLichKhamIdAsync(Guid lichKhamId);
         KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId);
+        string GetBenhNhanNameByLichKhamId(Guid lichKhamId);
     }
 }

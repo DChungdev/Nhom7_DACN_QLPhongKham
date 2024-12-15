@@ -26,6 +26,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> GetAllPatient() 
         { 
             var patients = await _patientService.GetAllAsync();
@@ -84,7 +85,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             int res = await _patientService.UpdateAsync(existingBN);
             return StatusCode(201, res);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{benhNhanId}")]
         public async Task<IActionResult> DeletePatient(Guid benhNhanId)
         {

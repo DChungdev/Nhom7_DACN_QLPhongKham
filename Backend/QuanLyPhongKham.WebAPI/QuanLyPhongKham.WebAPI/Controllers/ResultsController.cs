@@ -5,6 +5,10 @@ using QuanLyPhongKham.Business.Interfaces;
 using QuanLyPhongKham.Business.Services;
 using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Models;
+using QuanLyPhongKham.Data.Repositories;
+using QuanLyPhongKham.Data.Interfaces;
+using Microsoft.Extensions.Logging;
+
 
 namespace QuanLyPhongKham.WebAPI.Controllers
 {
@@ -17,14 +21,19 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IPatientService _patientService;
         private readonly IAppointmentService _appointmentService;
+        private readonly IResultRepository _resultRepository;
+        private readonly ILogger<ResultsController> _logger;
 
-        public ResultsController(IResultService resultService, IAuthService authService, IMapper mapper, IPatientService patientService, IAppointmentService appointmentService)
+
+
+        public ResultsController(IResultService resultService, IAuthService authService, IMapper mapper, IPatientService patientService, IAppointmentService appointmentService, ILogger<ResultsController> logger)
         {
             _resultService = resultService;
             _authService = authService;
             _mapper = mapper;
             _patientService = patientService;
             _appointmentService = appointmentService;
+            _logger = logger;
 
 
         }
@@ -67,7 +76,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 
 
         [HttpPut("{ketQuaKhamId}")]
-        public async Task<IActionResult> UpdateService(Guid ketQuaKhamId, [FromBody] ResultModel ketQuaKham)
+        public async Task<IActionResult> UpdateResult(Guid ketQuaKhamId, [FromBody] ResultModel ketQuaKham)
         {
             if (!ModelState.IsValid)
             {
@@ -82,11 +91,9 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             var existingKQ = await _resultService.GetByIdAsync(ketQuaKhamId);
             if (existingKQ == null)
             {
-                Console.WriteLine($"Không tìm thấy kết quả khám với ID: {ketQuaKhamId}");
-                return BadRequest("Không tìm thấy kết quả khám");
+                return BadRequest("Không tìm thấy kết quả");
             }
-
-
+            existingKQ.LichKhamId = ketQuaKham.LichKhamId;
             existingKQ.ChanDoan = ketQuaKham.ChanDoan;
             existingKQ.ChiDinhThuoc = ketQuaKham.ChiDinhThuoc;
             existingKQ.GhiChu = ketQuaKham.GhiChu;
@@ -96,6 +103,9 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             Console.WriteLine($"UpdateAsync result: {res}");
             return StatusCode(204, res);
         }
+
+
+
 
         [HttpGet("ketqua/{LichKhamId}")]
         public ActionResult GetKetQuaByLichKhamId(Guid LichKhamId)

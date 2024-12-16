@@ -206,13 +206,7 @@
             <div class="m-title-text">
               <h2>Quản lý khám bệnh</h2>
             </div>
-          </div>
-          <div class="m-title-table-right">
-            <button id="btnAdd" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialog-add">
-              <i class="fas fa-plus"></i>
-              Thêm mới
-            </button>
-          </div>
+          </div>          
         </div>
         <div class="m-toolbar-table">
           <div class="m-toolbar-quickfilter">
@@ -230,20 +224,16 @@
         <div class="main container my-5">
           <table id="tblDichVu" class="table-hover">
             <thead class="table-success">
-              <tr>
-                <th class="chk">
-                  <input type="checkbox" id="check-all" />
-                </th>
+              <tr>                
                 <th style="display: none"></th>
                 <th class="m-data-left" scope="col">STT</th>
-                <th class="m-data-left" scope="col">Mã kết quả</th>
-                <th class="m-data-left" scope="col">Lịch khám</th>
+                <th class="m-data-left" scope="col">Tên bệnh nhân</th>
+                <th class="m-data-left" scope="col">Ngày khám</th>
                 <th class="m-data-left" scope="col">Chuẩn đoán</th>
                 <th class="m-data-left" scope="col">Chỉ định thuốc</th>
                 <th class="m-data-left" scope="col">Ghi chú</th>
                 <th class="m-data-left" scope="col">Ngày tạo</th>
                 <th class="m-data-left" scope="col">Ngày cập nhật</th>
-
               </tr>
             </thead>
             <tbody id="tblData">
@@ -254,62 +244,7 @@
           </table>
         </div>
         <!-- DIALOG INFOR DETAIL -->
-        <!-- The Modal -->
-
-        <div class="modal fade" id="dialog-add">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Thêm kết quả khám</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <div class="row-item d-flex">
-                  <div class="input-item">
-                    <div class="title-input">Lịch khám</div>
-                    <input type="date" class="m-input">
-                  </div>
-                </div>
-
-                <div class="row-item-long">
-                  <div class="input-item">
-                    <div class="title-input">Chuẩn đoán</div>
-                    <input type="text" class="m-input">
-                  </div>
-                </div>
-                <div class="row-item-long">
-                  <div class="input-item">
-                    <div class="title-input">Chỉ định thuốc</div>
-                    <input type="text" class="m-input">
-                  </div>
-                </div>
-                <div class="row-item-long">
-                  <div class="input-item">
-                    <div class="title-input">Ghi chú</div>
-                    <input type="text" class="m-input">
-                  </div>
-                </div>
-
-                <div class="input-item">
-                  <div class="title-input">Ngày tạo</div>
-                  <input type="date" class="m-input">
-                </div>
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer" style="background: rgb(232, 232, 232);">
-                <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" id="btnAdd" class="btn btn-success" data-bs-dismiss="modal">Thêm</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
+        
         <div class="modal fade" id="dialog-edit">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -322,12 +257,7 @@
 
               <!-- Modal body -->
               <div class="modal-body">
-                <div class="row-item d-flex">
-                  <div class="input-item">
-                    <div class="title-input">Lịch khám</div>
-                    <input type="date" class="m-input">
-                  </div>
-                </div>
+                
 
                 <div class="row-item-long">
                   <div class="input-item">
@@ -348,10 +278,7 @@
                   </div>
                 </div>
 
-                <div class="input-item">
-                  <div class="title-input">Ngày cập nhật</div>
-                  <input type="date" class="m-input">
-                </div>
+                
               </div>
 
               <!-- Modal footer -->

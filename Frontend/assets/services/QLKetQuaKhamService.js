@@ -11,44 +11,61 @@ $(document).ready(async function () {
 
 
 
-    // Sự kiện chỉnh sửa kết quả khám
+    // Sự kiện chỉnh sửa dịch vụ
     $(document).on('click', '.m-edit', function () {
-        const resultId = $(this).data('resultId');  // Lấy ID của kết quả khám
-        const result = results.find(r => r.ketQuaKhamId === resultId);  // Tìm kết quả khám trong danh sách
+        const resultId = $(this).data('resultId');
+        const result = results.find(s => s.ketQuaKhamId === resultId);
+        // const lichKhamId = result.lichKhamId;
+        // console.log(lichKhamId)
+
+        console.log('resultId:  ', resultId)
 
         if (!result) {
-            alert('Không tìm thấy kết quả khám để chỉnh sửa.');
+            showErrorPopup("Không tìm thấy kết quả để chỉnh sửa.");
             return;
         }
 
         // Đổ dữ liệu vào modal chỉnh sửa
-        $('#dialog-edit input[type="date"]').eq(0).val(result.ngayKham.split('T')[0]); // Lịch khám
-        $('#dialog-edit input[type="text"]').eq(0).val(result.chanDoan);   // Chuẩn đoán
-        $('#dialog-edit input[type="text"]').eq(1).val(result.chiDinhThuoc); // Chỉ định thuốc
+        $('#dialog-edit input[type="text"]').eq(0).val(result.chanDoan);
+        $('#dialog-edit input[type="text"]').eq(1).val(result.chiDinhThuoc);
         $('#dialog-edit input[type="text"]').eq(2).val(result.ghiChu);
-        $('#dialog-edit input[type="date"]').eq(1).val(result.ngayCapNhat.split('T')[0]); // Ngày cập nhật
 
-        // Sự kiện sửa
-        $('#btnSua').off('click').on('click', function () {
+        // Xử lý sự kiện sửa
+        $('#btnEdit').off('click').on('click', function () {
+            console.log("Đang xử lý sửa...");
+            const chanDoan = $('#dialog-edit input[type="text"]').eq(0).val();
+            const chiDinhThuoc = $('#dialog-edit input[type="text"]').eq(1).val();
+            const ghiChu = $('#dialog-edit input[type="text"]').eq(2).val();
+
+            // Kiểm tra các trường dữ liệu
+            if (!chanDoan) {
+                showErrorPopup("Sửa không thành công: Chẩn đoán không được để trống!");
+                return;
+            }
+
+            
+
             const updatedResult = {
                 ketQuaKhamId: resultId,
-                lichKham: $('#dialog-add input[type="date"]').eq(0).val(),   // Lịch khám
-                chanDoan: $('#dialog-add input').eq(0).val(),    // Chuẩn đoán
-                chiDinhThuoc: $('#dialog-add input').eq(1).val(), // Chỉ định thuốc
-                ghiChu: $('#dialog-add input').eq(2).val(), // Chỉ định thuốc
-
-                ngayCapNhat: $('#dialog-add input[type="date"]').eq(1).val(),     // Ngày tạo
+                lichKhamId: result.lichKhamId,
+                chanDoan: chanDoan,
+                chiDinhThuoc: chiDinhThuoc,
+                ghiChu: ghiChu,
             };
+            console.log(updatedResult)
 
             axiosJWT.put(`/api/Results/${resultId}`, updatedResult)
-                .then(() => {
-                    loadResults(); // Tải lại danh sách kết quả khám
+                .then((response) => {
+                    console.log("Dữ liệu đã được cập nhật: ", response.data); // Lấy dữ liệu từ response
+                    loadResults(); // Tải lại danh sách
                     $('#dialog-edit').modal('hide'); // Đóng modal
+                    showSuccessPopup("Sửa kết quả thành công!"); // Thông báo thành công
                 })
                 .catch((error) => {
-                    showErrorPopup(); // Hiển thị popup lỗi
-                    console.error('Lỗi khi chỉnh sửa kết quả khám:', error);
+                    console.error('Lỗi khi chỉnh sửa kết quả:', error);
+                    showErrorPopup("Sửa không thành công: Đã xảy ra lỗi từ server!");
                 });
+
         });
     });
 
@@ -150,18 +167,4 @@ function formatDate(dateString) {
     if (!dateString) return "Không có dữ liệu";
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN'); // Định dạng theo ngày Việt Nam
-}
-
-function showErrorPopup() {
-    const errorPopup = document.getElementById("error-popup");
-    errorPopup.style.visibility = "visible";
-
-    // Ẩn popup sau 3 giây
-    setTimeout(() => {
-        hideErrorPopup();
-    }, 3000);
-}
-function hideErrorPopup() {
-    const errorPopup = document.getElementById("error-popup");
-    errorPopup.style.visibility = "hidden";
 }

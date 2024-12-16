@@ -28,6 +28,8 @@
   <script src="../assets/services/axios.js"></script>
   <script src="../assets/services/authService.js"></script>
   <script src="../assets/services/xemKetQuaKham.js"></script>
+  <script src="../assets/services/thongTinCaNhanService.js"></script>
+
   <!-- Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/popup.css" />
@@ -35,6 +37,44 @@
     .input-error {
       border: 2px solid red !important;
     }
+    /* Định dạng tổng thể cho bảng */
+    .table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  /* Các ô trong bảng */
+  .table th, .table td {
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      border: 1px solid #ddd;
+  }
+
+  /* Các header bảng */
+  .table th {
+      background-color: #186eca;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+  }
+
+  /* Các hàng trong bảng */
+  .table tbody tr:nth-child(even) {
+      background-color: #f8f9fa;
+  }
+
+  
+
+  /* Viền mượt mà cho bảng */
+  .table-bordered {
+      border: 2px solid #ddd;
+  }
+
+  /* Phần chân bảng */
+  .table tfoot {
+      background-color: #f1f1f1;
+  }
   </style>
 </head>
 
@@ -156,7 +196,7 @@
         <nav id="navbar" class="nav-menu navbar">
           <ul>
             <li>
-              <a href="ThongTinCaNhan.html" class="nav-link active text-dark"><i class="bi bi-person"></i>
+              <a href="ThongTinCaNhan.html" class="nav-link text-dark"><i class="bi bi-person"></i>
                 <span>Thông tin tài khoản</span></a>
             </li>
             <li>
@@ -164,7 +204,7 @@
                 <span>Lịch sử khám bệnh</span></a>
             </li>
             <li>
-              <a href="xemketquakham.html" class="nav-link text-dark"><i class="bi bi-file-earmark-text"></i>
+              <a href="xemketquakham.html" class="nav-link active text-dark"><i class="bi bi-file-earmark-text"></i>
                 <span>Kết quả khám</span></a>
             </li>
           </ul>
@@ -172,30 +212,25 @@
         <!-- .nav-menu -->
       </div>
     </div>
-    <div class="content">
-      <div class="card p-3">
+    <div class="content" style="height: max-content;">
+      <div class="card p-3" style="height: 65%;">
         <div class="card-body">
           <h2>Kết quả khám</h2>
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <input type="text" id="searchResult" class="form-control" placeholder="Tìm kiếm kết quả khám...">
-            </div>
-          </div>
+          
 
-          <!-- Bảng hiển thị kết quả khám -->
-          <div class="table-responsive shadow-lg rounded">
+          <div class="table-responsive shadow-lg rounded" style="border-radius: 10px; overflow-x: auto;">
             <table class="table table-bordered table-hover table-striped table-sm align-middle">
-              <thead class="table-primary text-center">
-                <tr>
-                  <th>Ngày khám</th>
-                  <th>Chẩn đoán</th>
-                  <th>Chỉ định thuốc</th>
-                  <th>Ghi chú</th>
-                </tr>
-              </thead>
-              <tbody id="resultList">
-
-              </tbody>
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th class="p-3">Ngày khám</th>
+                        <th class="p-3">Chẩn đoán</th>
+                        <th class="p-3">Chỉ định thuốc</th>
+                        <th class="p-3">Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody id="resultList">
+                    <!-- Dữ liệu sẽ được điền vào đây -->
+                </tbody>
             </table>
           </div>
         </div>
@@ -242,7 +277,7 @@
         </div>
       </div>
 
-      <footer id="footer" class="footer light-background">
+      <footer id="footer" class="footer light-background" style="height: 35%;">
 
 
 

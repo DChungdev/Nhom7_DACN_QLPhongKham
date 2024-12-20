@@ -12,8 +12,8 @@ using QuanLyPhongKham.Data.Context;
 namespace QuanLyPhongKham.WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241119093107_Initial")]
-    partial class Initial
+    [Migration("20241219143530_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -492,8 +492,14 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<Guid>("BenhNhanId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("DichVuId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("GioKham")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LyDo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("NgayCapNhat")

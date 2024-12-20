@@ -16,5 +16,8 @@ namespace QuanLyPhongKham.Models.Models
         public string GioKham { get; set; }
         public string TrangThaiLichKham { get; set; }
         public BenhNhan BenhNhan { get; set; }
+        // Bổ sung hai thuộc tính mới
+        public string? LyDo { get; set; }
+        public Guid? DichVuId { get; set; }
     }
 }

@@ -93,6 +93,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             appointment.NgayKham = lichKham.NgayKham;
             appointment.GioKham = lichKham.GioKham;
             appointment.TrangThaiLichKham = "Đang xử lý";
+            appointment.DichVuId = lichKham.DichVuId;
             benhNhan.HoTen = lichKham.BenhNhan.HoTen;
             benhNhan.NgaySinh = lichKham.BenhNhan.NgaySinh;
             benhNhan.Email = lichKham.BenhNhan.Email;
@@ -116,9 +117,9 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 400 - Lỗi hủy
         /// </returns>
         [HttpPut("cancel/{LichKhamId}")]
-        public async Task<IActionResult> Cancel(Guid LichKhamId)
+        public async Task<IActionResult> Cancel(Guid LichKhamId, [FromBody] string? lyDo)
         {
-            int res = await _appointmentService.CancelAppointment(LichKhamId);
+            int res = await _appointmentService.CancelAppointment(LichKhamId, lyDo);
             return StatusCode(201, res);
 
         }

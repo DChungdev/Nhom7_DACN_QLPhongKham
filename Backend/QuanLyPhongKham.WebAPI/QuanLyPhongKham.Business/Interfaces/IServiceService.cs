@@ -9,6 +9,8 @@ namespace QuanLyPhongKham.Business.Interfaces
 	{
 		// Lấy tất cả các dịch vụ
 		Task<Khoa> GetKhoaByIdAsync(Guid khoaId);
-		// Các phương thức bổ sung tùy chỉnh nếu cần, ví dụ tìm kiếm dịch vụ theo tên
-	}
+        // Các phương thức bổ sung tùy chỉnh nếu cần, ví dụ tìm kiếm dịch vụ theo tên
+
+        Task<IEnumerable<DichVu>> GetByKhoaId(Guid khoaId);
+    }
 }

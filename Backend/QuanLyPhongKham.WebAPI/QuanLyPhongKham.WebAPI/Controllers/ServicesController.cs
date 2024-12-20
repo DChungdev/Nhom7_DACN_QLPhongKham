@@ -31,6 +31,14 @@ namespace QuanLyPhongKham.WebAPI.Controllers
 			return Ok(_mapper.Map<IEnumerable<DichVuModel>>(dichvus));
 		}
 
+		[HttpGet("{DepartmentId}")]
+		public async Task<IActionResult> GetByKhoaId(Guid DepartmentId)
+		{
+			var dichvus = await _serviceService.GetByKhoaId(DepartmentId);
+			return Ok(dichvus);
+		}
+
+
 		[HttpPost]
 		public async Task<ActionResult> AddDichVu([FromBody] DichVuModel dichVuModel)
 		{

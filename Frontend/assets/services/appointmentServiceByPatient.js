@@ -1,6 +1,7 @@
 var bn;
 var lichKham;
 var dsBacSi;
+var dsDichVu;
 var userId = localStorage.getItem("userId");
 $(document).ready(function () {
   console.log(userId);
@@ -9,10 +10,18 @@ $(document).ready(function () {
   const departmentSelect = $("#appointment #department");
   const doctorSelect = $("#appointment #doctor");
   const appointmentTimeSelect = $("#appointment #appointment-time");
+  const serviceSelect = $("#appointment #service");
+
+  getAllService(serviceSelect);
 
   getAllDoctor(doctorSelect, appointmentTimeSelect);
 
-  getAllDepartment(departmentSelect, doctorSelect, appointmentTimeSelect);
+  getAllDepartment(
+    departmentSelect,
+    doctorSelect,
+    appointmentTimeSelect,
+    serviceSelect
+  );
 
   //Lấy danh sách phòng ban, bác sĩ điền vào select trong modal edit
   const departmentSelectEdit = $("#modalEditAppointment #department-edit");
@@ -20,13 +29,16 @@ $(document).ready(function () {
   const appointmentTimeSelectEdit = $(
     "#modalEditAppointment #appointment-time-edit"
   );
+  const serviceSelectEdit = $("#modalEditAppointment #service-edit");
+  getAllService(serviceSelectEdit);
 
   getAllDoctor(doctorSelectEdit, appointmentTimeSelectEdit);
 
   getAllDepartment(
     departmentSelectEdit,
     doctorSelectEdit,
-    appointmentTimeSelectEdit
+    appointmentTimeSelectEdit,
+    serviceSelectEdit
   );
 
   //  console.log(bn);
@@ -75,8 +87,26 @@ $(document).ready(function () {
   });
 });
 
+//Lấy tất cả các dịch vụ
+function getAllService(serviceSelect) {
+  axiosJWT
+    .get(`/api/Services`)
+    .then(function (response) {
+      dsDichVu = response.data;
+
+      // Đổ dữ liệu vào select bác sĩ
+      dsDichVu.forEach((item) => {
+        const option = $("<option>").val(item.dichVuId).text(item.tenDichVu);
+        serviceSelect.append(option);
+      });
+    })
+    .catch(function (error) {
+      console.error("Lỗi không tìm được:", error);
+    });
+}
+
 //Xử lý Hủy lịch khám
-function cancelAppointment(){
+function cancelAppointment() {
   // Hiển thị trạng thái đang xử lý
   $("#modal-confirm-cancel #btnCancel")
     .prop("disabled", true)
@@ -147,6 +177,7 @@ function editAppointment() {
     ngayKham: $("#modalEditAppointment #appointment-date-edit").val(),
     gioKham: $("#modalEditAppointment #appointment-time-edit").val(),
     trangThaiLichKham: "",
+    dichVuId: $("#modalEditAppointment #service-edit").val(),
     benhNhan: patient,
   };
   //Check data hợp lệ
@@ -189,6 +220,9 @@ function fillEditModal() {
 
     // Sau khi điền danh sách ca khám, gán lại giá trị ca khám (gioKham)
     appointmentTimeSelect.prop("disabled", false).val(lichKham.gioKham); // Gán giá trị ca khám vào select
+
+    $("#modalEditAppointment #service-edit").val(lichKham.dichVuId);
+
   }
   if (
     lichKham.trangThaiLichKham === "Đã hủy" ||
@@ -279,6 +313,7 @@ function registerAppointment() {
     ngayKham: $("#appointment #appointment-date").val(),
     gioKham: $("#appointment #appointment-time").val(),
     trangThaiLichKham: "",
+    dichVuId:$("#appointment #service").val(),
     benhNhan: patient,
   };
   //Check data hợp lệ
@@ -450,7 +485,7 @@ function register(appointment) {
         // Xóa lựa chọn trong select (trả về mặc định)
         $("#appointment select").prop("selectedIndex", 0);
 
-        //Xóa nội dung trong text area 
+        //Xóa nội dung trong text area
         $("#appointment #message").val("");
 
         // Xóa nội dung trong các phần tử có class cụ thể
@@ -538,7 +573,12 @@ function addEventSelect(selectElement, dsBacSi, appointmentTimeSelect) {
 }
 
 // Lấy toàn bộ khoa
-function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
+function getAllDepartment(
+  selectElement,
+  doctorSelect,
+  appointmentTimeSelect,
+  serviceSelect
+) {
   axiosJWT
     .get(`/api/v1/Departments`)
     .then(function (response) {
@@ -558,9 +598,10 @@ function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
   selectElement.on("change", function () {
     const selectedKhoaId = selectElement.val();
 
-    // Xóa các bác sĩ cũ
+    // Xóa các bác sĩ và dịch vụ cũ
     doctorSelect.html('<option value="">Chọn bác sĩ</option>');
     appointmentTimeSelect.html('<option value="">Chọn ca khám</option>');
+    serviceSelect.html('<option value="">Chọn dịch vụ</option>'); // Reset dịch vụ
 
     if (selectedKhoaId) {
       // Lấy danh sách Bác sĩ theo Khoa
@@ -583,9 +624,28 @@ function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
         .catch(function (error) {
           console.error("Lỗi không tìm được bác sĩ:", error);
         });
+
+      // Lấy danh sách Dịch vụ theo Khoa
+      axiosJWT
+        .get(`/api/Services/${selectedKhoaId}`) // Giả sử API này trả về dịch vụ theo khoa
+        .then(function (response) {
+          const dsDichVu = response.data;
+
+          // Đổ dữ liệu vào select dịch vụ
+          dsDichVu.forEach((item) => {
+            const option = $("<option>")
+              .val(item.dichVuId)
+              .text(item.tenDichVu);
+            serviceSelect.append(option);
+          });
+        })
+        .catch(function (error) {
+          console.error("Lỗi không tìm được dịch vụ:", error);
+        });
     } else {
-      // Lấy toàn bộ bác sĩ nếu không chọn khoa
+      // Nếu không chọn khoa, lấy toàn bộ bác sĩ và dịch vụ
       getAllDoctor(doctorSelect, appointmentTimeSelect);
+      getAllService(serviceSelect);
     }
   });
 }

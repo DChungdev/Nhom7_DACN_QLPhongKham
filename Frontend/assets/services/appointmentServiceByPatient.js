@@ -82,8 +82,23 @@ $(document).ready(function () {
 
   //Xử lý khi nhấn Hủy lịch khám
   $("#btnCancel").click(function () {
-    //Gọi hàm hủy lịch khám
-    cancelAppointment();
+    //Lấy lý do
+    const reason = $("#modal-confirm-cancel #reason").val();
+    // Kiểm tra nếu lý do trống
+    if (!reason.trim()) {
+      // Thêm class m-input-error vào ô input lý do
+      $("#modal-confirm-cancel #reason").addClass("input-error");
+      // Thêm thông báo title cho người dùng
+      $("#modal-confirm-cancel #reason").attr("title", "Lý do từ chối không được để trống!");
+      // Focus vào ô input
+      $("#modal-confirm-cancel #reason").focus();
+    } else {
+      // Xóa thông báo lỗi nếu lý do không trống
+      $("#modal-confirm-cancel #reason").removeClass("m-input-error");
+      $("#modal-confirm-cancel #reason").removeAttr("title");
+      // Gọi API Hủy lịch khám
+      cancelAppointment(reason);
+    }
   });
 });
 
@@ -106,21 +121,31 @@ function getAllService(serviceSelect) {
 }
 
 //Xử lý Hủy lịch khám
-function cancelAppointment() {
+function cancelAppointment(reason) {
   // Hiển thị trạng thái đang xử lý
   $("#modal-confirm-cancel #btnCancel")
     .prop("disabled", true)
     .text("Đang xử lý...");
   axiosJWT
-    .put(`/api/v1/Appointments/cancel/${lichKham.lichKhamId}`)
+  .put(
+    `/api/v1/Appointments/cancel/${lichKham.lichKhamId}`,
+    JSON.stringify("Bệnh nhân: " + reason),
+    {
+      headers: {
+        "Content-Type": "application/json", // Đảm bảo header là application/json
+      },
+    }
+  )
     .then(function (response) {
       console.log("Hủy lịch khám thành công:", response.data);
+      $("#modal-confirm-cancel").modal("hide");
       showPopup("success", "Thành công! Lịch khám đã được hủy.");
       $("#modal-confirm-cancel #btnCancel")
         .prop("disabled", false)
         .text("Đồng ý");
     })
     .catch(function (error) {
+      $("#modal-confirm-cancel").modal("hide");
       showPopup("error", "Lỗi! Không thể hủy lịch khám.");
       $("#modal-confirm-cancel #btnCancel")
         .prop("disabled", false)

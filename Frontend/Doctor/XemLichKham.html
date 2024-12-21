@@ -36,10 +36,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-
     <script src="../assets/vendor/axios.min.js"></script>
     <script src="../assets/services/axios.js"></script>
-    
   </head>
 
   <body>
@@ -166,10 +164,10 @@
                   />
                   <span class="ml-2 d-none d-lg-inline-block"
                     ><span>Hello,</span>
-                    <span class="text-dark" id="nameDoctor" >Doctor</span>
+                    <span class="text-dark" id="nameDoctor">Doctor</span>
                     <!-- <i data-feather="chevron-down" class="svg-icon"></i
                   > -->
-                </span>
+                  </span>
                 </a>
                 <!-- <div
                   class="dropdown-menu dropdown-menu-end user-dd animated flipInY"
@@ -249,18 +247,18 @@
                   ><span class="hide-menu">Lịch khám</span></a
                 >
               </li>
-              <li class="sidebar-item ">
+              <li class="sidebar-item">
                 <a
-                  class="sidebar-link sidebar-link "
+                  class="sidebar-link sidebar-link"
                   href="XemBenhNhan.html"
                   aria-expanded="false"
                   ><i data-feather="users" class="feather-icon"></i
                   ><span class="hide-menu">Bệnh nhân</span></a
                 >
               </li>
-              <li class="sidebar-item ">
+              <li class="sidebar-item">
                 <a
-                  class="sidebar-link sidebar-link "
+                  class="sidebar-link sidebar-link"
                   href="QLKhamBenh.html"
                   aria-expanded="false"
                   ><i data-feather="users" class="feather-icon"></i
@@ -268,12 +266,11 @@
                 >
               </li>
 
-
               <li class="list-divider"></li>
               <li class="nav-small-cap">
                 <span class="hide-menu">Người dùng</span>
               </li>
-        
+
               <li class="sidebar-item">
                 <a
                   class="sidebar-link sidebar-link"
@@ -487,6 +484,14 @@
                   </div>
                   <div class="row-item-long">
                     <div class="input-item">
+                      <div class="title-input">Dịch vụ</div>
+                      <select name="service" id="service" disabled>
+                        <option value="">Chọn dịch vụ</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row-item-long">
+                    <div class="input-item">
                       <div class="title-input">Địa chỉ</div>
                       <input
                         id="address"
@@ -494,6 +499,12 @@
                         class="m-input"
                         readonly
                       />
+                    </div>
+                  </div>
+                  <div class="row-item-long">
+                    <div class="input-item">
+                      <div class="title-input">Lý do từ chối</div>
+                      <input id="reason" type="text" class="m-input" readonly />
                     </div>
                   </div>
                   <div class="row-item-long">
@@ -574,23 +585,13 @@
                   <div class="row-item-long">
                     <div class="input-item">
                       <div class="title-input">Chỉ định thuốc</div>
-                      <input
-                        id="prescription"
-                        type="text"
-                        class="m-input"
-                        
-                      />
+                      <input id="prescription" type="text" class="m-input" />
                     </div>
                   </div>
                   <div class="row-item-long">
                     <div class="input-item">
                       <div class="title-input">Ghi chú</div>
-                      <input
-                        id="note"
-                        type="text"
-                        class="m-input"
-                        
-                      />
+                      <input id="note" type="text" class="m-input" />
                     </div>
                   </div>
                 </div>
@@ -651,7 +652,12 @@
                   >
                     Hủy
                   </button>
-                  <button type="button" id="btnAgree" class="btn btn-success" data-bs-dismiss="modal">
+                  <button
+                    type="button"
+                    id="btnAgree"
+                    class="btn btn-success"
+                    data-bs-dismiss="modal"
+                  >
                     Đồng ý
                   </button>
                 </div>
@@ -664,7 +670,7 @@
               <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                  <h4 class="modal-title">Xác nhận từ chối</h4>
+                  <h4 class="modal-title">Từ chối</h4>
                   <button
                     type="button"
                     class="btn-close"
@@ -675,6 +681,17 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                   <div class="content">
+                    <div class="row-item-long">
+                      <div class="input-item">
+                        <div class="title-input">Lý do</div>
+                        <input
+                          id="reason"
+                          type="text"
+                          class="m-input"
+                          required
+                        />
+                      </div>
+                    </div>
                     Bạn có chắc chắn muốn từ chối lịch khám này?
                   </div>
                 </div>
@@ -690,7 +707,7 @@
                   >
                     Hủy
                   </button>
-                  <button type="button" id="btnRefuse" class="btn btn-danger" data-bs-dismiss="modal">
+                  <button type="button" id="btnRefuse" class="btn btn-danger">
                     Đồng ý
                   </button>
                 </div>

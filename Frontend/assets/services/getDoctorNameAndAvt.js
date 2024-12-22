@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 
 function getAvata() {
-    var userId = localStorage.getItem("userId");
+    var userId = localStorage.getItem("doctorId");
     console.log(userId);
     // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
     axiosJWT

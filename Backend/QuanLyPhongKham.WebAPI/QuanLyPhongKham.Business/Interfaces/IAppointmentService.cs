@@ -21,11 +21,12 @@ namespace QuanLyPhongKham.Business.Interfaces
         /// <param name="benhNhanId">id</param>
         /// <returns></returns>
         Task<IEnumerable<LichKham>> GetAppointmentsByPatient(Guid benhNhanId);
-        Task<int> CancelAppointment(Guid id);
+        Task<int> CancelAppointment(Guid id, string? lyDo);
         Task<LichKham>? GetLichKhamLatest(Guid benhNhanId);
 
         Task<int> EditAsync(LichKham lichKham, Guid id);
         Task<int> AcceptAppointment(Guid id);
         Task<int> CompleteAppointment(Guid LichKhamId);
+        Task<int> Complete(Guid LichKhamId);
     }
 }

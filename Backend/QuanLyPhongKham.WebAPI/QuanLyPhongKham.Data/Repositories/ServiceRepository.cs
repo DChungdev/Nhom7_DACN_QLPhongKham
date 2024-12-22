@@ -46,7 +46,13 @@ namespace QuanLyPhongKham.Data.Repositories
 			return errors;
 		}
 
-		public string GetNextMaDichVu()
+        public async Task<IEnumerable<DichVu>> GetByKhoaId(Guid khoaId)
+        {
+            var dichVus = await _context.DichVus.Where(x=>x.KhoaId == khoaId).ToListAsync();
+			return dichVus;
+        }
+
+        public string GetNextMaDichVu()
 		{
 			// Lấy danh sách mã bệnh nhân
 			var maxMaDV = _context.DichVus

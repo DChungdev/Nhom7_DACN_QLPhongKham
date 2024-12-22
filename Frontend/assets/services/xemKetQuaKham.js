@@ -1,5 +1,6 @@
 let results = []; // Biến lưu trữ toàn bộ danh sách kết quả
 var bnId;
+var bn;
 $(document).ready(async function () {
     await getBNId();
     console.error('bnId đã lấy được là ', bnId);
@@ -30,6 +31,32 @@ function loadResults() {
         .catch((error) => {
             console.error('Lỗi khi tải danh sách kết quả:', error);
         });
+}
+
+function getData() {
+    var userId = localStorage.getItem("userId");
+    console.log(userId);
+    // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
+    axiosJWT
+        .get(`/api/Patients/getbyuserid/${userId}`)
+        .then(function (response) {
+            bn = response.data;
+            display();
+            getAvata();
+        })
+        .catch(function (error) {
+            showErrorPopup();
+            console.error("Lỗi không tìm được:", error);
+        });
+}
+
+function display() {
+    console.log(bn);
+    $("#hotenHeader").text(bn.hoTen);
+    // document.getElementById('uploadedImage').src = "http://localhost:37649" + response.data.fileUrl;
+    if (bn.hinhAnh != null) {
+        $('#uploadedImage').attr('src', "http://localhost:37649" + bn.hinhAnh);
+    }
 }
 
 // Hàm hiển thị danh sách kết quả

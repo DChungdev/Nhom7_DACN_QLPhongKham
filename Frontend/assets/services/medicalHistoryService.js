@@ -16,9 +16,26 @@ $(document).ready(function () {
 
   //Xử lý khi nhấn nút đồng ý hủy
   $("#btnCancel").click(function () {
-    console.log(lkId);
-    //Gọi API Hủy lịch khám
-    cancelAppointment();
+    //Lấy lý do
+    const reason = $("#modal-confirm-cancel #reason").val();
+    // Kiểm tra nếu lý do trống
+    if (!reason.trim()) {
+      // Thêm class m-input-error vào ô input lý do
+      $("#modal-confirm-cancel #reason").addClass("input-error");
+      // Thêm thông báo title cho người dùng
+      $("#modal-confirm-cancel #reason").attr(
+        "title",
+        "Lý do từ chối không được để trống!"
+      );
+      // Focus vào ô input
+      $("#modal-confirm-cancel #reason").focus();
+    } else {
+      // Xóa thông báo lỗi nếu lý do không trống
+      $("#modal-confirm-cancel #reason").removeClass("m-input-error");
+      $("#modal-confirm-cancel #reason").removeAttr("title");
+      // Gọi API Hủy lịch khám
+      cancelAppointment(reason);
+    }
   });
   //Xử lý khi nhấn nút đồng ý xóa
   $("#btnDelete").click(function () {
@@ -35,11 +52,11 @@ $(document).ready(function () {
 
   //Xử lý khi nhấn option xem
   $(document).on("click", "#optionViewResult", function () {
-   getResultAppointment();
+    getResultAppointment();
   });
   //Xử lý khi nhấn option xem
   $(document).on("click", "#completeAppointment", function () {
-   completeAppointment();
+    completeAppointment();
   });
 });
 
@@ -51,12 +68,16 @@ function completeAppointment() {
       console.log("Hoàn thành lịch khám thành công:", response.data);
       getAvata();
       showPopup("success", "Thành công! Lịch khám đã được hoàn thành.");
-      $("#modal-confirm-complete #btnComplete").prop("disabled", false).text("Có");
+      $("#modal-confirm-complete #btnComplete")
+        .prop("disabled", false)
+        .text("Có");
     })
     .catch(function (error) {
       getAvata();
       showPopup("error", "Lỗi! Không thể hoàn thành lịch khám.");
-      $("#modal-confirm-complete #btnComplete").prop("disabled", false).text("Có");
+      $("#modal-confirm-complete #btnComplete")
+        .prop("disabled", false)
+        .text("Có");
       console.error("Lỗi khi hủy lịch khám: ", error);
     });
 }
@@ -105,20 +126,30 @@ function deleteAppointment() {
     });
 }
 //Xử lý khi nhấn đồng ý hủy lịch khám
-function cancelAppointment() {
+function cancelAppointment(reason) {
   // Hiển thị trạng thái đang xử lý
   $("#modal-confirm-cancel #btnCancel")
     .prop("disabled", true)
     .text("Đang xử lý...");
   axiosJWT
-    .put(`/api/v1/Appointments/cancel/${lkId}`)
+    .put(
+      `/api/v1/Appointments/cancel/${lkId}`,
+      JSON.stringify("Bệnh nhân: " + reason),
+      {
+        headers: {
+          "Content-Type": "application/json", // Đảm bảo header là application/json
+        },
+      }
+    )
     .then(function (response) {
       console.log("Hủy lịch khám thành công:", response.data);
+      $("#modal-confirm-cancel").modal("hide");
       getAvata();
       showPopup("success", "Thành công! Lịch khám đã được hủy.");
       $("#modal-confirm-cancel #btnCancel").prop("disabled", false).text("Có");
     })
     .catch(function (error) {
+      $("#modal-confirm-cancel").modal("hide");
       getAvata();
       showPopup("error", "Lỗi! Không thể hủy lịch khám.");
       $("#modal-confirm-cancel #btnCancel").prop("disabled", false).text("Có");
@@ -220,6 +251,13 @@ async function display1(dsLK) {
   const doctorNamesPromises = dsLK.map((item) => getNameById(item.bacSiId));
   const doctorNames = await Promise.all(doctorNamesPromises); // Chờ tất cả Promise hoàn thành
 
+  const response = await axiosJWT.get(`/api/Services`);
+  const dsDichVu = response.data;
+  console.log(dsDichVu);
+  // Kiểm tra dsDichVu có tồn tại và là một mảng không
+  if (!Array.isArray(dsDichVu)) {
+    console.error("dsDichVu không phải là mảng hợp lệ.");
+  }
   dsLK.forEach((lichKham, index) => {
     // Lấy tên bệnh nhân từ mảng đã xử lý
     const doctorName = doctorNames[index];
@@ -228,21 +266,31 @@ async function display1(dsLK) {
     const date = new Date(dateString);
     const formattedDate = date.toLocaleDateString("en-GB"); // 'en-GB' chuẩn Anh (ngày/tháng/năm)
     // Xử lý trạng thái lịch khám
+    const status = lichKham.trangThaiLichKham;
+
+    const completeDisabled = status === "Hoàn thành" ? "" : "disabled";
+    let readDisabled = status === "Hoàn thành" ? "" : "disabled";
+    readDisabled = status === "Đã hoàn thành" ? "" : "disabled";
     const editDisabled =
-      lichKham.trangThaiLichKham === "Đã hủy" ||
-      lichKham.trangThaiLichKham === "Hoàn thành"
-        ? "disabled"
-        : "";
-    const readDisabled =
-      lichKham.trangThaiLichKham !== "Đã đặt" ? "disabled" : "";
+      status === "Đang xử lý" || status === "Đã đặt" ? "" : "disabled";
+
+    const readReason = status === "Đã hủy" ? "" : "d-none";
+    const readService = status !== "Đã hủy" ? "" : "d-none";
+
+    //Hiển thị dịch vụ
+    // Tìm dịch vụ tương ứng với lichKham.dichVuId trong dsDichVu
+    const service = dsDichVu.find(
+      (dichVu) => dichVu.dichVuId === lichKham.dichVuId
+    );
+    const serviceName = service ? service.tenDichVu : "Chưa xác định";
     const col = `
           <div class="col-md-4">
               <div class="card custom-card" lkId="${lichKham.lichKhamId}">
                   <div class="d-flex justify-content-between align-items-start">
                       <span class="badge rounded-pill ${getBadgeClass(
-                        lichKham.trangThaiLichKham
+                        status
                       )}" style="min-width: 70px">
-                          ${lichKham.trangThaiLichKham}
+                          ${status}
                       </span>
                       <span class="dropdown">
                           <button class="optionButton btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -250,7 +298,7 @@ async function display1(dsLK) {
                           </button>
                           <ul class="dropdown-menu">
                               <li>
-                                  <div class="dropdown-item ${readDisabled}" data-bs-target="#modal-confirm-complete" data-bs-toggle="modal">
+                                  <div class="dropdown-item ${completeDisabled}" data-bs-target="#modal-confirm-complete" data-bs-toggle="modal">
                                       <i class="fas fa-check me-2" style="color: rgb(28, 212, 37)"></i> Hoàn thành
                                   </div>
                               </li>
@@ -275,7 +323,12 @@ async function display1(dsLK) {
                   <div class="mt-2">
                       <h5 class="mb-1">Bác sĩ: ${doctorName}</h5>
                       <p class="mb-1">Ngày khám: ${formattedDate}</p>
-                      <p class="mb-0">Ca khám: ${lichKham.gioKham}</p>
+                      <p class="mb-1">Ca khám: ${lichKham.gioKham}</p>
+                      <p class="mb-1 ${readReason}">Lý do hủy: ${
+      lichKham.lyDo
+    }</p>
+                      <p class="mb-0 ${readService}">Dịch vụ: ${serviceName}</p>
+
                   </div>
               </div>
           </div>

@@ -12,5 +12,6 @@ namespace QuanLyPhongKham.Data.Interfaces
 		string GetNextMaDichVu();
 		Dictionary<string, string>? CheckDataValidate(DichVu dichVu);
 		Dictionary<string, string>? CheckDataValidateForInsert(DichVu dichVu);
+		Task<IEnumerable<DichVu>> GetByKhoaId(Guid khoaId);
 	}
 }

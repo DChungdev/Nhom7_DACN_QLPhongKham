@@ -1,5 +1,6 @@
 var dsLK;
 var dsBacSi;
+var dsDichVu;
 var lkId = "";
 var bnId = "";
 var bsId = "";
@@ -14,8 +15,12 @@ $(document).ready(async function () {
   const appointmentTimeSelectEdit = document.querySelector(
     "#dialog-appointment-detail #appointmentTime"
   );
+  const serviceSelectEdit = document.querySelector(
+    "#dialog-appointment-detail #service"
+  );
+  getAllService(serviceSelectEdit);
 
-  getAllDoctor(doctorSelectEdit, appointmentTimeSelectEdit);
+  getAllDoctor(doctorSelectEdit);
 
   // Gắn sự kiện cho nút hiển thị modal xem chi tiết
   findLichKham(".m-detail.m-edit", fillEditModal);
@@ -29,18 +34,32 @@ $(document).ready(async function () {
   });
 
   //Mở modal xác nhận hủy
-  findLichKham(".m-refuse.m-delete", () => {});
+  findLichKham(".m-refuse.m-edit", () => {});
 
   //Xử lý sự kiện khi nhấn nút xóa
   $("#btnRefuse").click(function () {
-    // Gọi API Hủy lịch khám
-    cancelAppointment();
+    //Lấy lý do
+    const reason = $("#dialog-confirm-refuse #reason").val();
+    // Kiểm tra nếu lý do trống
+    if (!reason.trim()) {
+      // Thêm class m-input-error vào ô input lý do
+      $("#reason").addClass("m-input-error");
+      // Thêm thông báo title cho người dùng
+      $("#reason").attr("title", "Lý do từ chối không được để trống!");
+      // Focus vào ô input
+      $("#reason").focus();
+    } else {
+      // Xóa thông báo lỗi nếu lý do không trống
+      $("#reason").removeClass("m-input-error");
+      $("#reason").removeAttr("title");
+      // Gọi API Hủy lịch khám
+      cancelAppointment(reason);
+    }
   });
   // Gắn sự kiện cho nút hiển thị modal xem chi tiết
   findLichKham(".m-addResult.m-edit", () => {});
   //Gắn sự kiện khi nhấn nút Tạo lịch khám
   $("#btnAddResult").click(function () {
-    console.log(lkId);
     addResultAppointment();
   });
 
@@ -158,16 +177,25 @@ function findLichKham(selector, callback) {
 }
 
 //Xử lý khi nhấn đồng ý hủy lịch khám
-function cancelAppointment() {
+function cancelAppointment(reason) {
   // Hiển thị trạng thái đang xử lý
   $("#dialog-confirm-refuse #btnRefuse")
     .prop("disabled", true)
     .text("Đang xử lý...");
   axiosJWT
-    .put(`/api/v1/Appointments/cancel/${lkId}`)
+    .put(
+      `/api/v1/Appointments/cancel/${lkId}`,
+      JSON.stringify("Bác sĩ: " + reason),
+      {
+        headers: {
+          "Content-Type": "application/json", // Đảm bảo header là application/json
+        },
+      }
+    )
     .then(function (response) {
       console.log("Hủy lịch khám thành công:", response.data);
       showPopup("success", "Thành công! Lịch khám đã được hủy.");
+      $("#dialog-confirm-refuse").modal("hide");
       $("#dialog-confirm-refuse #btnRefuse")
         .prop("disabled", false)
         .text("Đồng ý");
@@ -175,6 +203,7 @@ function cancelAppointment() {
     })
     .catch(function (error) {
       showPopup("error", "Lỗi! Không thể hủy lịch khám.");
+      $("#dialog-confirm-refuse").modal("hide");
       $("#dialog-confirm-refuse #btnRefuse")
         .prop("disabled", false)
         .text("Đồng ý");
@@ -327,6 +356,11 @@ function fillEditModal(lichKham) {
 
     // Sau khi điền danh sách ca khám, gán lại giá trị ca khám (gioKham)
     appointmentTimeSelect.val(lichKham.gioKham); // Gán giá trị ca khám vào select
+
+    $("#dialog-appointment-detail #service").val(lichKham.dichVuId);
+    
+    $("#dialog-appointment-detail #reason").val(lichKham.lyDo);
+
   }
   // Xử lý thông tin bệnh nhân
   if (lichKham.benhNhanId) {
@@ -394,7 +428,7 @@ function getData() {
 
 async function getDoctorId() {
   try {
-    let userId = localStorage.getItem("userId");
+    let userId = localStorage.getItem("doctorId");
     const response = await axiosJWT.get(`/api/Doctors/getbyuserid/${userId}`);
     bsId = response.data.bacSiId; // Lấy giá trị ID bác sĩ
   } catch (error) {
@@ -403,7 +437,7 @@ async function getDoctorId() {
 }
 
 // Lấy toàn bộ Bác sĩ
-function getAllDoctor(selectElement, appointmentTimeSelect) {
+function getAllDoctor(selectElement) {
   axiosJWT
     .get(`/api/Doctors`)
     .then(function (response) {
@@ -413,6 +447,23 @@ function getAllDoctor(selectElement, appointmentTimeSelect) {
         option.value = item.bacSiId;
         option.textContent = item.hoTen;
         selectElement.appendChild(option);
+      });
+    })
+    .catch(function (error) {
+      console.error("Lỗi không tìm được:", error);
+    });
+}
+// Lấy toàn bộ dịch vụ
+function getAllService(serviceSelect) {
+  axiosJWT
+    .get(`/api/Services`)
+    .then(function (response) {
+      dsDichVu = response.data;
+      dsDichVu.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.dichVuId;
+        option.textContent = item.tenDichVu;
+        serviceSelect.appendChild(option);
       });
     })
     .catch(function (error) {

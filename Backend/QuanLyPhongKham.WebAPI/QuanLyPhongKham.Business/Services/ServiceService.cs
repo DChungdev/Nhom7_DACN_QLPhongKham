@@ -85,5 +85,10 @@ namespace QuanLyPhongKham.Business.Services
 				}
 			}
 		}
-	}
+
+        public async Task<IEnumerable<DichVu>> GetByKhoaId(Guid khoaId)
+        {
+            return await _serviceRepository.GetByKhoaId(khoaId);
+        }
+    }
 }

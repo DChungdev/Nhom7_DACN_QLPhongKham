@@ -55,7 +55,7 @@ namespace QuanLyPhongKham.Business.Services
             }
         }
 
-        public async Task<int> CancelAppointment(Guid id)
+        public async Task<int> CancelAppointment(Guid id, string? lyDo)
         {
             //Lấy ra lịch khám muốn hủy
             var appointment = await _appointmentRepository.GetByIdAsync(id);
@@ -71,6 +71,7 @@ namespace QuanLyPhongKham.Business.Services
                 throw new ErrorEditException();
             }
             appointment.TrangThaiLichKham = "Đã hủy";
+            appointment.LyDo = lyDo;
             appointment.NgayCapNhat = DateTime.Now;
             int res = await _appointmentRepository.UpdateAsync(appointment);
             if (res > 0)
@@ -268,6 +269,29 @@ namespace QuanLyPhongKham.Business.Services
         }
 
         public async Task<int> CompleteAppointment(Guid LichKhamId)
+        {
+            var appointment = await _repository.GetByIdAsync(LichKhamId);
+            if (appointment == null)
+            {
+                throw new ErrorNotFoundException();
+            }
+            else
+            {
+                if (appointment.TrangThaiLichKham == "Hoàn thành")
+                {
+                    appointment.TrangThaiLichKham = "Đã hoàn thành";
+                    int res = await _repository.UpdateAsync(appointment);
+                    if (res > 0)
+                    {
+                        return res;
+                    }
+                    throw new ErrorEditException();
+                }
+                throw new ErrorEditException();
+            }
+        }
+
+        public async Task<int> Complete(Guid LichKhamId)
         {
             var appointment = await _repository.GetByIdAsync(LichKhamId);
             if (appointment == null)

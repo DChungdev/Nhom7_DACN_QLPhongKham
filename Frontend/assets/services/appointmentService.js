@@ -1,5 +1,6 @@
 var dsLK;
 var dsBacSi;
+var dsDichVu;
 var lkId = "";
 var bnId = "";
 $(document).ready(function () {
@@ -16,12 +17,21 @@ $(document).ready(function () {
     "#dialog-appointment-edit #appointmentTime"
   );
 
+  const serviceSelectEdit = document.querySelector(
+    "#dialog-appointment-edit #service"
+  );
+  console.log(serviceSelectEdit);
+
+  //Hiển thị tất cả các dịch vụ
+  getAllService(serviceSelectEdit);
+
   getAllDoctor(doctorSelectEdit, appointmentTimeSelectEdit);
 
   getAllDepartment(
     departmentSelectEdit,
     doctorSelectEdit,
-    appointmentTimeSelectEdit
+    appointmentTimeSelectEdit,
+    serviceSelectEdit
   );
 
   // Gắn sự kiện cho nút hiển thị modal sửa
@@ -89,10 +99,10 @@ $(document).ready(function () {
   });
 
   // Sự kiện khi nhập vào ô tìm kiếm
-  $(".m-input-search").on("keyup", function() {
+  $(".m-input-search").on("keyup", function () {
     var value = $(this).val().toLowerCase();
-    $("#tblAppointment tbody tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $("#tblAppointment tbody tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
   });
 });
@@ -152,6 +162,7 @@ function editAppointment() {
     ngayKham: $("#dialog-appointment-edit #appointmentDate").val(),
     gioKham: $("#dialog-appointment-edit #appointmentTime").val(),
     trangThaiLichKham: "",
+    dichVuId:$("#dialog-appointment-edit #service").val(),
     benhNhan: patient,
   };
   //Check data hợp lệ
@@ -367,6 +378,8 @@ function fillEditModal(lichKham) {
 
     // Sau khi điền danh sách ca khám, gán lại giá trị ca khám (gioKham)
     appointmentTimeSelect.prop("disabled", false).val(lichKham.gioKham); // Gán giá trị ca khám vào select
+
+    $("#dialog-appointment-edit #service").val(lichKham.dichVuId);
   }
   // Xử lý thông tin bệnh nhân
   if (lichKham.benhNhanId) {
@@ -412,6 +425,7 @@ function getData() {
     .get(`/api/v1/Appointments`)
     .then(function (response) {
       dsLK = response.data;
+      console.log(dsLK);
       display(dsLK);
     })
     .catch(function (error) {
@@ -420,7 +434,12 @@ function getData() {
 }
 
 // Lấy toàn bộ khoa
-function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
+function getAllDepartment(
+  selectElement,
+  doctorSelect,
+  appointmentTimeSelect,
+  serviceSelectEdit
+) {
   axiosJWT
     .get(`/api/v1/Departments`)
     .then(function (response) {
@@ -439,9 +458,10 @@ function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
   // Lắng nghe sự kiện khi chọn Khoa
   selectElement.addEventListener("change", () => {
     const selectedKhoaId = selectElement.value;
-    // Xóa các bác sĩ cũ
+
+    // Xóa các bác sĩ và dịch vụ cũ
     doctorSelect.innerHTML = '<option value="">Chọn bác sĩ</option>';
-    // appointmentTimeSelect.innerHTML = '<option value="">Chọn ca khám</option>'; // Reset giờ khám
+    serviceSelectEdit.innerHTML = '<option value="">Chọn dịch vụ</option>'; // Reset dịch vụ
 
     if (selectedKhoaId) {
       // Lấy danh sách Bác sĩ theo Khoa
@@ -455,6 +475,8 @@ function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
             option.textContent = item.hoTen;
             doctorSelect.appendChild(option);
           });
+
+          // Lắng nghe sự kiện khi chọn Bác sĩ
           doctorSelect.addEventListener("change", () => {
             addEventSelect(doctorSelect, dsBacSi, appointmentTimeSelect);
           });
@@ -462,8 +484,26 @@ function getAllDepartment(selectElement, doctorSelect, appointmentTimeSelect) {
         .catch(function (error) {
           console.error("Lỗi không tìm được bác sĩ:", error);
         });
+
+      // Lấy danh sách Dịch vụ theo Khoa
+      axiosJWT
+        .get(`/api/Services/${selectedKhoaId}`) // Giả sử API này trả về dịch vụ theo khoa
+        .then(function (response) {
+          const dsDichVu = response.data;
+          dsDichVu.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.dichVuId;
+            option.textContent = item.tenDichVu;
+            serviceSelectEdit.appendChild(option);
+          });
+        })
+        .catch(function (error) {
+          console.error("Lỗi không tìm được dịch vụ:", error);
+        });
     } else {
+      // Nếu không có khoa nào được chọn, reset bác sĩ và dịch vụ
       getAllDoctor(doctorSelect);
+      getAllService(serviceSelectEdit);
     }
   });
 }
@@ -484,6 +524,24 @@ function getAllDoctor(selectElement, appointmentTimeSelect) {
         addEventSelect(selectElement, dsBacSi, appointmentTimeSelect);
       });
       addEventSelect(selectElement, dsBacSi, appointmentTimeSelect);
+    })
+    .catch(function (error) {
+      console.error("Lỗi không tìm được:", error);
+    });
+}
+// Lấy toàn bộ dịch vụ
+function getAllService(serviceSelectEdit) {
+  axiosJWT
+    .get(`/api/Services`)
+    .then(function (response) {
+      dsDichVu = response.data;
+      console.log(dsDichVu);
+      dsDichVu.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.dichVuId;
+        option.textContent = item.tenDichVu;
+        serviceSelectEdit.appendChild(option);
+      });
     })
     .catch(function (error) {
       console.error("Lỗi không tìm được:", error);
@@ -540,7 +598,6 @@ async function display(data) {
   );
   const doctorNames = await Promise.all(doctorNamesPromises); // Chờ tất cả Promise hoàn thành
 
-  
   data.forEach((item, index) => {
     // // Định dạng hiển thị dd/MM/yyyy
     const dateString = item.ngayKham;

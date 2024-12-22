@@ -1,8 +1,10 @@
 ﻿using QuanLyPhongKham.Business.Interfaces;
 using QuanLyPhongKham.Data.Context;
 using QuanLyPhongKham.Data.Interfaces;
+using QuanLyPhongKham.Data.Repositories;
 using QuanLyPhongKham.Models.Entities;
 using QuanLyPhongKham.Models.Exceptions;
+using QuanLyPhongKham.Models.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,10 +72,8 @@ namespace QuanLyPhongKham.Business.Services
             }
         }
 
-        public Task<IEnumerable<KetQuaKham>> GetAllByLichKhamIdAsync(Guid lichKhamId)
-        {
-            throw new NotImplementedException();
-        }
+
+
 
         public KetQuaKham? GetKetQuaKhamByLichKhamId(Guid lichKhamId)
         {
@@ -81,6 +81,7 @@ namespace QuanLyPhongKham.Business.Services
             return kq;
 
         }
+
 
         public override async Task<int> UpdateAsync(KetQuaKham entity)
         {

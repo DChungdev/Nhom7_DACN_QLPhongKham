@@ -490,8 +490,14 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     b.Property<Guid>("BenhNhanId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("DichVuId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("GioKham")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LyDo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("NgayCapNhat")

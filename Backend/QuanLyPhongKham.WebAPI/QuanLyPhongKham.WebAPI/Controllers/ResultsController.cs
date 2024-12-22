@@ -55,13 +55,14 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] KetQuaKham ketQuaKham)
         {
-
-            if (ketQuaKham.LichKhamId == Guid.Empty) // Kiểm tra LichKhamId có hợp lệ không
+            var lkId = ketQuaKham.LichKhamId;
+            if (lkId == Guid.Empty) // Kiểm tra LichKhamId có hợp lệ không
             {
                 return BadRequest("LichKhamId không hợp lệ.");
             }
             int result = await _resultService.AddAsync(ketQuaKham);
-            if (result > 0)
+            int res = await _appointmentService.Complete((Guid) lkId);
+            if (result > 0 && res > 0)
             {
                 return StatusCode(201, "Thêm mới kết quả khám thành công.");
             }

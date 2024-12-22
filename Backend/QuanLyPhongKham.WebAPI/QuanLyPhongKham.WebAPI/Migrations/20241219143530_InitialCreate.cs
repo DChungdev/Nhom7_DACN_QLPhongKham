@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanLyPhongKham.WebAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -299,7 +299,9 @@ namespace QuanLyPhongKham.WebAPI.Migrations
                     GioKham = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrangThaiLichKham = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NgayTao = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    NgayCapNhat = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    NgayCapNhat = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LyDo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DichVuId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -10,7 +10,7 @@ using QuanLyPhongKham.Models.Exceptions;
 
 namespace QuanLyPhongKham.WebAPI.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
 
@@ -37,6 +37,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 200 - Lấy thành công
         /// <returns>DS lịch khám</returns>
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var appoinments = await _appointmentService.GetAllAsync();
@@ -62,6 +63,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 201 - Tạo thành công
         /// </returns>
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Post([FromBody] AppointmentModel lichKham)
         {
             BenhNhan benhNhan = await _patientService.GetByIdAsync(lichKham.BenhNhanId);
@@ -93,6 +95,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             appointment.NgayKham = lichKham.NgayKham;
             appointment.GioKham = lichKham.GioKham;
             appointment.TrangThaiLichKham = "Đang xử lý";
+            appointment.DichVuId = lichKham.DichVuId;
             benhNhan.HoTen = lichKham.BenhNhan.HoTen;
             benhNhan.NgaySinh = lichKham.BenhNhan.NgaySinh;
             benhNhan.Email = lichKham.BenhNhan.Email;
@@ -116,11 +119,11 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 400 - Lỗi hủy
         /// </returns>
         [HttpPut("cancel/{LichKhamId}")]
-        public async Task<IActionResult> Cancel(Guid LichKhamId)
+        [Authorize(Roles = "User,Doctor")]
+        public async Task<IActionResult> Cancel(Guid LichKhamId, [FromBody] string? lyDo)
         {
-            int res = await _appointmentService.CancelAppointment(LichKhamId);
+            int res = await _appointmentService.CancelAppointment(LichKhamId, lyDo);
             return StatusCode(201, res);
-
         }
         [HttpPut("doctor/{LichKhamId}")]
         public async Task<IActionResult> AcceptAppointment(Guid LichKhamId)
@@ -141,6 +144,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// <param name="LichKhamId">id</param>
         /// <returns>201 - Xóa thành công</returns>
         [HttpDelete("{LichKhamId}")]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> Delete(Guid LichKhamId)
         {
             int res = await _appointmentService.DeleteAsync(LichKhamId);

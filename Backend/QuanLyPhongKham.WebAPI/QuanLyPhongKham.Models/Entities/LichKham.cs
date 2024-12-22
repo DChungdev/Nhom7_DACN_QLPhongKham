@@ -17,6 +17,10 @@ namespace QuanLyPhongKham.Models.Entities
         public DateTime? NgayTao { get; set; } = DateTime.Now;
         public DateTime? NgayCapNhat { get; set; } = DateTime.Now;
 
+        // Bổ sung hai thuộc tính mới
+        public string? LyDo { get; set; }
+        public Guid? DichVuId { get; set; }
+
         public BenhNhan BenhNhan { get; set; }
         public BacSi BacSi { get; set; }
         public virtual KetQuaKham? KetQuaKham { get; set; }

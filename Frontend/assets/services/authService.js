@@ -85,7 +85,7 @@ $(document).ready(function () {
             const { accessToken, refreshToken } = response.data;
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            localStorage.setItem("userName", username);
+            // localStorage.setItem("userName", username);
 
             console.log(accessToken);
             console.log(refreshToken);
@@ -100,7 +100,7 @@ $(document).ready(function () {
                 try {
                     let decodedToken = jwt_decode(token);
                     userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-                    localStorage.setItem('userName', username);
+                    // localStorage.setItem('userName', username);
                     console.log(decodedToken); // In ra để kiểm tra thông tin token
                 } catch (error) {
                     console.error('Token không hợp lệ:', error);
@@ -115,11 +115,13 @@ $(document).ready(function () {
                 console.log(username);
                 $("#displayUser").text(username);
             } else if (userRole === 'Patient') {
+                localStorage.setItem("userName", username);
                 // Lấy User ID từ API sau khi đăng nhập thành công
                 const userId = await getUserId(username, "userId");  // Dùng await để đợi hàm getUserId
                 // localStorage.setItem("userId", response.data);
                 window.location.href = '/User/index.html'; // Chuyển hướng patient
             } else if (userRole === 'Doctor') {
+                localStorage.setItem("doctorName", username);
                 // Lấy User ID từ API sau khi đăng nhập thành công
                 const userId = await getUserId(username, "doctorId");  // Dùng await để đợi hàm getUserId
                 

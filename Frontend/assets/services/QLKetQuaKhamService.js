@@ -77,7 +77,7 @@ $(document).ready(async function () {
 
 async function getDoctorId() {
     try {
-        let userId = localStorage.getItem("userId");
+        let userId = localStorage.getItem("doctorId");
         const response = await axiosJWT.get(`/api/Doctors/getbyuserid/${userId}`);
         bsId = response.data.bacSiId; // Lấy giá trị ID bác sĩ
     } catch (error) {

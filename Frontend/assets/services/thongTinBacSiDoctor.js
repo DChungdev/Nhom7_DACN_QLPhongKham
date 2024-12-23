@@ -94,7 +94,7 @@ function checkConfirm() {
 }
 
 function getDataDoctorsInfo() {
-    var userId = localStorage.getItem("userId");
+    var userId = localStorage.getItem("doctorId");
     console.log(userId);
     // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
     axiosJWT
@@ -112,7 +112,7 @@ function getDataDoctorsInfo() {
 
 function displayDoctorsInfo() {
     console.log(bs);
-    var username = localStorage.getItem("userName");
+    var username = localStorage.getItem("doctorName");
     $("#hotenHeader").text(bs.hoTen);
     $("#username").val(username);
     $("#hoten").val(bs.hoTen);

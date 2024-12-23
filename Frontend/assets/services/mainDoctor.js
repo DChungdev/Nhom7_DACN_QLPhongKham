@@ -21,7 +21,7 @@ $(document).ready(async function () {
 // Hàm lấy ID bác sĩ từ API
 async function getDoctorId() {
     try {
-        let userId = localStorage.getItem("userId");
+        let userId = localStorage.getItem("doctorId");
         const response = await axiosJWT.get(`/api/Doctors/getbyuserid/${userId}`);
         bsId = response.data.bacSiId; // Lấy giá trị ID bác sĩ
     } catch (error) {
@@ -44,7 +44,7 @@ async function getDoctorPatients() {
 // Hàm lấy danh sách lịch khám theo ID bác sĩ
 async function getDoctorAppointments() {
     try {
-        const response = await axiosJWT.get(`/api/Appointments/getbydoctorid/${bsId}`);
+        const response = await axiosJWT.get(`/api/v1/Appointments/doctor/${bsId}`);
         dsLK = response.data; // Lưu danh sách lịch khám từ API
     } catch (error) {
         console.error("Lỗi khi lấy danh sách lịch khám:", error);

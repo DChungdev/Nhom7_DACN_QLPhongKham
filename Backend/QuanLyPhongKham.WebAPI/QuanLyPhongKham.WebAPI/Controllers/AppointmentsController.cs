@@ -63,7 +63,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 201 - Tạo thành công
         /// </returns>
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> Post([FromBody] AppointmentModel lichKham)
         {
             BenhNhan benhNhan = await _patientService.GetByIdAsync(lichKham.BenhNhanId);
@@ -119,7 +119,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// 400 - Lỗi hủy
         /// </returns>
         [HttpPut("cancel/{LichKhamId}")]
-        [Authorize(Roles = "User,Doctor")]
+        [Authorize(Roles = "Patient,Doctor")]
         public async Task<IActionResult> Cancel(Guid LichKhamId, [FromBody] string? lyDo)
         {
             int res = await _appointmentService.CancelAppointment(LichKhamId, lyDo);
@@ -144,7 +144,7 @@ namespace QuanLyPhongKham.WebAPI.Controllers
         /// <param name="LichKhamId">id</param>
         /// <returns>201 - Xóa thành công</returns>
         [HttpDelete("{LichKhamId}")]
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin,Patient")]
         public async Task<IActionResult> Delete(Guid LichKhamId)
         {
             int res = await _appointmentService.DeleteAsync(LichKhamId);

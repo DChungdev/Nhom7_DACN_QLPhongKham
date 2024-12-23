@@ -3,59 +3,6 @@ $(document).ready(function () {
 
     getData();
 
-    // $('#suaThongTin').on('submit', function (e) {
-    //     e.preventDefault();
-    //     let imgUrl;
-    //     let fileInput = document.getElementById('fileInput');
-    //     let file = fileInput.files[0];
-    //     if (file) {
-    //         // Tạo đối tượng FormData và append file vào đó
-    //         var formData = new FormData();
-    //         formData.append("file", file);
-
-    //         // Sử dụng Axios để gửi file
-    //         axiosJWT
-    //             .post('/api/Files/upload', formData)
-    //             .then(function (response) {
-    //                 // Thành công, nhận URL từ phản hồi
-    //                 console.log("File URL: ", response.data.fileUrl);
-    //                 imgUrl = response.data.fileUrl
-    //                 // Hiển thị ảnh vừa upload (nếu cần)
-    //                 document.getElementById('uploadedImage').src = "http://localhost:37649" + response.data.fileUrl;
-    //             })
-    //             .catch(function (error) {
-    //                 console.error(error);
-    //             });
-    //     }
-    //     console.log(imgUrl);
-    //     let ngaySinh = $("#ngaysinh").val() + "T00:00:00";
-    //     let checkedRadio = $('input[name="gender"]:checked');
-    //     let valueGT = checkedRadio.val();
-    //     // Gửi request đăng ký
-    //     axiosJWT
-    //         .put(`/api/Patients/${bn.benhNhanId}`, {
-    //             benhNhanId: bn.benhNhanId,
-    //             maBenhNhan: bn.maBenhNhan,
-    //             hoTen: $("#hoten").val(),
-    //             hinhAnh: imgUrl,
-    //             ngaySinh: ngaySinh,
-    //             loaiGioiTinh: parseInt(valueGT),
-    //             soDienThoai: $("#sdt").val(),
-    //             email: $("#email").val(),
-    //             diaChi: $("#diachi").val(),
-    //             tienSuBenhLy: $("#tiensubenhly").val()
-    //         })
-    //         .then(function (response) {
-    //             console.log('Cập nhật thông tin thành công:', response);
-    //             getData();
-    //             showSuccessPopup();
-    //         })
-    //         .catch(function (error) {
-    //             showErrorPopup();
-    //             console.error("Lỗi khi đăng ký:", error);
-    //         });
-    // });
-
     $('#suaThongTin').on('submit', async function (e) {
         e.preventDefault();
         let imgUrl;  // Khai báo imgUrl ở bên ngoài để sử dụng trong toàn bộ hàm

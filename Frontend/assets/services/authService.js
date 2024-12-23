@@ -69,40 +69,38 @@ $(document).ready(function () {
     // });
     $('#loginForm').on('submit', async function (e) {
         e.preventDefault(); // Ngăn chặn form tự động submit
-    
+
         // Lấy thông tin đăng nhập từ form
         const username = $("#username").val();
         const password = $("#password").val();
-    
+
         try {
             // Gửi request đăng nhập
             const response = await axiosJWT.post("/api/Auth/login", {
                 username: username,
                 password: password,
             });
-    
+
             // Lưu accessToken và refreshToken vào localStorage
             const { accessToken, refreshToken } = response.data;
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            localStorage.setItem("userName", username);
-    
+            // localStorage.setItem("userName", username);
+
             console.log(accessToken);
             console.log(refreshToken);
             console.log("Đăng nhập thành công, token đã được lưu");
-    
-            // Lấy User ID từ API sau khi đăng nhập thành công
-            const userId = await getUserId(username);  // Dùng await để đợi hàm getUserId
-            
-    
+
+
+
             let token = accessToken;
             let userRole;
-    
+
             if (token) {
                 try {
                     let decodedToken = jwt_decode(token);
                     userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-                    localStorage.setItem('userName', username);
+                    // localStorage.setItem('userName', username);
                     console.log(decodedToken); // In ra để kiểm tra thông tin token
                 } catch (error) {
                     console.error('Token không hợp lệ:', error);
@@ -110,15 +108,23 @@ $(document).ready(function () {
             } else {
                 console.error('Token rỗng hoặc không hợp lệ.');
             }
-    
+
             // Kiểm tra role và chuyển hướng
             if (userRole === 'Admin') {
                 window.location.href = '/Admin/MainAdmin.html'; // Chuyển hướng admin
                 console.log(username);
                 $("#displayUser").text(username);
             } else if (userRole === 'Patient') {
+                localStorage.setItem("userName", username);
+                // Lấy User ID từ API sau khi đăng nhập thành công
+                const userId = await getUserId(username, "userId");  // Dùng await để đợi hàm getUserId
+                // localStorage.setItem("userId", response.data);
                 window.location.href = '/User/index.html'; // Chuyển hướng patient
             } else if (userRole === 'Doctor') {
+                localStorage.setItem("doctorName", username);
+                // Lấy User ID từ API sau khi đăng nhập thành công
+                const userId = await getUserId(username, "doctorId");  // Dùng await để đợi hàm getUserId
+                
                 window.location.href = '/Doctor/MainDoctor.html'; // Chuyển hướng doctor
             }
         } catch (error) {
@@ -135,15 +141,15 @@ $(document).ready(function () {
             }
         }
     });
-    
-    
+
+
     $('#registerForm').on('submit', function (e) {
         e.preventDefault();
 
         let email = $('#email').val();
         let username = $('#username').val();
         let password = $('#password').val();
-        if(!kiemTraMatKhau(password)){
+        if (!kiemTraMatKhau(password)) {
 
         }
 
@@ -159,15 +165,15 @@ $(document).ready(function () {
                 password: password
             })
             .then(function (response) {
-                if(response.status === 200){
+                if (response.status === 200) {
                     console.log('Đăng ký thành công:', response);
                     showSuccessPopup();
                     setTimeout(() => {
                         window.location.href = "login.html";
                     }, 3000);
-                    
+
                 }
-                else{
+                else {
                     console.log('Đăng ký thất bại:', response.message);
                 }
             })
@@ -177,30 +183,19 @@ $(document).ready(function () {
             });
     });
 
-    // function getUserId(username) {
-    //     axiosNoJWT
-    //         .get(`/api/Auth/${username}`)  // Truyền trực tiếp username vào URL
-    //         .then(function (response) {
-    //             localStorage.setItem("userId", response.data);
-    //             console(response.data);
-    //         })
-    //         .catch(function (error) {
-    //             showErrorPopup();
-    //             console.error("Lỗi khi gọi API:", error);
-    //         });
-    // }
-    async function getUserId(username) {
+
+    async function getUserId(username, Id) {
         // Giả sử có một API gọi đến backend để lấy ID người dùng
         try {
             const response = await axiosJWT.get(`/api/Auth/${username}`);
-            localStorage.setItem("userId", response.data);
+            localStorage.setItem(Id, response.data);
             return response.data.userId;  // Trả về userId sau khi nhận được từ API
         } catch (error) {
             console.error("Lỗi khi lấy UserId:", error);
             throw error;  // Ném lỗi để catch ở ngoài
         }
     }
-    
+
 
     function showErrorPopup() {
         const errorPopup = document.getElementById("error-popup");

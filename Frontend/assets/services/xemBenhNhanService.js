@@ -43,7 +43,7 @@ function display(data) {
         <td>
             <div class="m-table-tool">
                 <div class="m-edit m-tool-icon" data-patient-id="${item.benhNhanId}" data-bs-toggle="modal" data-bs-target="#dialog-edit">
-                    <i class="fas fa-edit text-primary"></i>
+                    <i class="fas fa-eye text-primary"></i>
                 </div>
             </div>
         </td>

@@ -87,6 +87,11 @@ namespace QuanLyPhongKham.Business.Services
                 }
             }
         }
+        public async Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync()
+        {
+            return await _doctorRepository.GetAppointmentCountPerDoctorAsync();
+        }
+
     }
-    
+
 }

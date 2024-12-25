@@ -1,4 +1,5 @@
 ﻿using QuanLyPhongKham.Models.Entities;
+using QuanLyPhongKham.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace QuanLyPhongKham.Data.Interfaces
         Dictionary<string, string>? CheckDataValidateForInsert(BacSi bacSi);
         Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id);
         Task<BacSi> GetByUserId(string userId);
+        Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync();
+
 
     }
 }

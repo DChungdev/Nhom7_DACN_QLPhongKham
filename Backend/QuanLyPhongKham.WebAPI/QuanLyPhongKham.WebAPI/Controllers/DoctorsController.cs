@@ -152,5 +152,13 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             return Ok();
             
         }
+
+        [HttpGet("countAppointments")]
+        public async Task<IActionResult> GetAppointmentCountPerDoctor()
+        {
+            var counts = await _doctorService.GetAppointmentCountPerDoctorAsync();
+            return Ok(counts);
+        }
+
     }
 }

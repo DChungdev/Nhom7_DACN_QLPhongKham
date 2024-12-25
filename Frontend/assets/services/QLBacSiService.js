@@ -117,7 +117,65 @@ $(document).ready(function () {
         console.error("Lỗi khi xóa:", error);
       });
   });
+  // Sự kiện khi nhập vào ô tìm kiếm
+  $(".m-input-search").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#tblBacSi tbody tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+  //Xử lý sự kiện khi nhấn nút Export
+  $(".m-toolbar-export").click(function () {
+    exportToExcel();
+  });
 });
+// Hàm xử lý khi ấn nút xuất file Excel
+function exportToExcel() {
+  // Lấy dữ liệu từ bảng
+  const table = document.querySelector("#tblBacSi");
+  const rows = table.querySelectorAll("tbody tr");
+
+  // Tạo mảng chứa dữ liệu
+  const data = [];
+
+  // Lấy tiêu đề cột (tùy chọn)
+  const headers = [];
+  table.querySelectorAll("thead th").forEach((th, index) => {
+    const headerText = th.textContent.trim();
+    // Đảm bảo không thêm ô trống vào
+    if (headerText) {
+      headers.push(headerText);
+    }
+  });
+
+  // Nếu có tiêu đề hợp lệ, thêm vào mảng dữ liệu
+  if (headers.length > 0) {
+    data.push(headers); 
+  }
+
+  // Lặp qua các dòng của bảng để lấy dữ liệu
+  rows.forEach(row => {
+    const rowData = [];
+    row.querySelectorAll("td").forEach(td => {
+      const cellText = td.textContent.trim();
+      // Đảm bảo không thêm ô trống vào
+      rowData.push(cellText);
+    });
+    data.push(rowData); // Thêm dòng dữ liệu vào mảng
+  });
+
+  // Tạo workbook từ dữ liệu
+  const ws = XLSX.utils.aoa_to_sheet(data);
+
+  // Tạo workbook và thêm sheet
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Bác Sĩ");
+
+  // Xuất file Excel
+  XLSX.writeFile(wb, "danh_sach_bac_si.xlsx");
+}
+
+
 
 function getData() {
   // var userId = localStorage.getItem("userId");
@@ -127,13 +185,34 @@ function getData() {
     .then(function (response) {
       dsBS = response.data;
       console.log(dsBS);
-      display(dsBS);
+      getAppointmentCounts(dsBS);
+      // display(dsBS);
     })
     .catch(function (error) {
       console.error("Lỗi không tìm được:", error);
     });
 }
-function display(data) {
+function getAppointmentCounts(dsBS) {
+  // Lấy số lượng ca khám của từng bác sĩ
+  axiosJWT
+    .get(`/api/Doctors/countAppointments`)
+    .then(function (response) {
+      const appointmentCounts = response.data;
+
+      // Tạo một map để ánh xạ từ bacSiId sang số lượng ca khám
+      const appointmentMap = new Map();
+      appointmentCounts.forEach(item => {
+        appointmentMap.set(item.bacSiId, item.appointmentCount);
+      });
+
+      // Sau khi có số lượng ca khám, gọi hàm display để hiển thị dữ liệu
+      display(dsBS, appointmentMap);
+    })
+    .catch(function (error) {
+      console.error("Lỗi không lấy được số lượng ca khám:", error);
+    });
+}
+function display(data, appointmentMap) {
   const tableBody = document.querySelector("#tblBacSi tbody");
   tableBody.innerHTML = ""; // Xóa nội dung cũ nếu có
 
@@ -147,6 +226,7 @@ function display(data) {
   // Lặp qua danh sách bác sĩ và xây dựng các hàng bảng
   data.forEach((item, index) => {
     const tenKhoa = khoaMap.get(item.khoaId) || "Chưa có khoa"; // Lấy tên khoa từ Map
+    const soLuongCaKham = appointmentMap.get(item.bacSiId) || 0; // Lấy số lượng ca khám từ Map
     const row = `
       <tr bs-id="${item.bacSiId}">
         <td class="text-center">${index + 1}</td>
@@ -156,6 +236,7 @@ function display(data) {
         <td class="m-data-left">${tenKhoa}</td>
         <td class="m-data-left">${item.soDienThoai}</td>
         <td class="m-data-left">${item.email || "Chưa có email"}</td>
+        <td class="m-data-left">${soLuongCaKham}</td>
         <td>
           <div class="m-table-tool">
             <div class="m-edit m-tool-icon" data-bs-toggle="modal" data-bs-target="#modalSuaBacSi" data-id="${

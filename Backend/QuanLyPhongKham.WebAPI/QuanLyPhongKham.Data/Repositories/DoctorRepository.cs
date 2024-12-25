@@ -2,6 +2,7 @@
 using QuanLyPhongKham.Data.Context;
 using QuanLyPhongKham.Data.Interfaces;
 using QuanLyPhongKham.Models.Entities;
+using QuanLyPhongKham.Models.Models;
 using QuanLyPhongKham.Models.Resources;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,20 @@ namespace QuanLyPhongKham.Data.Repositories
         public async Task<IEnumerable<BacSi>> GetBacSisByKhoaId(Guid id)
         {
             return await _context.BacSis.Where(b => b.KhoaId == id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync()
+        {
+            var result = await _context.BacSis
+                .Select(doctor => new DoctorAppointmentCountModel
+                {
+                    BacSiId = doctor.BacSiId,
+                    HoTen = doctor.HoTen,
+                    AppointmentCount = doctor.LichKhams.Count() // `LichKhams` là navigation property
+                })
+                .ToListAsync();
+
+            return result;
         }
     }
 }

@@ -116,8 +116,61 @@ $(document).ready(function () {
                 console.error("Lỗi khi xóa:", error);
             });
     });
+    //Xử lý sự kiện khi nhấn nút Export
+    $(".m-toolbar-export").click(function () {
+        exportToExcelPatient();
+    });
 });
+// Hàm xử lý khi ấn nút xuất file Excel
+function exportToExcelPatient() {
+    // Lấy dữ liệu từ bảng
+    const table = document.querySelector("#tblBenhNhan");
+    const rows = table.querySelectorAll("tbody tr");
+  
+    // Tạo mảng chứa dữ liệu
+    const data = [];
+  
+    // Lấy tiêu đề cột (tùy chọn)
+    const headers = [];
+    table.querySelectorAll("thead th").forEach((th, index) => {
+      const headerText = th.textContent.trim();
+      if (headerText && index !== 0) {  // Loại bỏ cột STT trong tiêu đề
+        headers.push(headerText);
+      }
+    });
+    data.push(headers); // Thêm tiêu đề vào mảng dữ liệu
+  
+    // Lặp qua các dòng của bảng để lấy dữ liệu
+    rows.forEach((row, index) => {
+      const rowData = [];
+      // Thêm số thứ tự vào cột đầu tiên
+      rowData.push(index + 1); // STT (số thứ tự bắt đầu từ 1)
+  
+      row.querySelectorAll("td").forEach((td, cellIndex) => {
+        const cellData = td.textContent.trim();
+        // Thêm dữ liệu vào dòng (bỏ qua cột STT ở vị trí đầu tiên)
+        if (cellIndex !== 0) { // Loại bỏ cột STT (cột đầu tiên)
+          rowData.push(cellData || ""); // Nếu không có dữ liệu, thêm chuỗi trống
+        }
+      });
+  
+      data.push(rowData); // Thêm dòng dữ liệu vào mảng
+    });
+  
+    // Tạo workbook từ dữ liệu
+    const ws = XLSX.utils.aoa_to_sheet(data);
+  
+    // Tạo workbook và thêm sheet
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Bệnh Nhân");
+  
+    // Xuất file Excel
+    XLSX.writeFile(wb, "danh_sach_benh_nhan.xlsx");
+  }
 
+  
+  
+  
 function getData() {
     // var userId = localStorage.getItem("userId");
     // $('#hotenHeader').text(localStorage.getItem(loggedInUsername));
@@ -140,9 +193,6 @@ function display(data) {
     data.forEach((item, index) => {
         const row = `
       <tr bn-id="${item.benhNhanId}">
-        <td class="chk">
-          <input type="checkbox" />
-        </td>
         <td class="m-data-left">${index + 1}</td>
         <td class="m-data-left">${item.maBenhNhan}</td>
         <td class="m-data-left">${item.hoTen}</td>

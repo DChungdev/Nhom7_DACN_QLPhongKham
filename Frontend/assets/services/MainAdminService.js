@@ -32,7 +32,7 @@ function getDataPatientsCount() {
 function loadDashboardCounts() {
     Promise.all([getDataDoctorsCount(), getDataPatientsCount()])
         .then(function (results) {
-            var doctorCount = results[0];
+            var doctorCount = results[0];291
             var patientCount = results[1];
 
             console.log("Số lượng bác sĩ:", doctorCount);

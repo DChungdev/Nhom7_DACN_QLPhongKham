@@ -126,7 +126,7 @@ $(document).ready(function () {
     // Sự kiện xóa dịch vụ
     $(document).on('click', '.m-delete', function () {
         selectedServiceId = $(this).data('service-id'); // Lấy ID dịch vụ từ nút
-        const serviceName = $(this).closest('tr').find('td').eq(3).text(); // Tên dịch vụ từ cột thứ 4
+        const serviceName = $(this).closest('tr').find('td').eq(2).text(); // Tên dịch vụ từ cột thứ 4
         $('#dialog-confirm-delete .content').text(`Bạn có chắc chắn muốn xóa dịch vụ "${serviceName}"?`);
     });
 
@@ -204,7 +204,6 @@ function displayServices(data) {
         const khoaName = khoa ? khoa.tenKhoa : "Chưa phân khoa";
         const serviceRow = `
             <tr>
-                <td class="chk"><input type="checkbox" /></td>
                 <td empIdCell style="display: none">${service.dichVuId}</td>
                 <td>${index + 1}</td>
                 <td>${service.tenDichVu}</td>

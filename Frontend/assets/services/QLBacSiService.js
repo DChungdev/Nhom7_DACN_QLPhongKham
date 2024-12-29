@@ -128,6 +128,16 @@ $(document).ready(function () {
   $(".m-toolbar-export").click(function () {
     exportToExcel();
   });
+   // Thêm sự kiện cho nút lọc
+   $("#btnFilter").click(function() {
+    const startDate = $("#startDate").val();
+    const endDate = $("#endDate").val();
+    if (startDate && endDate) {
+      getAppointmentCounts(dsBS, startDate, endDate);
+    } else {
+      alert("Vui lòng chọn đầy đủ thời gian bắt đầu và kết thúc!");
+    }
+  });
 });
 // Hàm xử lý khi ấn nút xuất file Excel
 function exportToExcel() {
@@ -192,10 +202,36 @@ function getData() {
       console.error("Lỗi không tìm được:", error);
     });
 }
-function getAppointmentCounts(dsBS) {
-  // Lấy số lượng ca khám của từng bác sĩ
+// function getAppointmentCounts(dsBS) {
+//   // Lấy số lượng ca khám của từng bác sĩ
+//   axiosJWT
+//     .get(`/api/Doctors/countAppointments`)
+//     .then(function (response) {
+//       const appointmentCounts = response.data;
+
+//       // Tạo một map để ánh xạ từ bacSiId sang số lượng ca khám
+//       const appointmentMap = new Map();
+//       appointmentCounts.forEach(item => {
+//         appointmentMap.set(item.bacSiId, item.appointmentCount);
+//       });
+
+//       // Sau khi có số lượng ca khám, gọi hàm display để hiển thị dữ liệu
+//       display(dsBS, appointmentMap);
+//     })
+//     .catch(function (error) {
+//       console.error("Lỗi không lấy được số lượng ca khám:", error);
+//     });
+// }
+function getAppointmentCounts(dsBS, startDate = null, endDate = null) {
+  let url = `/api/Doctors/countAppointments`;
+  
+  // Nếu có startDate và endDate, thêm vào URL
+  if (startDate && endDate) {
+    url += `?startDate=${startDate}&endDate=${endDate}`;
+  }
+
   axiosJWT
-    .get(`/api/Doctors/countAppointments`)
+    .get(url)
     .then(function (response) {
       const appointmentCounts = response.data;
 
@@ -210,6 +246,7 @@ function getAppointmentCounts(dsBS) {
     })
     .catch(function (error) {
       console.error("Lỗi không lấy được số lượng ca khám:", error);
+      showErrorPopup();
     });
 }
 function display(data, appointmentMap) {

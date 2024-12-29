@@ -153,12 +153,36 @@ namespace QuanLyPhongKham.WebAPI.Controllers
             
         }
 
+        //[HttpGet("countAppointments")]
+        //public async Task<IActionResult> GetAppointmentCountPerDoctor()
+        //{
+        //    var counts = await _doctorService.GetAppointmentCountPerDoctorAsync();
+        //    return Ok(counts);
+        //}
         [HttpGet("countAppointments")]
-        public async Task<IActionResult> GetAppointmentCountPerDoctor()
+        public async Task<IActionResult> GetAppointmentCountPerDoctor(
+        [FromQuery] DateTime? startDate = null,
+        [FromQuery] DateTime? endDate = null)
         {
-            var counts = await _doctorService.GetAppointmentCountPerDoctorAsync();
-            return Ok(counts);
-        }
+            try
+            {
+                // Validate dates if both are provided
+                if (startDate.HasValue && endDate.HasValue)
+                {
+                    if (endDate < startDate)
+                    {
+                        return BadRequest("Ngày kết thúc không thể trước ngày bắt đầu");
+                    }
+                }
 
+                var counts = await _doctorService.GetAppointmentCountPerDoctorAsync(startDate, endDate);
+                return Ok(counts);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "Đã xảy ra lỗi khi xử lý yêu cầu");
+            }
+        }
     }
 }

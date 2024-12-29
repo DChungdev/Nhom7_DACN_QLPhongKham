@@ -145,18 +145,36 @@ namespace QuanLyPhongKham.Data.Repositories
             return await _context.BacSis.Where(b => b.KhoaId == id).ToListAsync();
         }
 
-        public async Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync()
+        //    public async Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync()
+        //    {
+        //        var result = await _context.BacSis
+        //            .Select(doctor => new DoctorAppointmentCountModel
+        //            {
+        //                BacSiId = doctor.BacSiId,
+        //                HoTen = doctor.HoTen,
+        //                AppointmentCount = doctor.LichKhams.Count() // `LichKhams` là navigation property
+        //            })
+        //            .ToListAsync();
+
+        //        return result;
+        //    }
+        //}
+        public async Task<IEnumerable<DoctorAppointmentCountModel>> GetAppointmentCountPerDoctorAsync(DateTime? startDate = null, DateTime? endDate = null)
         {
-            var result = await _context.BacSis
+            var query = _context.BacSis
                 .Select(doctor => new DoctorAppointmentCountModel
                 {
                     BacSiId = doctor.BacSiId,
                     HoTen = doctor.HoTen,
-                    AppointmentCount = doctor.LichKhams.Count() // `LichKhams` là navigation property
-                })
-                .ToListAsync();
+                    AppointmentCount = doctor.LichKhams
+                        .Where(lk =>
+                            (!startDate.HasValue || lk.NgayKham >= startDate) &&
+                            (!endDate.HasValue || lk.NgayKham <= endDate)
+                        )
+                        .Count()
+                });
 
-            return result;
+            return await query.ToListAsync();
         }
     }
 }

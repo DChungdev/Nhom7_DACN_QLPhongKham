@@ -1,6 +1,15 @@
 var dsBN;
 var bnID = "";
 $(document).ready(function () {
+
+// Sự kiện khi nhập vào ô tìm kiếm
+$(".m-input-search").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#tblBenhNhan tbody tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
     getData();
 
     $("#refresh-data").click(function(){
